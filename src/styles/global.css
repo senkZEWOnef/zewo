@@ -1,12 +1,21 @@
 body {
-  font-family: "Inter", sans-serif;
-  background-color: #fefefe;
-  color: #222;
+  background-color: #f5efe6;
+  font-family: "Lato", sans-serif;
+  color: #2f2a25;
 }
 
 h1,
 h2,
-h3,
-h4 {
-  font-family: "Playfair Display", serif;
+h3 {
+  font-family: "Cormorant Garamond", serif;
+  color: #3a2e25;
+}
+
+a {
+  color: #3a2e25;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #000;
 }

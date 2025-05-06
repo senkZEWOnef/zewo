@@ -9,6 +9,7 @@ import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/Dashboard";
 import NavigationBar from "./components/NavigationBar";
 import ProtectedRoute from "./components/ProtectedRoute";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/engineer" element={<Engineer />} />
+          <Route path="/builder" element={<Builder />} />
+          <Route path="/poet" element={<Poet />} />
 
           {/* Protected Dashboard */}
           <Route

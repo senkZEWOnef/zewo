@@ -1,113 +1,110 @@
-import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import homeImage from "../assets/home.jpg";
 
 const Home = () => {
-  const navigate = useNavigate();
-
   return (
-    <Container className="mt-5">
+    <div style={{ backgroundColor: "#f5efe6" }}>
       {/* Hero Section */}
-      <Row className="mb-5 text-center">
-        <Col>
-          <h1>Welcome to My World</h1>
-          <p className="lead">
-            I’m a software engineer, a builder with my own workshop, a published
-            poet, and a creator of things that matter.
-          </p>
-        </Col>
-      </Row>
+      <section
+        style={{
+          backgroundImage: `url(${homeImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+          textAlign: "center",
+        }}
+      >
+        <h1 style={{ fontFamily: "Cormorant Garamond", fontSize: "4rem" }}>
+          I build things. I write things. I make things real.
+        </h1>
+        <Button variant="light" className="mt-4" href="#overview">
+          Explore My Work
+        </Button>
+      </section>
 
-      {/* 3 Identities */}
-      <Row className="mb-4">
-        <Col md={4}>
-          <Card className="h-100 shadow-sm">
-            <Card.Body>
-              <Card.Title>👨‍💻 Engineer</Card.Title>
-              <Card.Text>
-                Explore my work in software development, frontend apps, and tech
-                experiments.
-              </Card.Text>
-              <Button variant="primary" onClick={() => navigate("/engineer")}>
-                View Projects
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
+      {/* Overview Section */}
+      <Container className="py-5" id="overview">
+        {/* Poet Section */}
+        <Row className="align-items-center mb-5">
+          <Col md={6}>
+            <h2 style={{ fontFamily: "Cormorant Garamond" }}>Poetry</h2>
+            <p>
+              I’ve published books like <strong>Still, You</strong> and{" "}
+              <strong>Rome</strong> — collections that dive into memory, love,
+              and longing.
+            </p>
+            <Button variant="dark" href="/poet">
+              Visit Poet Page
+            </Button>
+          </Col>
+          <Col md={6}>
+            <img
+              src={homeImage}
+              alt="Poetry"
+              className="img-fluid rounded shadow"
+            />
+          </Col>
+        </Row>
 
-        <Col md={4}>
-          <Card className="h-100 shadow-sm">
-            <Card.Body>
-              <Card.Title>🛠️ Builder</Card.Title>
-              <Card.Text>
-                Cabinets, kitchens, closets — crafted by hand and made to last.
-              </Card.Text>
-              <Button variant="success" onClick={() => navigate("/builder")}>
-                Visit Workshop
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
+        {/* Engineer Section */}
+        <Row className="align-items-center mb-5 flex-md-row-reverse">
+          <Col md={6}>
+            <h2 style={{ fontFamily: "Cormorant Garamond" }}>Engineering</h2>
+            <p>
+              I build software that solves problems. From personal sites to
+              functional tools — clean code with heart.
+            </p>
+            <Button variant="dark" href="/engineer">
+              Visit Engineer Page
+            </Button>
+          </Col>
+          <Col md={6}>
+            <img
+              src={homeImage}
+              alt="Engineer"
+              className="img-fluid rounded shadow"
+            />
+          </Col>
+        </Row>
 
-        <Col md={4}>
-          <Card className="h-100 shadow-sm">
-            <Card.Body>
-              <Card.Title>📝 Poet</Card.Title>
-              <Card.Text>
-                Author of several poetry books — writing about love, longing,
-                and life.
-              </Card.Text>
-              <Button variant="dark" onClick={() => navigate("/poet")}>
-                Read Poetry
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+        {/* Builder Section */}
+        <Row className="align-items-center mb-5">
+          <Col md={6}>
+            <h2 style={{ fontFamily: "Cormorant Garamond" }}>Builder</h2>
+            <p>
+              Kitchens, closets, furniture — custom built from scratch in my
+              workshop. Beauty meets functionality.
+            </p>
+            <Button variant="dark" href="/builder">
+              Visit Builder Page
+            </Button>
+          </Col>
+          <Col md={6}>
+            <img
+              src={homeImage}
+              alt="Builder"
+              className="img-fluid rounded shadow"
+            />
+          </Col>
+        </Row>
 
-      {/* Shop Teaser */}
-      <Row className="my-5 text-center">
-        <Col>
-          <h3>🛒 Shop Coming Soon</h3>
-          <p>
-            You’ll soon be able to order books and custom-made items directly
-            from the site.
-          </p>
-          <Button variant="outline-secondary" onClick={() => navigate("/shop")}>
-            Visit Shop
-          </Button>
-        </Col>
-      </Row>
-
-      {/* Social Links */}
-      <Row className="mt-5 text-center">
-        <Col>
-          <p>Follow me:</p>
-          <a
-            href="https://github.com/senkZEWOnef"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>{" "}
-          |{" "}
-          <a
-            href="https://www.instagram.com/_zewo/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
-          </a>{" "}
-          |{" "}
-          <a
-            href="https://twitter.com/yourhandle"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Twitter
-          </a>
-        </Col>
-      </Row>
-    </Container>
+        {/* Shop Section */}
+        <Row className="text-center">
+          <Col>
+            <h2 style={{ fontFamily: "Cormorant Garamond" }}>Shop</h2>
+            <p>Browse my books and custom cabinetry options.</p>
+            <Button variant="dark" href="/shop">
+              Visit Shop
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
