@@ -1,40 +1,35 @@
-// src/context/UserContext.tsx
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../supabase";
 import { User } from "@supabase/supabase-js";
 
 type UserContextType = {
   user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setUser: (user: User | null) => void;
   signOut: () => Promise<void>;
+  loadingUser: boolean;
 };
 
 const UserContext = createContext<UserContextType | null>(null);
 
-export const UserProvider = ({ children }: { children: ReactNode }) => {
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
-    // Get session on initial load
     supabase.auth.getSession().then(({ data }) => {
       setUser(data?.session?.user ?? null);
+      setLoadingUser(false);
     });
 
-    // Listen for changes
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setUser(session?.user ?? null);
+        setLoadingUser(false);
       }
     );
 
     return () => {
-      listener.subscription.unsubscribe();
+      listener?.subscription.unsubscribe();
     };
   }, []);
 
@@ -44,10 +39,16 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, signOut }}>
+    <UserContext.Provider value={{ user, setUser, signOut, loadingUser }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-export const useUser = () => useContext(UserContext);
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error("useUser must be used within a UserProvider");
+  }
+  return context;
+};

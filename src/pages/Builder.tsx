@@ -1,3 +1,5 @@
+import { supabase } from "../supabase";
+import { FormEvent } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import home from "../assets/home.jpg";
 
@@ -42,18 +44,55 @@ const Builder = () => {
         </h2>
         <Row className="justify-content-center">
           <Col md={8}>
-            <Form>
+            <Form
+              onSubmit={async (e: FormEvent<HTMLFormElement>) => {
+                e.preventDefault();
+
+                const form = e.currentTarget;
+                const name = (
+                  form.elements.namedItem("name") as HTMLInputElement
+                ).value;
+                const email = (
+                  form.elements.namedItem("email") as HTMLInputElement
+                ).value;
+                const request = (
+                  form.elements.namedItem("request") as HTMLInputElement
+                ).value;
+
+                const { error } = await supabase
+                  .from("build_requests")
+                  .insert([{ name, email, request }]);
+
+                if (error) {
+                  alert("Something went wrong. Please try again.");
+                  console.error(error);
+                } else {
+                  alert("Your request has been submitted!");
+                  form.reset();
+                }
+              }}
+            >
               <Form.Group className="mb-3">
                 <Form.Label>Your Name</Form.Label>
-                <Form.Control type="text" placeholder="Enter your name" />
+                <Form.Control
+                  name="name"
+                  type="text"
+                  placeholder="Enter your name"
+                  required
+                />
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Email Address</Form.Label>
-                <Form.Control type="email" placeholder="Enter your email" />
+                <Form.Control
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                />
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>What are you looking to build?</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Control name="request" as="textarea" rows={3} required />
               </Form.Group>
               <Button variant="dark" type="submit">
                 Send Request

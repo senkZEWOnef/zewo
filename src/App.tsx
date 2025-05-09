@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import NavigationBar from "./components/NavigationBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/engineer" element={<Engineer />} />
           <Route path="/builder" element={<Builder />} />
           <Route path="/poet" element={<Poet />} />
+          <Route path="/admin" element={<Admin />} />
 
           {/* Protected Dashboard */}
           <Route

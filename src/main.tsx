@@ -6,6 +6,7 @@ import "./styles/global.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { BrowserRouter } from "react-router-dom";
+
 import { UserProvider } from "./context/UserContext";
 
 AOS.init();
