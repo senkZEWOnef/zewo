@@ -11,6 +11,7 @@ import NavigationBar from "./components/NavigationBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
+import ProductAdmin from "./pages/ProductAdmin";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/builder" element={<Builder />} />
           <Route path="/poet" element={<Poet />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/product-admin" element={<ProductAdmin />} />
 
           {/* Protected Dashboard */}
           <Route

@@ -1,9 +1,35 @@
-import { supabase } from "../supabase";
-import { FormEvent } from "react";
+import { useEffect, useState, FormEvent } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { supabase } from "../supabase";
 import home from "../assets/home.jpg";
 
+type Product = {
+  id: string;
+  title: string;
+  price: number;
+  image_url?: string;
+};
+
 const Builder = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Error fetching products:", error);
+      } else {
+        setProducts(data as Product[]);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <Container className="py-5">
       {/* Title Section */}
@@ -102,8 +128,8 @@ const Builder = () => {
         </Row>
       </section>
 
-      {/* For Sale Section */}
-      <section>
+      {/* For Sale Section (from Supabase) */}
+      <section className="mt-5">
         <h2
           className="text-center mb-4"
           style={{ fontFamily: "Cormorant Garamond" }}
@@ -111,17 +137,18 @@ const Builder = () => {
           Pieces for Sale
         </h2>
         <Row className="justify-content-center">
-          {[
-            { title: "Walnut Bench", price: "$450" },
-            { title: "Floating Vanity", price: "$750" },
-          ].map((item, idx) => (
-            <Col md={4} className="mb-4" key={idx}>
-              <Card className="border-0 shadow-sm text-center">
-                <Card.Img variant="top" src={home} />
+          {products.map((product) => (
+            <Col md={4} className="mb-4" key={product.id}>
+              <Card className="border-0 shadow-sm h-100 text-center">
+                <Card.Img
+                  variant="top"
+                  src={product.image_url || home}
+                  alt={product.title}
+                  style={{ height: "250px", objectFit: "cover" }}
+                />
                 <Card.Body>
-                  <Card.Title>{item.title}</Card.Title>
-                  <p>{item.price}</p>
-                  <Button variant="dark">Inquire</Button>
+                  <Card.Title>{product.title}</Card.Title>
+                  <p className="card-text">${product.price}</p>
                 </Card.Body>
               </Card>
             </Col>
