@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
 import ProductAdmin from "./pages/ProductAdmin";
+import AdminMessages from "./pages/AdminMessages";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/poet" element={<Poet />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/admin/messages" element={<AdminMessages />} />;
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/engineer" element={<Engineer />} />
@@ -32,7 +34,6 @@ function App() {
           <Route path="/poet" element={<Poet />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/product-admin" element={<ProductAdmin />} />
-
           {/* Protected Dashboard */}
           <Route
             path="/dashboard"

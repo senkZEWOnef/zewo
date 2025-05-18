@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import { BrowserRouter } from "react-router-dom";
 
 import { UserProvider } from "./context/UserContext";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 AOS.init();
 

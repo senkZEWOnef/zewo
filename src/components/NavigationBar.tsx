@@ -8,7 +8,12 @@ const NavigationBar = () => {
   const signOut = userContext?.signOut;
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+    <Navbar
+      style={{ backgroundColor: "#131a33" }}
+      variant="dark"
+      expand="lg"
+      sticky="top"
+    >
       <Container>
         <Navbar.Brand as={NavLink} to="/">
           Zewo
@@ -48,6 +53,9 @@ const NavigationBar = () => {
 
             {user && (
               <>
+                <NavLink to="/admin" className="nav-link">
+                  Admin
+                </NavLink>
                 <span className="nav-link text-light">
                   Welcome, {user.email}
                 </span>
