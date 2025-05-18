@@ -8,7 +8,8 @@ import {
   Dropdown,
   DropdownButton,
 } from "react-bootstrap";
-import homeImage from "../assets/home.jpg";
+import homeImage from "../assets/placeholder-cabinet.jpg";
+import homeImage2 from "../assets/placeholder-desk.jpg";
 import { supabase } from "../supabase";
 
 const categories = ["Kitchens", "Desks", "Closets", "Others"];
@@ -23,7 +24,7 @@ const sampleGallery = [
   {
     title: "Compact Desk",
     price: 650,
-    image: homeImage,
+    image: homeImage2,
     colors: ["Oak", "Teak", "Charcoal"],
   },
 ];

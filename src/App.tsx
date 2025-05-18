@@ -1,4 +1,8 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import Home from "./pages/Home";
 import Engineer from "./pages/Engineer";
 import Builder from "./pages/Builder";
@@ -15,6 +19,10 @@ import ProductAdmin from "./pages/ProductAdmin";
 import AdminMessages from "./pages/AdminMessages";
 
 function App() {
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
   return (
     <>
       <NavigationBar />
@@ -26,15 +34,11 @@ function App() {
           <Route path="/poet" element={<Poet />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/admin/messages" element={<AdminMessages />} />;
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
-          <Route path="/engineer" element={<Engineer />} />
-          <Route path="/builder" element={<Builder />} />
-          <Route path="/poet" element={<Poet />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/product-admin" element={<ProductAdmin />} />
-          {/* Protected Dashboard */}
+          <Route path="/admin/messages" element={<AdminMessages />} />
           <Route
             path="/dashboard"
             element={

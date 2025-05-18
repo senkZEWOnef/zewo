@@ -1,5 +1,5 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
-import profileImg from "../assets/home.jpg"; // use any placeholder for now
+import profileImg from "../assets/rome.jpg"; // use any placeholder for now
 
 const About = () => {
   return (
