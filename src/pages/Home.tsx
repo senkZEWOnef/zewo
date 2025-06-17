@@ -1,42 +1,95 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Carousel } from "react-bootstrap";
+import "../styles/Home.css";
 
 // Real images
 import homeImage from "../assets/home.jpg";
 import builderImg from "../assets/builder.jpeg";
 import engineerImg from "../assets/engineer.jpeg";
 import poetImg from "../assets/poet.jpeg";
+import solarImg from "../assets/solar.jpg";
 
 const Home = () => {
   return (
     <div style={{ backgroundColor: "#0a0f2c", color: "white" }}>
-      {/* Hero Section */}
-      <section
-        className="hero-section text-white d-flex align-items-center justify-content-center"
-        style={{
-          backgroundImage: `url(${homeImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "50vh",
-          textShadow: "0 2px 4px rgba(0,0,0,0.7)",
-          padding: "0 20px",
-          textAlign: "center",
-        }}
-      >
-        <div>
-          <h1 style={{ fontFamily: "Cormorant Garamond", fontSize: "3.2rem" }}>
-            Welcome to Zewo
-          </h1>
-          <p className="lead mb-4" style={{ fontSize: "1.5rem" }}>
-            Build. Code. Write.
-          </p>
-          <Button variant="light" size="lg" href="/shop">
-            Explore My World
-          </Button>
-        </div>
+      {/* Hero Slideshow */}
+      <section>
+        <Carousel fade interval={5000} controls indicators>
+          {[
+            {
+              img: homeImage,
+              title: "Welcome to Zewo",
+              link: "/", // stays on Home
+            },
+            {
+              img: engineerImg,
+              title: "Engineering Your Ideas",
+              link: "/engineer",
+            },
+            {
+              img: solarImg,
+              title: "Powering You with Solar",
+              link: "/solar",
+            },
+            {
+              img: builderImg,
+              title: "Building with Heart",
+              link: "/builder",
+            },
+            {
+              img: poetImg,
+              title: "Writing from the Soul",
+              link: "/poet",
+            },
+          ].map((slide, idx) => (
+            <Carousel.Item
+              key={idx}
+              style={{
+                height: "50vh",
+                cursor: slide.link !== "/" ? "pointer" : "default",
+                backgroundImage: `url(${slide.img})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                position: "relative",
+              }}
+              onClick={() => {
+                if (slide.link !== "/") {
+                  window.location.href = slide.link;
+                }
+              }}
+            >
+              <div className="d-flex flex-column align-items-center justify-content-center h-100 hero-overlay">
+                <h1
+                  style={{
+                    fontFamily: "Cormorant Garamond",
+                    fontSize: "3.2rem",
+                  }}
+                >
+                  {slide.title}
+                </h1>
+                <p className="lead mb-4" style={{ fontSize: "1.5rem" }}>
+                  Build. Code. Write.
+                </p>
+                {slide.link !== "/" && (
+                  <Button
+                    variant="light"
+                    size="lg"
+                    className="hero-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.location.href = slide.link;
+                    }}
+                  >
+                    Explore This Path
+                  </Button>
+                )}
+              </div>
+            </Carousel.Item>
+          ))}
+        </Carousel>
       </section>
 
-      {/* My World in Three Words */}
-      <section className="py-5" style={{ backgroundColor: "#0a0f2c" }}>
+      {/* Four Paths, One Vision */}
+      <section className="py-5">
         <Container>
           <h2
             className="text-center mb-5"
@@ -46,21 +99,27 @@ const Home = () => {
               fontWeight: "lighter",
             }}
           >
-            My World in Three Words
+            Four Paths, One Vision
           </h2>
           <Row>
             {[
-              {
-                title: "Builder",
-                desc: "Custom kitchens, vanities, and furniture — built from scratch in my workshop.",
-                img: builderImg,
-                link: "/builder",
-              },
               {
                 title: "Engineer",
                 desc: "I develop web tools, systems, and automations with modern tech.",
                 img: engineerImg,
                 link: "/engineer",
+              },
+              {
+                title: "Solar Energy Consultant",
+                desc: "Consulting services for sustainable, efficient solar energy solutions tailored to your home or business.",
+                img: solarImg,
+                link: "/solar",
+              },
+              {
+                title: "Builder",
+                desc: "Custom kitchens, vanities, and furniture — built from scratch in my workshop.",
+                img: builderImg,
+                link: "/builder",
               },
               {
                 title: "Poet",
@@ -69,9 +128,9 @@ const Home = () => {
                 link: "/poet",
               },
             ].map((section, idx) => (
-              <Col md={4} className="text-center mb-4" key={idx}>
+              <Col md={6} lg={3} className="text-center mb-4" key={idx}>
                 <div
-                  className="p-4 h-100 shadow-sm rounded"
+                  className="p-4 h-100 rounded card-hover"
                   style={{ backgroundColor: "#131a33" }}
                 >
                   <img
@@ -84,9 +143,9 @@ const Home = () => {
                       objectFit: "cover",
                     }}
                   />
-                  <h4 style={{ fontFamily: "Cormorant Garamond" }}>
+                  <h5 style={{ fontFamily: "Cormorant Garamond" }}>
                     {section.title}
-                  </h4>
+                  </h5>
                   <p style={{ fontSize: "0.95rem", color: "#ccc" }}>
                     {section.desc}
                   </p>
@@ -100,11 +159,8 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* Opinions Section */}
-      <section
-        className="py-5"
-        style={{ backgroundColor: "#0a0f2c", color: "white" }}
-      >
+      {/* Opinions & Reflections */}
+      <section className="py-5">
         <Container>
           <h2
             className="text-center mb-5"
@@ -119,47 +175,30 @@ const Home = () => {
           <Row>
             {[
               {
-                category: "Sports",
-                quote:
-                  "The beauty of the game isn’t just in victory, but in how we lose with grace.",
+                title: "Why We Play",
+                preview: "A look at sportsmanship beyond winning.",
               },
               {
-                category: "Politics",
-                quote:
-                  "When power listens more than it speaks, the world changes.",
+                title: "Power and Silence",
+                preview: "Thoughts on listening and governance.",
               },
               {
-                category: "Haiti & PR Stories",
-                quote:
-                  "From street corners in Port-au-Prince to sunsets in Mayagüez — resistance is culture.",
+                title: "Haitian Corners",
+                preview: "Stories from Port-au-Prince to Mayagüez.",
               },
               {
-                category: "Other",
-                quote:
-                  "Not every loud voice is wise. Stillness has taught me more than crowds ever could.",
+                title: "The Quiet Teacher",
+                preview: "Lessons learned in stillness.",
               },
             ].map((item, idx) => (
               <Col md={6} className="mb-4" key={idx}>
                 <div
                   onClick={() => (window.location.href = "/poet#opinions")}
-                  className="p-4 rounded shadow-sm h-100"
-                  style={{
-                    backgroundColor: "#131a33",
-                    cursor: "pointer",
-                    transition: "transform 0.2s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.transform =
-                      "scale(1.02)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.transform =
-                      "scale(1)";
-                  }}
+                  className="p-4 rounded shadow-sm h-100 opinion-box"
                 >
-                  <h5 className="text-info">{item.category}</h5>
-                  <p style={{ fontSize: "1.1rem", fontStyle: "italic" }}>
-                    “{item.quote}”
+                  <h5 className="fw-bold">{item.title}</h5>
+                  <p style={{ fontSize: "1rem", color: "#ccc" }}>
+                    {item.preview}
                   </p>
                 </div>
               </Col>
@@ -167,6 +206,8 @@ const Home = () => {
           </Row>
         </Container>
       </section>
+
+      {/* Footer */}
       <footer
         className="text-white py-5"
         style={{ backgroundColor: "#131a33" }}
@@ -186,13 +227,18 @@ const Home = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/builder" className="text-white">
-                    Builder
+                  <a href="/engineer" className="text-white">
+                    Engineer
                   </a>
                 </li>
                 <li>
-                  <a href="/engineer" className="text-white">
-                    Engineer
+                  <a href="/solar" className="text-white">
+                    Solar Energy
+                  </a>
+                </li>
+                <li>
+                  <a href="/builder" className="text-white">
+                    Builder
                   </a>
                 </li>
                 <li>

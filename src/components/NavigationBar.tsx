@@ -20,32 +20,32 @@ const NavigationBar = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <NavLink to="/" className="nav-link">
-              Home
-            </NavLink>
-            <NavLink to="/about" className="nav-link">
-              About
-            </NavLink>
-            <NavLink to="/engineer" className="nav-link">
+          <Nav className="ms-auto align-items-center">
+            <NavLink to="/engineer" className="nav-link nav-accent">
               Engineer
             </NavLink>
-            <NavLink to="/builder" className="nav-link">
+            <NavLink to="/solar" className="nav-link nav-accent">
+              Solar Energy
+            </NavLink>
+            <NavLink to="/builder" className="nav-link nav-accent">
               Builder
             </NavLink>
-            <NavLink to="/poet" className="nav-link">
+            <NavLink to="/poet" className="nav-link nav-accent">
               Poet
             </NavLink>
-            <NavLink to="/shop" className="nav-link">
+            <NavLink to="/poet#opinions" className="nav-link nav-accent">
+              Opinions
+            </NavLink>
+            <NavLink to="/shop" className="nav-link nav-accent">
               Shop
             </NavLink>
 
             {!user && (
               <>
-                <NavLink to="/signup" className="nav-link">
+                <NavLink to="/signup" className="nav-link nav-accent">
                   Sign Up
                 </NavLink>
-                <NavLink to="/login" className="nav-link">
+                <NavLink to="/login" className="nav-link nav-accent">
                   Login
                 </NavLink>
               </>
@@ -53,17 +53,26 @@ const NavigationBar = () => {
 
             {user && (
               <>
-                <NavLink to="/admin" className="nav-link">
+                <NavLink to="/admin" className="nav-link nav-accent">
                   Admin
                 </NavLink>
                 <span className="nav-link text-light">
                   Welcome, {user.email}
                 </span>
-                <Button variant="outline-light" size="sm" onClick={signOut}>
+                <Button
+                  variant="outline-warning"
+                  size="sm"
+                  onClick={signOut}
+                  className="ms-2"
+                >
                   Logout
                 </Button>
               </>
             )}
+
+            <NavLink to="/cart" className="nav-link fs-5 ms-3 nav-accent">
+              <i className="bi bi-cart"></i>
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

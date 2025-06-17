@@ -1,0 +1,149 @@
+/* Home.css */
+
+/* Hero Section */
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 60px 20px;
+}
+
+.hero-btn {
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.4);
+}
+
+/* General Card Hover */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Opinions Box */
+.opinion-box {
+  background-color: #131a33;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.opinion-box:hover {
+  transform: scale(1.03);
+}
+
+/* Navbar Accent + Logout Button */
+.nav-accent {
+  color: white !important;
+  transition: color 0.3s ease;
+}
+
+.nav-accent:hover {
+  color: gold !important;
+}
+
+.btn-outline-warning {
+  border-color: gold !important;
+  color: gold !important;
+}
+
+.btn-outline-warning:hover {
+  background-color: gold !important;
+  color: #131a33 !important;
+}
+
+/* Solar Cards Overlay - Bolder & Clearer */
+.solar-card-overlay {
+  background-color: rgba(0, 0, 0, 0.75); /* darker overlay for readability */
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* extra contrast */
+}
+
+.solar-card-overlay h5 {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.solar-card-overlay p {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.solar-card:hover .solar-card-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+/* Bilingual card text fade */
+.bilingual-card .en-text,
+.bilingual-card .es-text {
+  position: absolute;
+  transition: opacity 0.4s ease;
+}
+
+.bilingual-card .en-text {
+  opacity: 1;
+}
+
+.bilingual-card .es-text {
+  opacity: 0;
+}
+
+.bilingual-card:hover .en-text {
+  opacity: 0;
+}
+
+.bilingual-card:hover .es-text {
+  opacity: 1;
+}
+/* Flip card styling */
+.flip-card {
+  perspective: 1000px;
+  border-radius: 10px;
+  height: 250px;
+  position: relative;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 10px;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}

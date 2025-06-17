@@ -1,38 +1,62 @@
-import { Container, Row, Col, Form, Button, Carousel } from "react-bootstrap";
-import builderHero from "../assets/builder-hero.jpeg"; // replace with your hero image
-import kitchen1 from "../assets/kitchen1.jpg";
-import kitchen2 from "../assets/kitchen2.jpg";
-import vanity1 from "../assets/vanity1.jpg";
-import vanity2 from "../assets/vanity2.jpg";
-import closet1 from "../assets/closet1.jpg";
-import closet2 from "../assets/closet2.jpg";
-import other1 from "../assets/other1.jpg";
-import other2 from "../assets/other2.jpg";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import solarHero from "../assets/solar.jpeg";
+import solarImg1 from "../assets/solarimage1.jpg";
+import solarImg2 from "../assets/solarimage2.jpg";
+import solarImg3 from "../assets/solarimage3.jpg";
+import solarImg4 from "../assets/solarimage4.jpg";
+import solarImg5 from "../assets/solarimage5.jpg";
+import solarImg6 from "../assets/solarimage6.jpg";
 
-const Builder = () => {
+const Solar = () => {
   const scrollToForm = () => {
-    const formSection = document.getElementById("builder-form");
+    const formSection = document.getElementById("solar-form");
     if (formSection) {
       formSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const projectSections = [
+  const cards = [
     {
-      title: "Kitchens",
-      images: [kitchen1, kitchen2],
+      img: solarImg1,
+      title: "Wave of Blackouts",
+      en: "Blackouts expected in Puerto Rico this summer.",
+      es: "Apagones esperados en Puerto Rico este verano.",
+      type: "default",
     },
     {
-      title: "Vanities",
-      images: [vanity1, vanity2],
+      img: solarImg2,
+      title: "Lower Your Bill",
+      en: "Pay less than your power bill.",
+      es: "Paga menos que tu factura eléctrica.",
+      type: "default",
     },
     {
-      title: "Closets",
-      images: [closet1, closet2],
+      img: solarImg3,
+      title: "Bad Credit? No Problem",
+      en: "Solar with flexible plans.",
+      es: "Solar con planes flexibles.",
+      type: "default",
     },
     {
-      title: "Other Projects",
-      images: [other1, other2],
+      img: solarImg4,
+      title: "Clean Energy",
+      en: "Use clean, renewable energy for your home.",
+      es: "Energía limpia y renovable para tu hogar.",
+      type: "default",
+    },
+    {
+      img: solarImg5,
+      title: "Increase Property Value",
+      en: "Add value & independence.",
+      es: "Aumenta el valor y la independencia.",
+      type: "default",
+    },
+    {
+      img: solarImg6,
+      title: "Let's Meet for a Free Consultation",
+      en: "Choose how you'd like to connect.",
+      es: "",
+      type: "action",
     },
   ];
 
@@ -42,7 +66,7 @@ const Builder = () => {
       <section
         className="d-flex align-items-center justify-content-center text-center"
         style={{
-          backgroundImage: `url(${builderHero})`,
+          backgroundImage: `url(${solarHero})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "40vh",
@@ -57,7 +81,7 @@ const Builder = () => {
               textShadow: "2px 2px 6px rgba(0,0,0,0.7)",
             }}
           >
-            Custom Cabinets & Woodwork
+            Solar Energy Consulting
           </h1>
           <p
             style={{
@@ -67,87 +91,91 @@ const Builder = () => {
               textShadow: "1px 1px 3px rgba(0,0,0,0.7)",
             }}
           >
-            Built to fit your space, your style, and your budget.
+            Power your home or business with clean, sustainable energy.
           </p>
-          <Button variant="outline-warning" size="lg" onClick={scrollToForm}>
-            Get a Free Estimate Today
-          </Button>
         </div>
       </section>
 
-      {/* Gallery */}
+      {/* Flip Cards */}
       <section className="py-5">
         <Container>
-          <h2
-            className="text-center mb-5"
-            style={{
-              fontFamily: "Cormorant Garamond, serif",
-              fontSize: "2.5rem",
-              fontWeight: "lighter",
-            }}
-          >
-            My Work
-          </h2>
           <Row className="g-4">
-            {projectSections.map((section, idx) => (
-              <Col md={6} lg={3} key={idx}>
-                <div
-                  className="p-3 rounded card-hover"
-                  style={{ backgroundColor: "#131a33" }}
-                >
-                  <Carousel fade controls={section.images.length > 1}>
-                    {section.images.map((img, i) => (
-                      <Carousel.Item key={i}>
-                        <img
-                          src={img}
-                          alt={section.title}
-                          className="d-block w-100"
-                          style={{
-                            height: "200px",
-                            objectFit: "cover",
-                            borderRadius: "8px",
-                          }}
-                        />
-                      </Carousel.Item>
-                    ))}
-                  </Carousel>
-                  <h5 className="mt-3">{section.title}</h5>
-                  <Button
-                    variant="outline-light"
-                    className="mt-2"
-                    onClick={scrollToForm}
+            {cards.map((card, idx) => (
+              <Col md={6} lg={4} key={idx}>
+                {card.type === "action" ? (
+                  <div
+                    className="solar-card"
+                    style={{
+                      backgroundImage: `url(${card.img})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      borderRadius: "10px",
+                      height: "250px",
+                      position: "relative",
+                      overflow: "hidden",
+                    }}
                   >
-                    I want one like this
-                  </Button>
-                </div>
+                    <div className="solar-card-overlay d-flex flex-column justify-content-center align-items-center text-center px-3">
+                      <h5>{card.title}</h5>
+                      <p>{card.en}</p>
+                      <div className="d-flex flex-column gap-2 mt-2">
+                        <Button
+                          variant="outline-warning"
+                          size="sm"
+                          onClick={scrollToForm}
+                        >
+                          Book a Zoom Call
+                        </Button>
+                        <Button
+                          variant="outline-warning"
+                          size="sm"
+                          onClick={scrollToForm}
+                        >
+                          In-Person Meeting
+                        </Button>
+                        <Button
+                          variant="outline-warning"
+                          size="sm"
+                          onClick={scrollToForm}
+                        >
+                          Request a Phone Call
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    className="flip-card"
+                    onClick={scrollToForm}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div
+                      className="flip-card-inner"
+                      style={{
+                        backgroundImage: `url(${card.img})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    >
+                      <div className="flip-card-front">
+                        <h5>{card.title}</h5>
+                        <p>{card.en}</p>
+                      </div>
+                      <div className="flip-card-back">
+                        <h5>{card.title}</h5>
+                        <p>{card.es}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </Col>
             ))}
           </Row>
         </Container>
       </section>
 
-      {/* Estimate Section */}
-      <section className="py-5 text-center">
-        <Container>
-          <h2
-            style={{
-              fontFamily: "Cormorant Garamond, serif",
-              fontSize: "2.2rem",
-            }}
-          >
-            Get a Custom Estimate
-          </h2>
-          <p style={{ color: "#ccc" }}>
-            Use our tool below to get a price estimate, then book a visit!
-          </p>
-          <Button variant="outline-warning" onClick={scrollToForm}>
-            Get Started Now
-          </Button>
-        </Container>
-      </section>
-
-      {/* Lead Form */}
-      <section className="py-5" id="builder-form">
+      {/* Form */}
+      <section className="py-5" id="solar-form">
         <Container>
           <Row>
             <Col md={12} className="text-center mb-4">
@@ -157,27 +185,35 @@ const Builder = () => {
                   fontSize: "2.5rem",
                 }}
               >
-                Share Your Design & Request a Quote
+                Request a Consultation
               </h2>
               <p style={{ color: "#ccc" }}>
-                Upload a picture (optional), describe what you want, and I’ll
-                get in touch.
+                Fill out the form below and I'll get back to you to discuss your
+                solar energy needs.
               </p>
             </Col>
           </Row>
           <Row>
             <Col md={{ span: 8, offset: 2 }}>
               <Form>
-                <Form.Group className="mb-3" controlId="photo">
-                  <Form.Label>Upload a Picture (optional)</Form.Label>
-                  <Form.Control type="file" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="description">
-                  <Form.Label>Project Description</Form.Label>
+                <Form.Group className="mb-3" controlId="name">
+                  <Form.Label>Your Name</Form.Label>
                   <Form.Control
-                    as="textarea"
-                    rows={4}
-                    placeholder="Describe your project, colors, dimensions, etc."
+                    type="text"
+                    placeholder="Enter your name"
+                    style={{
+                      backgroundColor: "#131a33",
+                      color: "#fff",
+                      border: "1px solid #444",
+                      borderRadius: "8px",
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="email">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
                     style={{
                       backgroundColor: "#131a33",
                       color: "#fff",
@@ -187,7 +223,7 @@ const Builder = () => {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="phone">
-                  <Form.Label>Phone Number (optional)</Form.Label>
+                  <Form.Label>Phone Number</Form.Label>
                   <Form.Control
                     type="tel"
                     placeholder="Enter phone number"
@@ -199,11 +235,12 @@ const Builder = () => {
                     }}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="email">
-                  <Form.Label>Email address (optional)</Form.Label>
+                <Form.Group className="mb-3" controlId="message">
+                  <Form.Label>Your Message</Form.Label>
                   <Form.Control
-                    type="email"
-                    placeholder="Enter email"
+                    as="textarea"
+                    rows={4}
+                    placeholder="Tell me more about your project..."
                     style={{
                       backgroundColor: "#131a33",
                       color: "#fff",
@@ -221,7 +258,7 @@ const Builder = () => {
         </Container>
       </section>
 
-      {/* Footer same as Home */}
+      {/* Footer - same as Home */}
       <footer
         className="text-white py-5"
         style={{ backgroundColor: "#131a33" }}
@@ -312,4 +349,4 @@ const Builder = () => {
   );
 };
 
-export default Builder;
+export default Solar;

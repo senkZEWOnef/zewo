@@ -17,7 +17,8 @@ import About from "./pages/About";
 import Admin from "./pages/Admin";
 import ProductAdmin from "./pages/ProductAdmin";
 import AdminMessages from "./pages/AdminMessages";
-
+import Cart from "./pages/CartFIX"; // ✅ EXACT match!
+import Solar from "./pages/solar";
 function App() {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -36,6 +37,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
+          <Route path="/solar" element={<Solar />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/product-admin" element={<ProductAdmin />} />
           <Route path="/admin/messages" element={<AdminMessages />} />
@@ -47,6 +49,8 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/cart" element={<Cart />} />{" "}
+          {/* ✅ Matches CartFIX.tsx */}
         </Routes>
       </div>
     </>
