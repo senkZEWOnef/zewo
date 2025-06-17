@@ -9,3 +9,18 @@ html {
 #root {
   background-color: #0a0f2c;
 }
+.bilingual-box p {
+  margin: 0;
+}
+
+.bilingual-box .desc-es {
+  display: none;
+}
+
+.bilingual-box:hover .desc-en {
+  display: none;
+}
+
+.bilingual-box:hover .desc-es {
+  display: block;
+}
