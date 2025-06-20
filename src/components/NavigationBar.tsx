@@ -33,9 +33,7 @@ const NavigationBar = () => {
             <NavLink to="/poet" className="nav-link nav-accent">
               Poet
             </NavLink>
-            <NavLink to="/poet#opinions" className="nav-link nav-accent">
-              Opinions
-            </NavLink>
+
             <NavLink to="/shop" className="nav-link nav-accent">
               Shop
             </NavLink>
