@@ -28,8 +28,16 @@ const Appointment = () => {
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      const { data } = await supabase.from("appointments").select("*");
-      if (data) setAppointments(data as Appointment[]);
+      try {
+        const { data, error } = await supabase.from("appointments").select("*");
+        if (error) {
+          console.error("Failed to fetch appointments:", error);
+        } else if (data) {
+          setAppointments(data as Appointment[]);
+        }
+      } catch (err) {
+        console.error("Error fetching appointments:", err);
+      }
     };
     fetchAppointments();
   }, []);
@@ -53,19 +61,24 @@ const Appointment = () => {
       return;
     }
 
-    const { error } = await supabase.from("appointments").insert({
-      date: selectedDate,
-      time: selectedTime,
-      duration,
-      name,
-      email,
-      phone,
-    });
+    try {
+      const { error } = await supabase.from("appointments").insert({
+        date: selectedDate,
+        time: selectedTime,
+        duration,
+        name,
+        email,
+        phone,
+      });
 
-    if (error) {
-      alert(`Failed to submit: ${error.message}`);
-    } else {
-      setSubmitted(true);
+      if (error) {
+        alert(`Failed to submit: ${error.message}`);
+      } else {
+        setSubmitted(true);
+      }
+    } catch (err) {
+      console.error("Error submitting appointment:", err);
+      alert("An unexpected error occurred. Please try again.");
     }
   };
 

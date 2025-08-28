@@ -31,11 +31,8 @@ const AdminMessages = () => {
         .select("*")
         .order("created_at", { ascending: false });
 
-      console.log("Data:", data); // ✅ Add this
-      console.log("Error:", error); // ✅ Add this
-
       if (error) {
-        console.error("Fetch error:", error);
+        setMessages([]);
       } else {
         setMessages(data as Message[]);
       }
@@ -94,7 +91,7 @@ const AdminMessages = () => {
 
                       if (error) {
                         alert("Delete failed.");
-                        console.error(error);
+                        // Handle error appropriately
                       } else {
                         setMessages(messages.filter((m) => m.id !== msg.id));
                       }

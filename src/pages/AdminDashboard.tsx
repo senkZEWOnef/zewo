@@ -63,8 +63,8 @@ const AdminDashboard = () => {
       const userData = await userRes.json();
       // 👇 FIXED HERE: unpack .users array
       setUsers(userData.users || []);
-    } catch (err) {
-      console.error("Error fetching:", err);
+    } catch {
+      // Handle error appropriately
     } finally {
       setLoading(false);
     }

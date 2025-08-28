@@ -9,11 +9,16 @@ const SignUp = () => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signUp({ email, password });
-    if (error) {
-      setMessage(error.message);
-    } else {
-      setMessage("Sign-up successful! Please check your email to confirm.");
+    try {
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        setMessage(error.message);
+      } else {
+        setMessage("Sign-up successful! Please check your email to confirm.");
+      }
+    } catch (err) {
+      console.error("Sign-up error:", err);
+      setMessage("An unexpected error occurred. Please try again.");
     }
   };
 

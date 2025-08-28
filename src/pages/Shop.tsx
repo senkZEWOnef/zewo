@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
 import {
   Container,
   Row,
@@ -27,6 +28,7 @@ type Product = {
 
 const Shop = () => {
   const [category, setCategory] = useState<"books" | "cabinets">("books");
+  const { addItem } = useCart();
 
   const books: Product[] = [
     {
@@ -85,9 +87,16 @@ const Shop = () => {
     },
   ];
 
-  const handleAddToCart = (item: Product) => {
-    alert(`Added "${item.title}" to your cart!`);
-    // TODO: Hook this to your real cart logic later
+  const handleAddToCart = (item: Product, idx: number) => {
+    const cartItem = {
+      id: `${category}-${idx}`,
+      title: item.title,
+      price: item.price,
+      img: item.img,
+      description: item.description,
+      category,
+    };
+    addItem(cartItem);
   };
 
   return (
@@ -147,7 +156,7 @@ const Shop = () => {
                   </p>
                   <Button
                     variant="outline-warning"
-                    onClick={() => handleAddToCart(item)}
+                    onClick={() => handleAddToCart(item, idx)}
                   >
                     Add to Cart
                   </Button>

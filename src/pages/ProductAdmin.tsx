@@ -36,7 +36,7 @@ const ProductAdmin = () => {
       .select("*")
       .order("created_at", { ascending: false });
     if (error) {
-      console.error("Error fetching products:", error);
+      // Handle error appropriately
     } else {
       setProducts(data as Product[]);
     }
@@ -51,7 +51,7 @@ const ProductAdmin = () => {
       .from("products")
       .insert([{ title, price: parseFloat(price), image_url }]);
     if (error) {
-      console.error("Add error:", error);
+      // Handle error appropriately
       setMessage("❌ Failed to add product.");
     } else {
       setMessage("✅ Product added!");
@@ -63,7 +63,7 @@ const ProductAdmin = () => {
   const handleDelete = async (id: string) => {
     const { error } = await supabase.from("products").delete().eq("id", id);
     if (error) {
-      console.error("Delete error:", error);
+      // Handle error appropriately
       setMessage("❌ Failed to delete.");
     } else {
       setMessage("✅ Product deleted.");
@@ -81,7 +81,7 @@ const ProductAdmin = () => {
       .update({ [field]: field === "price" ? parseFloat(value) : value })
       .eq("id", id);
     if (error) {
-      console.error("Update error:", error);
+      // Handle error appropriately
       setMessage("❌ Failed to update.");
     } else {
       setMessage("✅ Product updated.");

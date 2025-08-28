@@ -4,7 +4,7 @@ import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 // @ts-expect-error: Allow remote import for Supabase JS client in Deno
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-serve(async (_req: Request) => {
+serve(async () => {
   const supabase = createClient(
     Deno.env.get("SUPABASE_URL")!,
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!

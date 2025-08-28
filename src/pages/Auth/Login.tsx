@@ -12,16 +12,21 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (error) {
-      setMessage(error.message);
-    } else {
-      setMessage("Login successful!");
-      navigate("/admin");
+      if (error) {
+        setMessage(error.message);
+      } else {
+        setMessage("Login successful!");
+        navigate("/admin");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setMessage("An unexpected error occurred. Please try again.");
     }
   };
 

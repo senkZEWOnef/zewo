@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import { BrowserRouter } from "react-router-dom";
 
 import { UserProvider } from "./context/UserContext";
+import { CartProvider } from "./context/CartContext";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 AOS.init();
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

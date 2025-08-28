@@ -1,41 +1,272 @@
-/* Home.css */
+/* Home.css - Professional Upgrade */
 
 /* Hero Section */
+.hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(23, 162, 184, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(40, 167, 69, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-carousel .carousel-item {
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .hero-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 60px 20px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(10, 15, 44, 0.6) 100%);
+  padding: 80px 20px;
+  z-index: 2;
+}
+
+.animate-fade-up {
+  animation: fadeUp 1s ease-out;
+}
+
+.animate-fade-up-delay {
+  animation: fadeUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hero-title {
+  position: relative;
+}
+
+.hero-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #ffd700, #17a2b8);
+  border-radius: 2px;
+}
+
+.tagline-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.tagline {
+  background: linear-gradient(45deg, #fff, #ffd700, #17a2b8, #28a745);
+  background-size: 400% 400%;
+  animation: gradientShift 6s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .hero-btn {
-  border-radius: 30px;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  border-radius: 50px;
+  border-width: 2px !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.hero-btn:hover::before {
+  left: 100%;
 }
 
 .hero-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+}
+
+.hero-btn-secondary {
+  border-radius: 50px;
+  border-width: 2px !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-btn-secondary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
 }
 
-/* General Card Hover */
-.card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.hero-stats {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffd700;
+  font-family: 'Cormorant Garamond';
 }
 
-/* Opinions Box */
-.opinion-box {
-  background-color: #131a33;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.opinion-box:hover {
-  transform: scale(1.03);
+/* Expertise Cards */
+.section-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.expertise-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.expertise-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.3) !important;
+}
+
+.expertise-card:hover .expertise-img {
+  transform: scale(1.1);
+}
+
+.expertise-card:hover .expertise-overlay i {
+  opacity: 1 !important;
+}
+
+.expertise-img-container {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.expertise-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.expertise-card:hover .expertise-overlay {
+  opacity: 1;
+}
+
+.expertise-btn {
+  transition: all 0.3s ease;
+}
+
+.expertise-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+}
+
+.card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.expertise-card:hover .card-glow {
+  opacity: 1;
+}
+
+/* Insights Section */
+.insights-section {
+  position: relative;
+}
+
+.insights-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.02)"/><circle cx="75" cy="75" r="1" fill="rgba(255,215,0,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  pointer-events: none;
+}
+
+.insight-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.insight-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(23, 162, 184, 0.2);
+  border-color: rgba(23, 162, 184, 0.3) !important;
+}
+
+.insight-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(23, 162, 184, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.insight-card:hover .insight-glow {
+  opacity: 1;
+}
+
+.insight-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(23, 162, 184, 0.2), rgba(255, 215, 0, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.insight-card:hover .insight-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: linear-gradient(135deg, rgba(23, 162, 184, 0.3), rgba(255, 215, 0, 0.3));
 }
 
 /* Navbar Accent + Logout Button */

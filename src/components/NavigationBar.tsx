@@ -1,11 +1,13 @@
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { Navbar, Nav, Container, Button, Badge } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { useCart } from "../context/CartContext";
 
 const NavigationBar = () => {
   const userContext = useUser();
   const user = userContext?.user;
   const signOut = userContext?.signOut;
+  const { getTotalItems } = useCart();
 
   return (
     <Navbar
@@ -68,8 +70,18 @@ const NavigationBar = () => {
               </>
             )}
 
-            <NavLink to="/cart" className="nav-link fs-5 ms-3 nav-accent">
+            <NavLink to="/cart" className="nav-link fs-5 ms-3 nav-accent position-relative">
               <i className="bi bi-cart"></i>
+              {getTotalItems() > 0 && (
+                <Badge
+                  bg="warning"
+                  text="dark"
+                  className="position-absolute top-0 start-100 translate-middle rounded-pill"
+                  style={{ fontSize: '0.7rem' }}
+                >
+                  {getTotalItems()}
+                </Badge>
+              )}
             </NavLink>
           </Nav>
         </Navbar.Collapse>
