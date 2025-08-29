@@ -6,9 +6,9 @@ import {
   Col,
   Button,
   Card,
-  ToggleButtonGroup,
-  ToggleButton,
+  Badge,
 } from "react-bootstrap";
+import "../styles/Shop.css";
 import book1 from "../assets/stillyoucover.jpeg";
 import book2 from "../assets/romecover.jpeg";
 import book3 from "../assets/fiveamcover.jpeg";
@@ -101,76 +101,131 @@ const Shop = () => {
 
   return (
     <div style={{ backgroundColor: "#0a0f2c", color: "white" }}>
-      {/* Hero */}
-      <section className="text-center py-5">
-        <h1 style={{ fontFamily: "Cormorant Garamond", fontSize: "3rem" }}>
-          Shop My Creations
-        </h1>
-        <p className="lead">Books & Bespoke Cabinets — curated for you.</p>
+      {/* Premium Hero Section */}
+      <section className="shop-hero">
+        <div className="shop-hero-content" data-aos="fade-up">
+          <div className="mb-4">
+            <Badge bg="warning" text="dark" className="px-4 py-2 mb-3 shop-badge-pulse">
+              <i className="bi bi-shop me-2"></i>PREMIUM COLLECTION
+            </Badge>
+          </div>
+          <h1 className="shop-title mb-4">
+            Curated Creations
+          </h1>
+          <p className="shop-subtitle">
+            Discover handcrafted poetry books and bespoke woodwork — 
+            where artistry meets craftsmanship in every piece.
+          </p>
+          <div className="d-flex gap-3 justify-content-center flex-wrap mt-4">
+            <Button
+              className={`category-btn ${category === 'books' ? 'active' : ''}`}
+              onClick={() => setCategory('books')}
+            >
+              <i className="bi bi-journal-text me-2"></i>
+              Poetry Collection
+            </Button>
+            <Button
+              className={`category-btn ${category === 'cabinets' ? 'active' : ''}`}
+              onClick={() => setCategory('cabinets')}
+            >
+              <i className="bi bi-hammer me-2"></i>
+              Custom Woodwork
+            </Button>
+          </div>
+        </div>
       </section>
 
-      {/* Toggle */}
-      <section className="text-center mb-5">
-        <ToggleButtonGroup
-          type="radio"
-          name="categories"
-          value={category}
-          onChange={(val) => setCategory(val)}
-        >
-          <ToggleButton
-            id="tbg-radio-1"
-            value="books"
-            variant={category === "books" ? "warning" : "outline-warning"}
-          >
-            Poetry Books
-          </ToggleButton>
-          <ToggleButton
-            id="tbg-radio-2"
-            value="cabinets"
-            variant={category === "cabinets" ? "warning" : "outline-warning"}
-          >
-            Cabinets & Woodwork
-          </ToggleButton>
-        </ToggleButtonGroup>
+      {/* Category Toggle Section */}
+      <section className="category-toggle-section">
+        <Container>
+          <div className="text-center">
+            <h3 className="mb-4" style={{ 
+              fontFamily: "Cormorant Garamond, serif",
+              color: "#daa520",
+              fontSize: "2.2rem"
+            }}>
+              {category === 'books' ? 'Literary Collection' : 'Handcrafted Woodwork'}
+            </h3>
+            <p className="text-muted mb-4">
+              {category === 'books' 
+                ? 'Four volumes of poetry exploring love, loss, identity, and the spaces between silence and song.'
+                : 'Custom furniture and cabinetry designed and built with precision, passion, and attention to detail.'}
+            </p>
+          </div>
+        </Container>
       </section>
 
-      {/* Product Grid */}
-      <Container className="pb-5">
-        <Row className="g-4">
-          {(category === "books" ? books : cabinets).map((item, idx) => (
-            <Col md={6} lg={3} key={idx}>
-              <Card
-                className="h-100 product-card"
-                style={{ backgroundColor: "#131a33", overflow: "hidden" }}
-              >
-                <Card.Img
-                  variant="top"
-                  src={item.img}
-                  style={{ transition: "transform 0.4s ease" }}
-                />
-                <Card.Body className="text-center">
-                  <Card.Title>{item.title}</Card.Title>
-                  <Card.Text>{item.description}</Card.Text>
-                  <p style={{ fontWeight: "bold", color: "gold" }}>
-                    {item.price}
-                  </p>
-                  <Button
-                    variant="outline-warning"
-                    onClick={() => handleAddToCart(item, idx)}
-                  >
-                    Add to Cart
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      {/* Premium Product Grid */}
+      <section className="products-section">
+        <Container>
+          <Row className="g-4 justify-content-center">
+            {(category === "books" ? books : cabinets).map((item, idx) => (
+              <Col md={6} lg={3} key={`${category}-${idx}`}>
+                <div
+                  className="product-card h-100"
+                  data-aos="fade-up"
+                  data-aos-delay={idx * 150}
+                >
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="card-img-top"
+                  />
+                  <div className="card-body text-center">
+                    <h4 className="card-title">{item.title}</h4>
+                    <p className="card-text">{item.description}</p>
+                    <div className="product-price">
+                      {item.price}
+                    </div>
+                    <Button
+                      className="add-to-cart-btn"
+                      onClick={() => handleAddToCart(item, idx)}
+                    >
+                      <i className="bi bi-cart-plus me-2"></i>
+                      Add to Cart
+                    </Button>
+                  </div>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* Featured Collection */}
+      <section className="featured-products-section">
+        <Container>
+          <div className="featured-content" data-aos="fade-up">
+            <h2 className="featured-title">
+              {category === 'books' ? 'Award-Winning Poetry' : 'Master Craftsmanship'}
+            </h2>
+            <p className="featured-subtitle">
+              {category === 'books'
+                ? 'Each book represents years of reflection, observation, and the distillation of human experience into verse that resonates across cultures and time.'
+                : 'Every piece is meticulously designed and handcrafted using premium materials and traditional techniques passed down through generations of skilled artisans.'}
+            </p>
+            <div className="d-flex justify-content-center gap-4 flex-wrap mt-4">
+              <div className="text-center">
+                <div className="stat-number">{category === 'books' ? '4' : '50+'}</div>
+                <div className="stat-label">{category === 'books' ? 'Published Volumes' : 'Custom Pieces'}</div>
+              </div>
+              <div className="text-center">
+                <div className="stat-number">{category === 'books' ? '1000+' : '25+'}</div>
+                <div className="stat-label">{category === 'books' ? 'Copies Sold' : 'Happy Clients'}</div>
+              </div>
+              <div className="text-center">
+                <div className="stat-number">{category === 'books' ? '5⭐' : '100%'}</div>
+                <div className="stat-label">{category === 'books' ? 'Average Rating' : 'Satisfaction Rate'}</div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       {/* Footer */}
       <footer
         className="text-white py-5"
-        style={{ backgroundColor: "#131a33" }}
+        style={{ backgroundColor: "#0f1419" }}
       >
         <Container>
           <Row>

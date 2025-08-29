@@ -1,4 +1,5 @@
 import { Container, Row, Col, Button, Carousel, Badge } from "react-bootstrap";
+import Footer from "../components/Footer";
 import "../styles/Home.css";
 
 // Real images
@@ -18,7 +19,7 @@ const Home = () => {
           {[
             {
               img: homeImage,
-              title: "Welcome to Zewo",
+              title: "Welcome to zeWOWorld",
               link: "/", // stays on Home
             },
             {

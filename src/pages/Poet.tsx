@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import { Container, Row, Col, Button, Card, Badge } from "react-bootstrap";
 import poetHero from "../assets/poet.jpeg";
+import "../styles/Poet.css";
 import fiveamCover from "../assets/fiveamcover.jpeg";
 import romeCover from "../assets/romecover.jpeg";
 import oldGuitaristCover from "../assets/theoldguitaristcover.jpeg";
@@ -78,115 +79,158 @@ A place where ideas grow slowly, without applause.`,
     <div style={{ backgroundColor: "#0a0f2c", color: "white" }}>
       {/* Hero */}
       <section
-        className="d-flex flex-column align-items-center justify-content-center text-center"
+        className="poet-hero d-flex flex-column align-items-center justify-content-center text-center position-relative overflow-hidden"
         style={{
-          backgroundImage: `url(${poetHero})`,
+          backgroundImage: `linear-gradient(135deg, rgba(10,15,44,0.7), rgba(25,25,112,0.5)), url(${poetHero})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "50vh",
-          position: "relative",
+          backgroundAttachment: "fixed",
+          height: "75vh",
         }}
       >
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
-            padding: "40px",
-            borderRadius: "12px",
-          }}
-        >
+        <div className="hero-literary-pattern"></div>
+        <div className="poet-hero-content" data-aos="fade-up">
+          <div className="mb-4">
+            <Badge bg="warning" text="dark" className="px-4 py-2 mb-3 poet-badge-pulse">
+              <i className="bi bi-pen me-2"></i>POET & WRITER
+            </Badge>
+          </div>
           <h1
+            className="poet-title mb-4"
             style={{
               fontFamily: "Cormorant Garamond",
-              fontSize: "3.5rem",
-              fontWeight: 700,
+              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+              fontWeight: 400,
+              letterSpacing: "2px",
             }}
           >
             Poetry & Reflections
           </h1>
-          <p style={{ fontSize: "1.2rem", fontStyle: "italic" }}>
-            Words to carry, thoughts to linger.
+          <p 
+            className="poet-subtitle mb-5"
+            style={{ 
+              fontSize: "clamp(1.1rem, 3vw, 1.6rem)",
+              maxWidth: "600px",
+              margin: "0 auto 2rem"
+            }}
+          >
+            "Words to carry, thoughts to linger — where silence speaks louder than noise."
           </p>
-          <div className="mt-3">
+          <div className="d-flex gap-3 justify-content-center flex-wrap">
             <Button
-              variant="outline-warning"
-              className="me-2"
+              className={`poet-hero-btn ${view === 'poetry' ? 'active' : ''}`}
               onClick={() => setView("poetry")}
             >
+              <i className="bi bi-book me-2"></i>
               Today's Poem
             </Button>
             <Button
-              variant="outline-warning"
+              className={`poet-hero-btn ${view === 'opinions' ? 'active' : ''}`}
               onClick={() => setView("opinions")}
             >
-              Read Opinions
+              <i className="bi bi-chat-quote me-2"></i>
+              Read Reflections
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Toggle */}
+      {/* Toggle Navigation */}
       <section className="text-center my-5">
-        <Button
-          variant={view === "poetry" ? "warning" : "outline-warning"}
-          className="me-2 px-4"
-          onClick={() => setView("poetry")}
-        >
-          Poetry
-        </Button>
-        <Button
-          variant={view === "opinions" ? "warning" : "outline-warning"}
-          className="px-4"
-          onClick={() => setView("opinions")}
-        >
-          Opinions
-        </Button>
+        <div className="poet-toggle-nav">
+          <Button
+            className={`toggle-btn ${view === "poetry" ? "active" : ""}`}
+            onClick={() => setView("poetry")}
+          >
+            <i className="bi bi-journal-text me-2"></i>
+            Poetry
+          </Button>
+          <Button
+            className={`toggle-btn ${view === "opinions" ? "active" : ""}`}
+            onClick={() => setView("opinions")}
+          >
+            <i className="bi bi-lightbulb me-2"></i>
+            Reflections
+          </Button>
+        </div>
       </section>
 
       {/* Poetry View */}
       {view === "poetry" && (
-        <section className="pb-5">
+        <section className="content-section fade-in-content">
+          <div className="content-bg"></div>
           <Container>
-            <h2
-              className="mb-4 text-center"
-              style={{ fontFamily: "Cormorant Garamond" }}
-            >
-              Today's Poem
-            </h2>
-            <Card
-              className="p-5 mb-5 mx-auto"
-              style={{ backgroundColor: "#131a33", maxWidth: "800px" }}
-            >
-              <h4 style={{ fontFamily: "Cormorant Garamond" }}>
-                {todayPoem.title}
-              </h4>
-              <p
+            <div className="text-center mb-5" data-aos="fade-up">
+              <Badge bg="info" text="white" className="px-4 py-2 mb-3">
+                <i className="bi bi-heart me-2"></i>FEATURED POEM
+              </Badge>
+              <h2
+                className="section-title mb-4"
                 style={{
-                  fontStyle: "italic",
-                  whiteSpace: "pre-line",
-                  fontSize: "1.2rem",
+                  fontFamily: "Cormorant Garamond",
+                  fontSize: "clamp(2rem, 5vw, 3rem)",
+                  fontWeight: 300,
+                  background: "linear-gradient(135deg, #8b4513, #fff)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
                 }}
               >
-                {todayPoem.content}
-              </p>
-            </Card>
+                Today's Verse
+              </h2>
+            </div>
+            
+            <div className="featured-content-card" data-aos="fade-up" data-aos-delay="200">
+              <h3 className="featured-title">{todayPoem.title}</h3>
+              <div className="featured-content">{todayPoem.content}</div>
+              <div className="text-center mt-4">
+                <small className="text-muted">
+                  <i className="bi bi-calendar3 me-2"></i>
+                  {new Date().toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}
+                </small>
+              </div>
+            </div>
 
-            <h2
-              className="mb-4 text-center"
-              style={{ fontFamily: "Cormorant Garamond" }}
-            >
-              Poetry Archive
-            </h2>
+            <div className="text-center mb-5" data-aos="fade-up">
+              <Badge bg="secondary" text="white" className="px-4 py-2 mb-3">
+                <i className="bi bi-collection me-2"></i>ARCHIVE
+              </Badge>
+              <h2
+                className="section-title mb-4"
+                style={{
+                  fontFamily: "Cormorant Garamond",
+                  fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+                  fontWeight: 300,
+                  color: "#daa520",
+                }}
+              >
+                From the Collection
+              </h2>
+              <p className="lead text-muted mx-auto" style={{ maxWidth: "600px" }}>
+                Explore verses from my journey — each poem a moment captured in time.
+              </p>
+            </div>
+            
             <Row className="g-4">
               {poemArchive.map((poem, idx) => (
                 <Col md={4} key={idx}>
-                  <Card
-                    className="p-4 h-100 card-hover"
-                    style={{ backgroundColor: "#131a33" }}
+                  <div
+                    className="archive-card"
+                    data-aos="fade-up"
+                    data-aos-delay={idx * 150}
                   >
-                    <h5>{poem.title}</h5>
-                    <p>{poem.excerpt}</p>
-                    <Button variant="outline-warning">Read More</Button>
-                  </Card>
+                    <h5 className="archive-card-title">{poem.title}</h5>
+                    <p className="archive-card-excerpt">{poem.excerpt}</p>
+                    <Button className="archive-card-btn">
+                      <i className="bi bi-arrow-right me-2"></i>
+                      Read Full Poem
+                    </Button>
+                    <div className="archive-glow"></div>
+                  </div>
                 </Col>
               ))}
             </Row>
@@ -196,44 +240,76 @@ A place where ideas grow slowly, without applause.`,
 
       {/* Opinions View */}
       {view === "opinions" && (
-        <section className="pb-5">
+        <section className="content-section fade-in-content">
+          <div className="content-bg"></div>
           <Container>
-            <h2
-              className="mb-4 text-center"
-              style={{ fontFamily: "Cormorant Garamond" }}
-            >
-              Today's Reflection
-            </h2>
-            <Card
-              className="p-5 mb-5 mx-auto"
-              style={{ backgroundColor: "#131a33", maxWidth: "800px" }}
-            >
-              <h4 style={{ fontFamily: "Cormorant Garamond" }}>
-                {todayOpinion.title}
-              </h4>
-              <p style={{ whiteSpace: "pre-line", fontSize: "1.1rem" }}>
-                {todayOpinion.content}
-              </p>
-            </Card>
+            <div className="text-center mb-5" data-aos="fade-up">
+              <Badge bg="success" text="white" className="px-4 py-2 mb-3">
+                <i className="bi bi-chat-square-quote me-2"></i>TODAY'S THOUGHTS
+              </Badge>
+              <h2
+                className="section-title mb-4"
+                style={{
+                  fontFamily: "Cormorant Garamond",
+                  fontSize: "clamp(2rem, 5vw, 3rem)",
+                  fontWeight: 300,
+                  background: "linear-gradient(135deg, #4b0082, #fff)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Daily Reflections
+              </h2>
+            </div>
+            
+            <div className="featured-content-card" data-aos="fade-up" data-aos-delay="200">
+              <h3 className="featured-title">{todayOpinion.title}</h3>
+              <div className="featured-content" style={{ fontStyle: 'normal' }}>{todayOpinion.content}</div>
+              <div className="text-center mt-4">
+                <small className="text-muted">
+                  <i className="bi bi-lightbulb me-2"></i>
+                  Reflection • {new Date().toLocaleDateString()}
+                </small>
+              </div>
+            </div>
 
-            <h2
-              className="mb-4 text-center"
-              style={{ fontFamily: "Cormorant Garamond" }}
-            >
-              Opinions Archive
-            </h2>
+            <div className="text-center mb-5" data-aos="fade-up">
+              <Badge bg="secondary" text="white" className="px-4 py-2 mb-3">
+                <i className="bi bi-journal-bookmark me-2"></i>ARCHIVE
+              </Badge>
+              <h2
+                className="section-title mb-4"
+                style={{
+                  fontFamily: "Cormorant Garamond",
+                  fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+                  fontWeight: 300,
+                  color: "#daa520",
+                }}
+              >
+                Thoughts & Commentary
+              </h2>
+              <p className="lead text-muted mx-auto" style={{ maxWidth: "600px" }}>
+                Essays on culture, identity, and the human experience — perspectives shaped by heritage and observation.
+              </p>
+            </div>
+            
             <Row className="g-4">
               {opinionsArchive.map((op, idx) => (
                 <Col md={4} key={idx}>
-                  <Card
-                    className="p-4 h-100 card-hover"
-                    style={{ backgroundColor: "#131a33" }}
+                  <div
+                    className="archive-card"
+                    data-aos="fade-up"
+                    data-aos-delay={idx * 150}
                   >
-                    <h5>{op.title}</h5>
-                    <span className="text-info">{op.category}</span>
-                    <p>{op.preview}</p>
-                    <Button variant="outline-warning">Read Full</Button>
-                  </Card>
+                    <div className="archive-card-category">{op.category}</div>
+                    <h5 className="archive-card-title">{op.title}</h5>
+                    <p className="archive-card-excerpt">{op.preview}</p>
+                    <Button className="archive-card-btn">
+                      <i className="bi bi-arrow-right me-2"></i>
+                      Read Full Article
+                    </Button>
+                    <div className="archive-glow"></div>
+                  </div>
                 </Col>
               ))}
             </Row>
@@ -242,49 +318,79 @@ A place where ideas grow slowly, without applause.`,
       )}
 
       {/* Books Showcase */}
-      <section className="py-5">
+      <section className="py-5 books-section">
         <Container>
-          <h2
-            className="text-center mb-5"
-            style={{ fontFamily: "Cormorant Garamond" }}
-          >
-            My Books
-          </h2>
+          <div className="text-center mb-5" data-aos="fade-up">
+            <Badge bg="warning" text="dark" className="px-4 py-2 mb-3">
+              <i className="bi bi-journals me-2"></i>PUBLISHED WORKS
+            </Badge>
+            <h2
+              className="section-title mb-4"
+              style={{
+                fontFamily: "Cormorant Garamond",
+                fontSize: "clamp(2rem, 5vw, 3.5rem)",
+                fontWeight: 300,
+                background: "linear-gradient(135deg, #daa520, #fff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Literary Collection
+            </h2>
+            <p className="lead text-muted mx-auto" style={{ maxWidth: "700px" }}>
+              Four books of poetry exploring love, loss, identity, and the spaces between silence and song.
+            </p>
+          </div>
           <Row className="g-4 justify-content-center">
             {books.map((book, idx) => (
               <Col md={6} lg={3} key={idx}>
-                <Card
-                  className="h-100 book-card"
-                  style={{ backgroundColor: "#131a33", overflow: "hidden" }}
+                <div
+                  className="book-card h-100"
+                  data-aos="fade-up"
+                  data-aos-delay={idx * 150}
                 >
-                  <Card.Img
-                    variant="top"
+                  <img
                     src={book.cover}
-                    style={{ transition: "transform 0.4s ease" }}
+                    alt={book.title}
+                    className="w-100"
                   />
-                  <Card.Body className="text-center">
-                    <Card.Title>{book.title}</Card.Title>
-                    <Card.Text>{book.intro}</Card.Text>
-                    <Button variant="outline-warning" href={book.link}>
-                      Explore Book
+                  <div className="book-card-body">
+                    <h4 className="book-title">{book.title}</h4>
+                    <p className="book-intro">{book.intro}</p>
+                    <Button className="book-btn" href={book.link}>
+                      <i className="bi bi-book me-2"></i>
+                      Explore Collection
                     </Button>
-                  </Card.Body>
-                </Card>
+                  </div>
+                  <div className="book-glow"></div>
+                </div>
               </Col>
             ))}
           </Row>
+          
+          <div className="text-center mt-5" data-aos="fade-up">
+            <p className="text-muted">
+              <i className="bi bi-shop me-2"></i>
+              Available in digital and print editions • <a href="/shop" className="text-warning">Visit Shop</a>
+            </p>
+          </div>
         </Container>
       </section>
 
-      {/* Gentle Quote */}
-      <section
-        className="py-5 text-center"
-        style={{ backgroundColor: "#0e1337" }}
-      >
+      {/* Literary Quote */}
+      <section className="poet-quote-section">
         <Container>
-          <blockquote style={{ fontStyle: "italic", fontSize: "1.2rem" }}>
-            “Poetry is the language we whisper when the world is too loud.”
-          </blockquote>
+          <div className="poet-quote-content" data-aos="fade-up">
+            <div className="poet-quote">
+              Poetry is the language we whisper when the world becomes too loud — 
+              where silence holds more truth than a thousand spoken words.
+            </div>
+            <div className="text-center mt-4">
+              <small className="text-muted">
+                <i className="bi bi-dash-lg"></i> Ralph Ulysse <i className="bi bi-dash-lg"></i>
+              </small>
+            </div>
+          </div>
         </Container>
       </section>
 

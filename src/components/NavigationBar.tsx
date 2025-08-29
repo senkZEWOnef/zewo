@@ -2,6 +2,7 @@ import { Navbar, Nav, Container, Button, Badge } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { useCart } from "../context/CartContext";
+import Logo from "./Logo";
 
 const NavigationBar = () => {
   const userContext = useUser();
@@ -17,8 +18,8 @@ const NavigationBar = () => {
       sticky="top"
     >
       <Container>
-        <Navbar.Brand as={NavLink} to="/">
-          Zewo
+        <Navbar.Brand as={NavLink} to="/" className="d-flex align-items-center">
+          <Logo variant="dark" size="md" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -38,6 +39,10 @@ const NavigationBar = () => {
 
             <NavLink to="/shop" className="nav-link nav-accent">
               Shop
+            </NavLink>
+
+            <NavLink to="/about" className="nav-link nav-accent">
+              About
             </NavLink>
 
             {!user && (
