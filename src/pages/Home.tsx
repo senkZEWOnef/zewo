@@ -391,28 +391,28 @@ const Home = () => {
               <p><i className="bi bi-geo-alt me-2"></i>San Juan, Puerto Rico</p>
               <div className="d-flex gap-3 fs-4">
                 <a
-                  href="https://instagram.com/yourhandle"
+                  href="https://instagram.com/zewoworld"
                   target="_blank"
                   className="text-white"
                 >
                   <i className="bi bi-instagram"></i>
                 </a>
                 <a
-                  href="https://github.com/yourhandle"
+                  href="https://github.com/zewo"
                   target="_blank"
                   className="text-white"
                 >
                   <i className="bi bi-github"></i>
                 </a>
                 <a
-                  href="https://facebook.com/yourhandle"
+                  href="https://facebook.com/zewoworld"
                   target="_blank"
                   className="text-white"
                 >
                   <i className="bi bi-facebook"></i>
                 </a>
                 <a
-                  href="https://youtube.com/@yourhandle"
+                  href="https://youtube.com/@zewoworld"
                   target="_blank"
                   className="text-white"
                 >

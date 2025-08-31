@@ -1,14 +1,15 @@
-import { Container, Row, Col, Form, Button, Badge } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Row, Col, Form, Button, Badge, Card, Modal } from "react-bootstrap";
 import solarHero from "../assets/solar.jpeg";
 import "../styles/Solar.css";
 import solarImg1 from "../assets/solarimage1.jpg";
 import solarImg2 from "../assets/solarimage2.jpg";
 import solarImg3 from "../assets/solarimage3.jpg";
-import solarImg4 from "../assets/solarimage4.jpg";
-import solarImg5 from "../assets/solarimage5.jpg";
-import solarImg6 from "../assets/solarimage6.jpg";
 
 const Solar = () => {
+  const [showQuickForm, setShowQuickForm] = useState(false);
+  const [formType, setFormType] = useState('consultation'); // 'consultation' or 'callback'
+
   const scrollToForm = () => {
     const formSection = document.getElementById("solar-form");
     if (formSection) {
@@ -16,327 +17,468 @@ const Solar = () => {
     }
   };
 
-  const cards = [
+  const handleQuickStart = (type: string) => {
+    setFormType(type);
+    setShowQuickForm(true);
+  };
+
+  const benefits = [
     {
-      img: solarImg1,
-      title: "Wave of Blackouts",
-      en: "Blackouts expected in Puerto Rico this summer.",
-      es: "Apagones esperados en Puerto Rico este verano.",
-      type: "default",
+      icon: "bi-lightning-charge-fill",
+      title: "Blackout Protection",
+      description: "Never worry about Puerto Rico's power outages again. Stay powered when the grid goes down.",
+      stat: "99.9% Uptime",
+      color: "warning"
     },
     {
-      img: solarImg2,
-      title: "Lower Your Bill",
-      en: "Pay less than your power bill.",
-      es: "Paga menos que tu factura eléctrica.",
-      type: "default",
+      icon: "bi-piggy-bank-fill",
+      title: "Massive Savings",
+      description: "Cut your electric bill by up to 90%. Start saving from day one with flexible financing.",
+      stat: "$1,200+/year",
+      color: "success"
     },
     {
-      img: solarImg3,
-      title: "Bad Credit? No Problem",
-      en: "Solar with flexible plans.",
-      es: "Solar con planes flexibles.",
-      type: "default",
+      icon: "bi-house-heart-fill",
+      title: "Increase Home Value",
+      description: "Solar systems add 15-20% to your property value while providing energy independence.",
+      stat: "+18% Value",
+      color: "info"
     },
     {
-      img: solarImg4,
-      title: "Clean Energy",
-      en: "Use clean, renewable energy for your home.",
-      es: "Energía limpia y renovable para tu hogar.",
-      type: "default",
+      icon: "bi-shield-check-fill",
+      title: "25-Year Warranty",
+      description: "Premium equipment with comprehensive coverage. Peace of mind for decades to come.",
+      stat: "25 Years",
+      color: "primary"
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "María González",
+      location: "San Juan",
+      quote: "Haven't paid an electric bill in 8 months! Best investment we ever made.",
+      savings: "$180/month"
     },
     {
-      img: solarImg5,
-      title: "Increase Property Value",
-      en: "Add value & independence.",
-      es: "Aumenta el valor y la independencia.",
-      type: "default",
+      name: "Carlos Vega",
+      location: "Bayamón",
+      quote: "No more blackouts disrupting our business. Solar gave us reliability.",
+      savings: "$350/month"
     },
     {
-      img: solarImg6,
-      title: "Let's Meet for a Free Consultation",
-      en: "Choose how you'd like to connect.",
-      es: "",
-      type: "action",
-    },
+      name: "Ana Rodriguez",
+      location: "Mayagüez",
+      quote: "The installation was seamless and savings started immediately.",
+      savings: "$220/month"
+    }
   ];
 
   return (
-    <div style={{ backgroundColor: "#0a0f2c", color: "white" }}>
-      {/* Hero */}
-      <section
-        className="solar-hero d-flex align-items-center justify-content-center text-center position-relative overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(10,15,44,0.7), rgba(34,139,34,0.4)), url(${solarHero})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-          height: "70vh",
-        }}
-      >
-        <div className="hero-solar-pattern"></div>
-        <div className="solar-hero-content" data-aos="fade-up">
-          <div className="mb-4">
-            <Badge bg="warning" text="dark" className="px-4 py-2 mb-3 solar-badge-pulse">
-              <i className="bi bi-sun me-2"></i>SOLAR ENERGY EXPERT
-            </Badge>
-          </div>
-          <h1
-            className="solar-title mb-4"
-            style={{
-              fontFamily: "Cormorant Garamond, serif",
-              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-              fontWeight: 400,
-              letterSpacing: "2px",
-            }}
-          >
-            Solar Energy Solutions
-          </h1>
-          <p 
-            className="solar-subtitle mb-5"
-            style={{ 
-              fontSize: "clamp(1.1rem, 3vw, 1.6rem)",
-              maxWidth: "700px",
-              margin: "0 auto 2rem"
-            }}
-          >
-            Escape Puerto Rico's blackouts forever. Clean, reliable energy that saves money and increases your home's value.
-          </p>
-          
-          {/* PR-specific callout */}
-          <div className="pr-callout mb-4" data-aos="fade-up" data-aos-delay="200">
-            <div className="pr-callout-title">
-              <i className="bi bi-lightning-charge me-2"></i>
-              Puerto Rico's Energy Crisis Solved
-            </div>
-            <div className="pr-callout-text">
-              Join thousands of families who've achieved energy independence with solar power
-            </div>
-          </div>
-          
-          <div className="d-flex gap-3 justify-content-center flex-wrap">
-            <Button
-              className="solar-hero-btn px-5 py-3"
-              size="lg"
-              onClick={scrollToForm}
-            >
-              <i className="bi bi-calendar-check me-2"></i>
-              Free Consultation
-            </Button>
-            <Button
-              variant="outline-light"
-              size="lg"
-              className="px-5 py-3"
-              style={{
-                borderRadius: "25px",
-                fontWeight: 600,
-                letterSpacing: "0.5px",
-                borderWidth: "2px"
-              }}
-              href="#benefits"
-            >
-              <i className="bi bi-info-circle me-2"></i>
-              Learn Benefits
-            </Button>
-          </div>
+    <div className="solar-page">
+      {/* Hero Section */}
+      <section className="solar-hero">
+        <div className="hero-background" style={{
+          backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.7), rgba(255,140,0,0.3)), url(${solarHero})`
+        }}>
+          <div className="hero-particles"></div>
         </div>
+        
+        <Container className="hero-content">
+          <Row className="align-items-center min-vh-100">
+            <Col lg={8} className="hero-text">
+              <div data-aos="fade-up">
+                <Badge className="hero-badge mb-4">
+                  <i className="bi bi-sun-fill me-2"></i>
+                  PUERTO RICO'S SOLAR EXPERTS
+                </Badge>
+                
+                <h1 className="hero-title mb-4">
+                  Escape Puerto Rico's<br/>
+                  <span className="highlight">Blackouts Forever</span>
+                </h1>
+                
+                <p className="hero-subtitle mb-5">
+                  Join 10,000+ families who chose energy independence over expensive, 
+                  unreliable grid power. Get solar installed with $0 down and start 
+                  saving immediately.
+                </p>
+                
+                <div className="hero-stats mb-5">
+                  <div className="stat">
+                    <span className="stat-number">$0</span>
+                    <span className="stat-label">Down Payment</span>
+                  </div>
+                  <div className="stat">
+                    <span className="stat-number">90%</span>
+                    <span className="stat-label">Bill Reduction</span>
+                  </div>
+                  <div className="stat">
+                    <span className="stat-number">25</span>
+                    <span className="stat-label">Year Warranty</span>
+                  </div>
+                </div>
+                
+                <div className="hero-buttons">
+                  <Button 
+                    className="btn-primary-glow me-3 mb-3"
+                    size="lg"
+                    onClick={() => handleQuickStart('consultation')}
+                  >
+                    <i className="bi bi-calendar-check me-2"></i>
+                    Free Energy Assessment
+                  </Button>
+                  <Button 
+                    className="btn-secondary-outline mb-3"
+                    size="lg"
+                    onClick={() => handleQuickStart('callback')}
+                  >
+                    <i className="bi bi-telephone me-2"></i>
+                    Request Call Back
+                  </Button>
+                </div>
+              </div>
+            </Col>
+            
+            <Col lg={4} className="d-none d-lg-block">
+              <div className="hero-form-card" data-aos="fade-left">
+                <div className="form-header">
+                  <i className="bi bi-lightning-charge-fill form-icon"></i>
+                  <h4>Get Your Free Quote</h4>
+                  <p>See how much you can save in 60 seconds</p>
+                </div>
+                
+                <Form className="quick-form">
+                  <Row>
+                    <Col md={6}>
+                      <Form.Control 
+                        type="text" 
+                        placeholder="First Name"
+                        className="quick-input mb-3"
+                      />
+                    </Col>
+                    <Col md={6}>
+                      <Form.Control 
+                        type="text" 
+                        placeholder="Last Name"
+                        className="quick-input mb-3"
+                      />
+                    </Col>
+                  </Row>
+                  
+                  <Form.Control 
+                    type="email" 
+                    placeholder="Email Address"
+                    className="quick-input mb-3"
+                  />
+                  
+                  <Form.Control 
+                    type="tel" 
+                    placeholder="Phone Number"
+                    className="quick-input mb-3"
+                  />
+                  
+                  <Form.Select className="quick-input mb-4">
+                    <option>Monthly Electric Bill</option>
+                    <option value="under-100">Under $100</option>
+                    <option value="100-200">$100 - $200</option>
+                    <option value="200-300">$200 - $300</option>
+                    <option value="300-plus">$300+</option>
+                  </Form.Select>
+                  
+                  <Button className="btn-form-submit w-100">
+                    <i className="bi bi-calculator me-2"></i>
+                    Calculate My Savings
+                  </Button>
+                  
+                  <p className="form-disclaimer">
+                    <i className="bi bi-shield-check me-1"></i>
+                    100% Free • No Obligations • Secure
+                  </p>
+                </Form>
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </section>
 
       {/* Benefits Section */}
-      <section className="solar-benefits-section" id="benefits">
-        <div className="benefits-bg-pattern"></div>
+      <section className="benefits-section">
         <Container>
           <div className="text-center mb-5" data-aos="fade-up">
-            <Badge bg="success" text="white" className="px-4 py-2 mb-3 solar-badge-pulse">
-              <i className="bi bi-lightbulb me-2"></i>WHY SOLAR ENERGY?
+            <Badge className="section-badge mb-3">
+              <i className="bi bi-star-fill me-2"></i>
+              WHY CHOOSE SOLAR?
             </Badge>
-            <h2
-              className="section-title mb-4"
-              style={{
-                fontFamily: "Cormorant Garamond, serif",
-                fontSize: "clamp(2rem, 5vw, 3.5rem)",
-                fontWeight: 300,
-                background: "linear-gradient(135deg, #ff8c00, #ffd700)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
+            <h2 className="section-title mb-4">
               Transform Your Energy Future
             </h2>
-            <p className="lead text-light mx-auto" style={{ maxWidth: "700px", opacity: 0.9 }}>
-              Discover the powerful benefits of solar energy for Puerto Rico families
+            <p className="section-subtitle">
+              Puerto Rico families are making the switch to clean, reliable solar energy
             </p>
           </div>
+          
           <Row className="g-4">
-            {cards.slice(0, -1).map((card, idx) => (
-              <Col md={6} lg={4} key={idx}>
-                <div
-                  className="solar-benefit-card"
-                  onClick={scrollToForm}
+            {benefits.map((benefit, idx) => (
+              <Col md={6} lg={3} key={idx}>
+                <Card 
+                  className="benefit-card h-100"
+                  data-aos="fade-up"
+                  data-aos-delay={idx * 100}
+                >
+                  <Card.Body className="text-center">
+                    <div className={`benefit-icon bg-${benefit.color}`}>
+                      <i className={benefit.icon}></i>
+                    </div>
+                    <Card.Title className="benefit-title">{benefit.title}</Card.Title>
+                    <Card.Text className="benefit-description">
+                      {benefit.description}
+                    </Card.Text>
+                    <div className="benefit-stat">
+                      <span className="stat-highlight">{benefit.stat}</span>
+                    </div>
+                    <Button 
+                      variant="outline-primary" 
+                      size="sm"
+                      onClick={() => handleQuickStart('consultation')}
+                      className="benefit-cta"
+                    >
+                      Learn More <i className="bi bi-arrow-right ms-1"></i>
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* Social Proof Section */}
+      <section className="testimonials-section">
+        <Container>
+          <div className="text-center mb-5" data-aos="fade-up">
+            <Badge className="section-badge mb-3">
+              <i className="bi bi-people-fill me-2"></i>
+              SUCCESS STORIES
+            </Badge>
+            <h2 className="section-title mb-4">
+              Real Families, Real Savings
+            </h2>
+          </div>
+          
+          <Row className="g-4">
+            {testimonials.map((testimonial, idx) => (
+              <Col md={4} key={idx}>
+                <Card 
+                  className="testimonial-card h-100"
                   data-aos="fade-up"
                   data-aos-delay={idx * 150}
                 >
-                  <div className="benefit-card-image">
-                    <img src={card.img} alt={card.title} />
-                    <div className="benefit-overlay">
-                      <i className="bi bi-sun benefit-icon"></i>
+                  <Card.Body>
+                    <div className="testimonial-header mb-3">
+                      <div className="testimonial-avatar">
+                        <i className="bi bi-person-circle"></i>
+                      </div>
+                      <div>
+                        <h6 className="testimonial-name">{testimonial.name}</h6>
+                        <p className="testimonial-location">{testimonial.location}</p>
+                      </div>
+                      <div className="testimonial-savings">
+                        <span className="savings-amount">{testimonial.savings}</span>
+                        <span className="savings-label">saved</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="benefit-card-content">
-                    <h5 className="benefit-title">{card.title}</h5>
-                    <div className="benefit-text">
-                      <p className="english">{card.en}</p>
-                      <p className="spanish">{card.es}</p>
+                    
+                    <blockquote className="testimonial-quote">
+                      "{testimonial.quote}"
+                    </blockquote>
+                    
+                    <div className="testimonial-stars">
+                      {[...Array(5)].map((_, i) => (
+                        <i key={i} className="bi bi-star-fill"></i>
+                      ))}
                     </div>
-                    <div className="benefit-cta">
-                      <Button className="benefit-btn" size="sm">
-                        <i className="bi bi-arrow-right me-2"></i>
-                        Learn More
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="benefit-glow"></div>
-                </div>
+                  </Card.Body>
+                </Card>
               </Col>
             ))}
           </Row>
           
-          {/* Consultation CTA Card */}
-          <div className="consultation-cta-section mt-5" data-aos="fade-up">
-            <div className="consultation-cta-card">
-              <div className="consultation-bg-image"
-                style={{
-                  backgroundImage: `url(${cards[cards.length - 1].img})`,
-                }}
-              ></div>
-              <div className="consultation-content">
-                <h3 className="consultation-title">
-                  <i className="bi bi-calendar-check me-3"></i>
-                  Ready to Go Solar?
-                </h3>
-                <p className="consultation-subtitle">
-                  Choose your preferred consultation method and let's discuss your energy independence
-                </p>
-                <div className="consultation-options">
-                  <Button
-                    className="consultation-btn zoom-btn"
-                    onClick={scrollToForm}
-                  >
-                    <i className="bi bi-camera-video me-2"></i>
-                    Virtual Consultation
-                  </Button>
-                  <Button
-                    className="consultation-btn meeting-btn"
-                    onClick={scrollToForm}
-                  >
-                    <i className="bi bi-house me-2"></i>
-                    In-Person Visit
-                  </Button>
-                  <Button
-                    className="consultation-btn phone-btn"
-                    onClick={scrollToForm}
-                  >
-                    <i className="bi bi-telephone me-2"></i>
-                    Phone Discussion
-                  </Button>
-                </div>
-              </div>
-              <div className="consultation-glow"></div>
-            </div>
+          <div className="text-center mt-5" data-aos="fade-up">
+            <Button 
+              className="btn-primary-glow btn-lg"
+              onClick={() => handleQuickStart('consultation')}
+            >
+              <i className="bi bi-trophy me-2"></i>
+              Join These Success Stories
+            </Button>
           </div>
         </Container>
       </section>
 
-      {/* Solar Consultation Form */}
-      <section className="solar-form-section" id="solar-form">
-        <div className="form-bg-pattern"></div>
+      {/* Urgency Section */}
+      <section className="urgency-section">
         <Container>
-          <div className="form-container" data-aos="fade-up">
-            <div className="form-header text-center mb-5">
-              <Badge bg="warning" text="dark" className="px-4 py-2 mb-3">
-                <i className="bi bi-lightning-charge me-2"></i>FREE CONSULTATION
-              </Badge>
-              <h2 className="form-title">
-                Start Your Solar Journey Today
-              </h2>
-              <p className="form-subtitle">
-                Get a personalized solar energy assessment for your Puerto Rico home.
-                <br />No commitment required – just expert guidance toward energy independence.
-              </p>
-            </div>
+          <Row className="align-items-center">
+            <Col lg={8} data-aos="fade-right">
+              <div className="urgency-content">
+                <Badge className="urgency-badge mb-3">
+                  <i className="bi bi-clock-fill me-2"></i>
+                  LIMITED TIME
+                </Badge>
+                <h2 className="urgency-title">
+                  Federal Tax Credits End Soon
+                </h2>
+                <p className="urgency-description">
+                  The 30% federal tax credit for solar installations is being reduced. 
+                  Act now to maximize your savings before these incentives decrease.
+                </p>
+                
+                <div className="urgency-stats">
+                  <div className="urgency-stat">
+                    <span className="urgency-number">30%</span>
+                    <span className="urgency-label">Tax Credit</span>
+                  </div>
+                  <div className="urgency-stat">
+                    <span className="urgency-number">$15,000+</span>
+                    <span className="urgency-label">Avg. Savings</span>
+                  </div>
+                </div>
+              </div>
+            </Col>
             
-            <Row>
-              <Col md={{ span: 8, offset: 2 }} lg={{ span: 6, offset: 3 }}>
-                <div className="solar-form-card">
+            <Col lg={4} data-aos="fade-left">
+              <div className="urgency-form-card">
+                <div className="urgency-form-header">
+                  <i className="bi bi-lightning-charge-fill"></i>
+                  <h4>Lock In Your Savings</h4>
+                  <p>Get priority scheduling</p>
+                </div>
+                
+                <div className="urgency-buttons">
+                  <Button 
+                    className="btn-urgent w-100 mb-3"
+                    onClick={() => handleQuickStart('consultation')}
+                  >
+                    <i className="bi bi-calendar-check me-2"></i>
+                    Schedule Free Assessment
+                  </Button>
+                  <Button 
+                    className="btn-callback w-100"
+                    onClick={() => handleQuickStart('callback')}
+                  >
+                    <i className="bi bi-telephone-fill me-2"></i>
+                    Request Immediate Callback
+                  </Button>
+                </div>
+                
+                <p className="urgency-disclaimer">
+                  <i className="bi bi-shield-check me-1"></i>
+                  No pressure • Expert advice • Free consultation
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* Main Form Section */}
+      <section className="main-form-section" id="solar-form">
+        <Container>
+          <div className="text-center mb-5" data-aos="fade-up">
+            <Badge className="section-badge mb-3">
+              <i className="bi bi-form-check me-2"></i>
+              GET STARTED TODAY
+            </Badge>
+            <h2 className="section-title mb-4">
+              Your Solar Journey Starts Here
+            </h2>
+            <p className="section-subtitle">
+              Complete our quick assessment to receive a personalized solar proposal
+            </p>
+          </div>
+          
+          <Row>
+            <Col lg={{ span: 8, offset: 2 }}>
+              <Card className="main-form-card" data-aos="fade-up">
+                <Card.Body className="p-5">
                   <Form>
-                    <div className="form-section">
-                      <h5 className="section-header">
+                    {/* Contact Section */}
+                    <div className="form-section mb-4">
+                      <h5 className="form-section-title">
                         <i className="bi bi-person-circle me-2"></i>
                         Contact Information
                       </h5>
+                      
                       <Row>
                         <Col md={6}>
-                          <Form.Group className="mb-3" controlId="firstName">
+                          <Form.Group className="mb-3">
                             <Form.Label>First Name *</Form.Label>
-                            <Form.Control
-                              type="text"
-                              placeholder="First name"
-                              className="solar-input"
-                              required
+                            <Form.Control 
+                              type="text" 
+                              className="main-form-input"
+                              placeholder="Enter your first name"
                             />
                           </Form.Group>
                         </Col>
                         <Col md={6}>
-                          <Form.Group className="mb-3" controlId="lastName">
+                          <Form.Group className="mb-3">
                             <Form.Label>Last Name *</Form.Label>
-                            <Form.Control
-                              type="text"
-                              placeholder="Last name"
-                              className="solar-input"
-                              required
+                            <Form.Control 
+                              type="text" 
+                              className="main-form-input"
+                              placeholder="Enter your last name"
                             />
                           </Form.Group>
                         </Col>
                       </Row>
-                      <Form.Group className="mb-3" controlId="email">
-                        <Form.Label>Email Address *</Form.Label>
-                        <Form.Control
-                          type="email"
-                          placeholder="your@email.com"
-                          className="solar-input"
-                          required
-                        />
-                      </Form.Group>
-                      <Form.Group className="mb-4" controlId="phone">
-                        <Form.Label>Phone Number *</Form.Label>
-                        <Form.Control
-                          type="tel"
-                          placeholder="(787) 555-0123"
-                          className="solar-input"
-                          required
-                        />
-                      </Form.Group>
-                    </div>
-                    
-                    <div className="form-section">
-                      <h5 className="section-header">
-                        <i className="bi bi-house me-2"></i>
-                        Property Details
-                      </h5>
-                      <Form.Group className="mb-3" controlId="address">
-                        <Form.Label>Property Address</Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Street address, city, PR"
-                          className="solar-input"
-                        />
-                      </Form.Group>
+                      
                       <Row>
                         <Col md={6}>
-                          <Form.Group className="mb-3" controlId="homeType">
+                          <Form.Group className="mb-3">
+                            <Form.Label>Email Address *</Form.Label>
+                            <Form.Control 
+                              type="email" 
+                              className="main-form-input"
+                              placeholder="your@email.com"
+                            />
+                          </Form.Group>
+                        </Col>
+                        <Col md={6}>
+                          <Form.Group className="mb-3">
+                            <Form.Label>Phone Number *</Form.Label>
+                            <Form.Control 
+                              type="tel" 
+                              className="main-form-input"
+                              placeholder="(787) 555-0123"
+                            />
+                          </Form.Group>
+                        </Col>
+                      </Row>
+                    </div>
+
+                    {/* Property Section */}
+                    <div className="form-section mb-4">
+                      <h5 className="form-section-title">
+                        <i className="bi bi-house-fill me-2"></i>
+                        Property Information
+                      </h5>
+                      
+                      <Form.Group className="mb-3">
+                        <Form.Label>Property Address</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          className="main-form-input"
+                          placeholder="123 Main Street, San Juan, PR 00901"
+                        />
+                      </Form.Group>
+                      
+                      <Row>
+                        <Col md={6}>
+                          <Form.Group className="mb-3">
                             <Form.Label>Home Type</Form.Label>
-                            <Form.Select className="solar-input">
-                              <option value="">Select type...</option>
+                            <Form.Select className="main-form-input">
+                              <option>Select home type</option>
                               <option value="single-family">Single Family Home</option>
                               <option value="townhouse">Townhouse</option>
                               <option value="condo">Condo/Apartment</option>
@@ -345,10 +487,10 @@ const Solar = () => {
                           </Form.Group>
                         </Col>
                         <Col md={6}>
-                          <Form.Group className="mb-4" controlId="monthlyBill">
+                          <Form.Group className="mb-3">
                             <Form.Label>Monthly Electric Bill</Form.Label>
-                            <Form.Select className="solar-input">
-                              <option value="">Select range...</option>
+                            <Form.Select className="main-form-input">
+                              <option>Select bill range</option>
                               <option value="under-100">Under $100</option>
                               <option value="100-200">$100 - $200</option>
                               <option value="200-300">$200 - $300</option>
@@ -359,189 +501,165 @@ const Solar = () => {
                         </Col>
                       </Row>
                     </div>
-                    
-                    <div className="form-section">
-                      <h5 className="section-header">
-                        <i className="bi bi-calendar-event me-2"></i>
-                        Consultation Preference
+
+                    {/* Preferences Section */}
+                    <div className="form-section mb-4">
+                      <h5 className="form-section-title">
+                        <i className="bi bi-gear-fill me-2"></i>
+                        Consultation Preferences
                       </h5>
-                      <Form.Group className="mb-3" controlId="consultationType">
-                        <Form.Label>Preferred Meeting Type</Form.Label>
-                        <div className="consultation-radio-group">
+                      
+                      <Form.Group className="mb-3">
+                        <Form.Label>How would you like to connect?</Form.Label>
+                        <div className="consultation-options">
                           <Form.Check
                             type="radio"
                             name="consultationType"
-                            id="virtual"
-                            label="Virtual Meeting (Zoom/Teams)"
-                            className="consultation-radio"
+                            id="consultation-virtual"
+                            label="Virtual Meeting (Video Call)"
+                            className="consultation-option"
                           />
                           <Form.Check
                             type="radio"
                             name="consultationType"
-                            id="in-person"
-                            label="In-Person Home Visit"
-                            className="consultation-radio"
+                            id="consultation-in-person"
+                            label="In-Person Home Assessment"
+                            className="consultation-option"
                           />
                           <Form.Check
                             type="radio"
                             name="consultationType"
-                            id="phone"
+                            id="consultation-phone"
                             label="Phone Consultation"
-                            className="consultation-radio"
+                            className="consultation-option"
+                          />
+                          <Form.Check
+                            type="radio"
+                            name="consultationType"
+                            id="consultation-callback"
+                            label="Request Call Back (Priority)"
+                            className="consultation-option highlight-option"
                           />
                         </div>
                       </Form.Group>
-                      <Form.Group className="mb-4" controlId="message">
-                        <Form.Label>Additional Details</Form.Label>
-                        <Form.Control
+                      
+                      <Form.Group className="mb-4">
+                        <Form.Label>Best Time to Contact</Form.Label>
+                        <Form.Select className="main-form-input">
+                          <option>Select preferred time</option>
+                          <option value="morning">Morning (8AM - 12PM)</option>
+                          <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                          <option value="evening">Evening (5PM - 8PM)</option>
+                          <option value="anytime">Anytime</option>
+                        </Form.Select>
+                      </Form.Group>
+                      
+                      <Form.Group className="mb-4">
+                        <Form.Label>Additional Information</Form.Label>
+                        <Form.Control 
                           as="textarea"
                           rows={3}
-                          placeholder="Tell me about your energy goals, any specific concerns, or questions you have..."
-                          className="solar-input"
+                          className="main-form-input"
+                          placeholder="Tell us about your energy goals, any specific concerns, or questions you have..."
                         />
                       </Form.Group>
                     </div>
-                    
-                    <div className="form-submit-section text-center">
-                      <Button className="solar-submit-btn" size="lg" type="submit">
-                        <i className="bi bi-send me-2"></i>
-                        Request Free Consultation
+
+                    <div className="text-center">
+                      <Button 
+                        className="btn-form-submit btn-lg px-5"
+                        type="submit"
+                      >
+                        <i className="bi bi-send-check me-2"></i>
+                        Get My Free Solar Assessment
                       </Button>
+                      
                       <p className="form-disclaimer mt-3">
                         <i className="bi bi-shield-check me-1"></i>
-                        Your information is secure and will never be shared. 
-                        Free consultation with no obligations.
+                        Your information is completely secure and will never be shared. 
+                        This consultation is 100% free with no obligation.
                       </p>
                     </div>
                   </Form>
-                </div>
-              </Col>
-            </Row>
-          </div>
-        </Container>
-      </section>
-
-      {/* Solar Stats Section */}
-      <section className="solar-stats-section">
-        <Container>
-          <div className="stats-content" data-aos="fade-up">
-            <Row>
-              <Col md={3} sm={6} className="text-center mb-4">
-                <div className="stat-item">
-                  <div className="stat-number">2000+</div>
-                  <div className="stat-label">Homes Powered</div>
-                </div>
-              </Col>
-              <Col md={3} sm={6} className="text-center mb-4">
-                <div className="stat-item">
-                  <div className="stat-number">$2M+</div>
-                  <div className="stat-label">Savings Generated</div>
-                </div>
-              </Col>
-              <Col md={3} sm={6} className="text-center mb-4">
-                <div className="stat-item">
-                  <div className="stat-number">98%</div>
-                  <div className="stat-label">Customer Satisfaction</div>
-                </div>
-              </Col>
-              <Col md={3} sm={6} className="text-center mb-4">
-                <div className="stat-item">
-                  <div className="stat-number">5★</div>
-                  <div className="stat-label">Average Rating</div>
-                </div>
-              </Col>
-            </Row>
-          </div>
-        </Container>
-      </section>
-
-      {/* Footer - same as Home */}
-      <footer
-        className="text-white py-5"
-        style={{ backgroundColor: "#0f1419" }}
-      >
-        <Container>
-          <Row>
-            <Col md={4} className="mb-3">
-              <h4 style={{ fontFamily: "Cormorant Garamond" }}>Zewo</h4>
-              <p style={{ color: "#ccc" }}>Build. Code. Write.</p>
-            </Col>
-            <Col md={4} className="mb-3">
-              <h5>Quick Links</h5>
-              <ul className="list-unstyled" style={{ color: "#aaa" }}>
-                <li>
-                  <a href="/" className="text-white">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="/engineer" className="text-white">
-                    Engineer
-                  </a>
-                </li>
-                <li>
-                  <a href="/solar" className="text-white">
-                    Solar Energy
-                  </a>
-                </li>
-                <li>
-                  <a href="/builder" className="text-white">
-                    Builder
-                  </a>
-                </li>
-                <li>
-                  <a href="/poet" className="text-white">
-                    Poet
-                  </a>
-                </li>
-                <li>
-                  <a href="/shop" className="text-white">
-                    Shop
-                  </a>
-                </li>
-              </ul>
-            </Col>
-            <Col md={4}>
-              <h5>Contact</h5>
-              <p>Email: your@email.com</p>
-              <p>Phone: (787) 555-1234</p>
-              <div className="d-flex gap-3 fs-4">
-                <a
-                  href="https://instagram.com/yourhandle"
-                  target="_blank"
-                  className="text-white"
-                >
-                  <i className="bi bi-instagram"></i>
-                </a>
-                <a
-                  href="https://github.com/yourhandle"
-                  target="_blank"
-                  className="text-white"
-                >
-                  <i className="bi bi-github"></i>
-                </a>
-                <a
-                  href="https://facebook.com/yourhandle"
-                  target="_blank"
-                  className="text-white"
-                >
-                  <i className="bi bi-facebook"></i>
-                </a>
-                <a
-                  href="https://youtube.com/@yourhandle"
-                  target="_blank"
-                  className="text-white"
-                >
-                  <i className="bi bi-youtube"></i>
-                </a>
-              </div>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
-          <p className="text-center mt-4 small text-muted">
-            &copy; {new Date().getFullYear()} Zewo by Ralph Ulysse
-          </p>
         </Container>
-      </footer>
+      </section>
+
+      {/* Quick Action Modal */}
+      <Modal show={showQuickForm} onHide={() => setShowQuickForm(false)} centered>
+        <Modal.Header closeButton className="modal-header-custom">
+          <Modal.Title>
+            <i className={`bi ${formType === 'callback' ? 'bi-telephone-fill' : 'bi-calendar-check'} me-2`}></i>
+            {formType === 'callback' ? 'Request Priority Callback' : 'Schedule Free Assessment'}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="modal-body-custom">
+          <Form>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>First Name *</Form.Label>
+                  <Form.Control type="text" className="modal-form-input" />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Last Name *</Form.Label>
+                  <Form.Control type="text" className="modal-form-input" />
+                </Form.Group>
+              </Col>
+            </Row>
+            
+            <Form.Group className="mb-3">
+              <Form.Label>Phone Number *</Form.Label>
+              <Form.Control type="tel" className="modal-form-input" placeholder="(787) 555-0123" />
+            </Form.Group>
+            
+            <Form.Group className="mb-3">
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control type="email" className="modal-form-input" placeholder="your@email.com" />
+            </Form.Group>
+            
+            {formType === 'callback' && (
+              <Form.Group className="mb-3">
+                <Form.Label>Best Time to Call</Form.Label>
+                <Form.Select className="modal-form-input">
+                  <option>Select preferred time</option>
+                  <option value="asap">As soon as possible</option>
+                  <option value="morning">This morning</option>
+                  <option value="afternoon">This afternoon</option>
+                  <option value="tomorrow">Tomorrow</option>
+                </Form.Select>
+              </Form.Group>
+            )}
+            
+            <Form.Group className="mb-4">
+              <Form.Label>Brief Message (Optional)</Form.Label>
+              <Form.Control 
+                as="textarea" 
+                rows={2} 
+                className="modal-form-input"
+                placeholder={formType === 'callback' ? "Urgent questions or specific callback time..." : "What sparked your interest in solar?"}
+              />
+            </Form.Group>
+            
+            <div className="d-grid">
+              <Button className="btn-modal-submit" size="lg">
+                <i className={`bi ${formType === 'callback' ? 'bi-telephone-fill' : 'bi-send-check'} me-2`}></i>
+                {formType === 'callback' ? 'Request Priority Call' : 'Schedule My Assessment'}
+              </Button>
+            </div>
+            
+            <p className="text-center mt-3 text-muted small">
+              <i className="bi bi-clock me-1"></i>
+              {formType === 'callback' ? 'We typically call back within 15 minutes during business hours' : 'We will contact you within 2 hours to schedule'}
+            </p>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

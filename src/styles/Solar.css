@@ -1,582 +1,958 @@
-/* Solar.css - Clean Energy & Sustainability Theme */
+/* Modern Solar Energy Page - Lead-focused Design */
+
+/* Color Palette */
+:root {
+  --solar-primary: #ff8c00;
+  --solar-secondary: #ffd700;
+  --solar-accent: #228b22;
+  --solar-dark: #0a0f2c;
+  --solar-light: #f8fafc;
+  --solar-gradient-primary: linear-gradient(135deg, #ff8c00, #ffd700);
+  --solar-gradient-secondary: linear-gradient(135deg, #228b22, #32cd32);
+  --solar-gradient-hero: linear-gradient(135deg, rgba(10, 15, 44, 0.9), rgba(255, 140, 0, 0.2));
+  --solar-shadow-primary: 0 4px 20px rgba(255, 140, 0, 0.3);
+  --solar-shadow-hover: 0 8px 30px rgba(255, 140, 0, 0.4);
+}
+
+/* Base Page Styles */
+.solar-page {
+  background: var(--solar-dark);
+  color: white;
+  overflow-x: hidden;
+}
 
 /* Hero Section */
 .solar-hero {
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
   overflow: hidden;
 }
 
-.hero-solar-pattern {
+.hero-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 30% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(34, 139, 34, 0.08) 0%, transparent 50%),
-    linear-gradient(45deg, transparent 40%, rgba(255, 140, 0, 0.05) 50%, transparent 60%);
-  pointer-events: none;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   z-index: 1;
 }
 
-.solar-badge-pulse {
-  animation: solarPulse 3s infinite;
-  box-shadow: 0 0 30px rgba(255, 165, 0, 0.4);
+.hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="solar-particles" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="1" fill="rgba(255,215,0,0.1)"/><circle cx="15" cy="15" r="0.5" fill="rgba(255,140,0,0.15)"/><circle cx="10" cy="18" r="0.8" fill="rgba(34,139,34,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23solar-particles)"/></svg>');
+  animation: floatParticles 20s linear infinite;
+  z-index: 2;
 }
 
-@keyframes solarPulse {
-  0%, 100% { 
-    transform: scale(1); 
-    box-shadow: 0 0 30px rgba(255, 165, 0, 0.4); 
-  }
-  50% { 
-    transform: scale(1.05); 
-    box-shadow: 0 0 40px rgba(255, 165, 0, 0.6); 
-  }
+@keyframes floatParticles {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-20px) translateY(-20px); }
 }
 
-.solar-hero-content {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(34, 139, 34, 0.4));
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 165, 0, 0.2);
-  border-radius: 25px;
-  padding: 3rem 2rem;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
-}
-
-.solar-title {
+.hero-content {
   position: relative;
-  background: linear-gradient(135deg, #ffa500, #ffd700, #228b22);
-  background-size: 300% 300%;
-  animation: solarGradient 6s ease-in-out infinite;
+  z-index: 3;
+  padding: 2rem 0;
+}
+
+.hero-badge {
+  background: var(--solar-gradient-primary);
+  color: var(--solar-dark);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  backdrop-filter: blur(10px);
+  animation: pulseBadge 3s ease-in-out infinite;
+}
+
+@keyframes pulseBadge {
+  0%, 100% { transform: scale(1); box-shadow: var(--solar-shadow-primary); }
+  50% { transform: scale(1.05); box-shadow: var(--solar-shadow-hover); }
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.hero-title .highlight {
+  background: var(--solar-gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-@keyframes solarGradient {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.solar-title::after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 4px;
-  background: linear-gradient(90deg, #ffa500, #ffd700, #228b22);
-  border-radius: 2px;
-  box-shadow: 0 2px 10px rgba(255, 165, 0, 0.3);
-}
-
-.solar-subtitle {
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.solar-hero-btn {
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(34, 139, 34, 0.2));
-  border: 2px solid rgba(255, 165, 0, 0.6);
-  color: #ffd700;
   font-weight: 600;
+  display: block;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+  max-width: 600px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.hero-stats .stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--solar-secondary);
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.5rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Button Styles */
+.btn-primary-glow {
+  background: var(--solar-gradient-primary);
+  border: 2px solid var(--solar-secondary);
+  color: var(--solar-dark);
+  font-weight: 700;
+  font-size: 1.1rem;
   letter-spacing: 0.5px;
   border-radius: 25px;
-  padding: 12px 30px;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1rem 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--solar-shadow-primary);
 }
 
-.solar-hero-btn::before {
+.btn-primary-glow::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   transition: left 0.6s;
 }
 
-.solar-hero-btn:hover::before {
+.btn-primary-glow:hover::before {
   left: 100%;
 }
 
-.solar-hero-btn:hover {
-  background: linear-gradient(135deg, #ffa500, #228b22);
-  border-color: #ffd700;
-  color: #fff;
+.btn-primary-glow:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--solar-shadow-hover);
+  border-color: #fff;
+  color: var(--solar-dark);
+}
+
+.btn-secondary-outline {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-weight: 600;
+  border-radius: 25px;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary-outline:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--solar-secondary);
+  color: white;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 165, 0, 0.4);
+}
+
+/* Hero Form Card */
+.hero-form-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 2rem;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--solar-gradient-primary);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--solar-dark);
+  margin-bottom: 1rem;
+}
+
+.form-header h4 {
+  color: var(--solar-dark);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-header p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.quick-input {
+  border: 2px solid rgba(255, 140, 0, 0.2);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.quick-input:focus {
+  border-color: var(--solar-primary);
+  box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25);
+  background: #fff;
+}
+
+.btn-form-submit {
+  background: var(--solar-gradient-primary);
+  border: none;
+  color: var(--solar-dark);
+  font-weight: 700;
+  border-radius: 15px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--solar-shadow-primary);
+}
+
+.btn-form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--solar-shadow-hover);
+  color: var(--solar-dark);
+}
+
+.form-disclaimer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 /* Benefits Section */
 .benefits-section {
+  background: linear-gradient(180deg, var(--solar-dark), #1a1f3a);
+  padding: 5rem 0;
   position: relative;
-  background: linear-gradient(135deg, rgba(19, 26, 51, 0.9), rgba(34, 139, 34, 0.1));
 }
 
-.benefits-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, rgba(255, 165, 0, 0.03) 0%, transparent 70%);
-  pointer-events: none;
+.section-badge {
+  background: var(--solar-gradient-secondary);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(34, 139, 34, 0.3);
 }
 
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  background: var(--solar-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .benefit-card {
-  background: linear-gradient(135deg, rgba(19, 26, 51, 0.8), rgba(34, 139, 34, 0.2));
-  border: 1px solid rgba(255, 165, 0, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 140, 0, 0.2);
   border-radius: 20px;
-  padding: 2.5rem 2rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
   backdrop-filter: blur(10px);
-  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--solar-gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.benefit-card:hover::before {
+  opacity: 0.1;
 }
 
 .benefit-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  border-color: rgba(255, 165, 0, 0.5);
-  box-shadow: 0 25px 70px rgba(255, 165, 0, 0.2);
+  transform: translateY(-8px);
+  border-color: var(--solar-primary);
+  box-shadow: 0 20px 60px rgba(255, 140, 0, 0.3);
+}
+
+.benefit-card .card-body {
+  position: relative;
+  z-index: 2;
+  padding: 2rem 1.5rem;
 }
 
 .benefit-icon {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ffa500, #ffd700);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin: 0 auto 1.5rem;
+  font-size: 1.8rem;
+  color: white;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(255, 165, 0, 0.3);
+}
+
+.benefit-icon.bg-warning {
+  background: linear-gradient(135deg, #ffc107, #ff8c00);
+}
+
+.benefit-icon.bg-success {
+  background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.benefit-icon.bg-info {
+  background: linear-gradient(135deg, #17a2b8, #6f42c1);
+}
+
+.benefit-icon.bg-primary {
+  background: linear-gradient(135deg, #007bff, #6610f2);
 }
 
 .benefit-card:hover .benefit-icon {
   transform: scale(1.1) rotate(5deg);
-  background: linear-gradient(135deg, #ffd700, #228b22);
-}
-
-.benefit-icon i {
-  font-size: 2rem;
-  color: #0a0f2c;
 }
 
 .benefit-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #ffd700;
+  color: var(--solar-secondary);
   margin-bottom: 1rem;
 }
 
 .benefit-description {
-  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  color: #ddd;
   margin-bottom: 1.5rem;
-}
-
-.benefit-stats {
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(34, 139, 34, 0.1));
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
 }
 
 .benefit-stat {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.benefit-stat:last-child {
-  margin-bottom: 0;
-}
-
-.benefit-stat-label {
-  color: #ccc;
-  font-size: 0.9rem;
-}
-
-.benefit-stat-value {
-  color: #ffd700;
-  font-weight: 600;
-}
-
-.benefit-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at center, rgba(255, 165, 0, 0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-.benefit-card:hover .benefit-glow {
-  opacity: 1;
-}
-
-/* Flip Cards - Enhanced */
-.solar-flip-card {
-  perspective: 1000px;
-  height: 320px;
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.solar-flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
-  border-radius: 20px;
-}
-
-.solar-flip-card:hover .solar-flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.solar-flip-card-front,
-.solar-flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(34, 139, 34, 0.4));
-  border-radius: 20px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  border: 1px solid rgba(255, 165, 0, 0.2);
-}
-
-.solar-flip-card-back {
-  transform: rotateY(180deg);
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.8), rgba(34, 139, 34, 0.6));
-}
-
-.flip-card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #ffd700;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.flip-card-text {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  text-align: center;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-/* Consultation Card */
-.consultation-card {
-  background: linear-gradient(135deg, rgba(19, 26, 51, 0.9), rgba(255, 165, 0, 0.2));
-  border: 2px solid rgba(255, 165, 0, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  height: 320px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-}
-
-.consultation-card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #ffa500, #ffd700, #228b22, #ffa500);
-  border-radius: 22px;
-  z-index: -1;
-  opacity: 0;
-  animation: borderGlow 3s infinite;
-}
-
-@keyframes borderGlow {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 0.3; }
-}
-
-.consultation-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #ffd700;
-  margin-bottom: 1rem;
-}
-
-.consultation-subtitle {
-  font-size: 1rem;
-  color: #ddd;
   margin-bottom: 1.5rem;
 }
 
-.consultation-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  width: 100%;
-  max-width: 200px;
-}
-
-.consultation-btn {
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(34, 139, 34, 0.2));
-  border: 2px solid rgba(255, 165, 0, 0.5);
-  color: #ffd700;
-  font-weight: 600;
+.stat-highlight {
+  background: var(--solar-gradient-primary);
+  color: var(--solar-dark);
+  padding: 0.4rem 1rem;
+  border-radius: 15px;
+  font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
+}
+
+.benefit-cta {
   border-radius: 20px;
-  padding: 10px 20px;
+  border-width: 2px;
+  font-weight: 600;
   transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
 }
 
-.consultation-btn:hover {
-  background: linear-gradient(135deg, #ffa500, #228b22);
-  border-color: #ffd700;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 165, 0, 0.3);
+/* Testimonials Section */
+.testimonials-section {
+  background: linear-gradient(180deg, #1a1f3a, var(--solar-dark));
+  padding: 5rem 0;
 }
 
-/* Form Section */
-.solar-form-section {
-  background: linear-gradient(135deg, rgba(34, 139, 34, 0.2), rgba(19, 26, 51, 0.9));
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 140, 0, 0.2);
+  border-color: rgba(255, 140, 0, 0.3);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonial-avatar {
+  font-size: 2.5rem;
+  color: var(--solar-secondary);
+}
+
+.testimonial-name {
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.testimonial-location {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.testimonial-savings {
+  margin-left: auto;
+  text-align: right;
+}
+
+.savings-amount {
+  display: block;
+  font-weight: 700;
+  color: var(--solar-accent);
+  font-size: 1.1rem;
+}
+
+.savings-label {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.testimonial-quote {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  border: none;
+}
+
+.testimonial-stars {
+  color: var(--solar-secondary);
+  font-size: 0.9rem;
+}
+
+/* Urgency Section */
+.urgency-section {
+  background: var(--solar-gradient-primary);
+  padding: 5rem 0;
   position: relative;
+  overflow: hidden;
 }
 
-.solar-form-section::before {
+.urgency-section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="solar" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="2" fill="rgba(255,165,0,0.02)"/><circle cx="17" cy="17" r="2" fill="rgba(34,139,34,0.02)"/><rect x="5" y="5" width="3" height="3" fill="rgba(255,215,0,0.01)"/></pattern></defs><rect width="100" height="100" fill="url(%23solar)"/></svg>');
-  pointer-events: none;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="urgency" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="5" cy="25" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23urgency)"/></svg>');
+  animation: floatParticles 15s linear infinite reverse;
 }
 
-.solar-form-container {
-  background: linear-gradient(135deg, rgba(19, 26, 51, 0.9), rgba(34, 139, 34, 0.2));
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 165, 0, 0.2);
-  border-radius: 25px;
-  padding: 3rem;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+.urgency-content {
   position: relative;
-  max-width: 800px;
-  margin: 0 auto;
+  z-index: 2;
 }
 
-.solar-form-container::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-  background: linear-gradient(45deg, #ffa500, #228b22, #ffd700, #ffa500);
-  border-radius: 26px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.urgency-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--solar-dark);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
 }
 
-.solar-form-container:hover::before {
-  opacity: 0.2;
+.urgency-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--solar-dark);
+  margin-bottom: 1.5rem;
 }
 
-.solar-form-input {
-  background: rgba(10, 15, 44, 0.8);
-  border: 2px solid rgba(255, 165, 0, 0.2);
-  border-radius: 12px;
+.urgency-description {
+  font-size: 1.2rem;
+  color: rgba(10, 15, 44, 0.8);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.urgency-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.urgency-stat {
+  text-align: center;
+}
+
+.urgency-number {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--solar-dark);
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1;
+}
+
+.urgency-label {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(10, 15, 44, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.5rem;
+}
+
+.urgency-form-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.urgency-form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.urgency-form-header i {
+  width: 50px;
+  height: 50px;
+  background: var(--solar-gradient-primary);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--solar-dark);
+  margin-bottom: 1rem;
+}
+
+.urgency-form-header h4 {
+  color: var(--solar-dark);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.urgency-form-header p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.btn-urgent {
+  background: linear-gradient(135deg, #dc3545, #ff6b7a);
+  border: none;
   color: white;
-  padding: 15px 20px;
-  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 15px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(220, 53, 69, 0.3);
+  animation: urgentPulse 2s ease-in-out infinite;
+}
+
+@keyframes urgentPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.btn-urgent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(220, 53, 69, 0.4);
+  color: white;
+}
+
+.btn-callback {
+  background: var(--solar-gradient-primary);
+  border: 2px solid var(--solar-secondary);
+  color: var(--solar-dark);
+  font-weight: 700;
+  border-radius: 15px;
+  padding: 1rem;
   transition: all 0.3s ease;
 }
 
-.solar-form-input:focus {
-  border-color: #ffa500;
-  box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.25);
-  background: rgba(10, 15, 44, 0.9);
+.btn-callback:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--solar-shadow-hover);
+  color: var(--solar-dark);
 }
 
-.solar-form-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.solar-submit-btn {
-  background: linear-gradient(135deg, #ffa500, #228b22);
-  border: none;
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-  border-radius: 15px;
-  padding: 18px 0;
-  width: 100%;
-  box-shadow: 0 8px 30px rgba(255, 165, 0, 0.3);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.solar-submit-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.6s;
-}
-
-.solar-submit-btn:hover::before {
-  left: 100%;
-}
-
-.solar-submit-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 45px rgba(255, 165, 0, 0.4);
-  background: linear-gradient(135deg, #228b22, #ffa500);
-}
-
-/* Puerto Rico Callout */
-.pr-callout {
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(34, 139, 34, 0.1));
-  border: 1px solid rgba(255, 165, 0, 0.3);
-  border-radius: 15px;
-  padding: 1.5rem;
-  margin: 2rem 0;
+.urgency-disclaimer {
   text-align: center;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
-.pr-callout-title {
-  color: #ffd700;
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+/* Main Form Section */
+.main-form-section {
+  background: linear-gradient(180deg, var(--solar-dark), #1a1f3a);
+  padding: 5rem 0;
 }
 
-.pr-callout-text {
-  color: #ddd;
-  font-size: 0.95rem;
+.main-form-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  border-radius: 25px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
 }
 
-/* Stats Section */
-.stats-section {
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(34, 139, 34, 0.1));
-  padding: 3rem 0;
-  margin: 3rem 0;
-  border-radius: 20px;
+.form-section {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  text-align: center;
+.form-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
-.stat-item {
-  padding: 1.5rem;
-}
-
-.stat-number {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #ffa500;
+.form-section-title {
   font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--solar-secondary);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.main-form-input {
+  background: rgba(10, 15, 44, 0.8);
+  border: 2px solid rgba(255, 140, 0, 0.2);
+  border-radius: 12px;
+  color: white;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.main-form-input:focus {
+  border-color: var(--solar-primary);
+  box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25);
+  background: rgba(10, 15, 44, 0.9);
+  color: white;
+}
+
+.main-form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.main-form-input option {
+  background: var(--solar-dark);
+  color: white;
+}
+
+.form-label {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
-.stat-label {
-  color: #ddd;
-  font-size: 1rem;
+.consultation-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.consultation-option {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.consultation-option:hover {
+  background: rgba(255, 140, 0, 0.1);
+  border-color: var(--solar-primary);
+}
+
+.consultation-option.highlight-option {
+  background: rgba(255, 140, 0, 0.1);
+  border-color: var(--solar-primary);
+}
+
+.consultation-option .form-check-input:checked {
+  background-color: var(--solar-primary);
+  border-color: var(--solar-primary);
+}
+
+.consultation-option .form-check-label {
+  color: white;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* Modal Styles */
+.modal-header-custom {
+  background: var(--solar-gradient-primary);
+  color: var(--solar-dark);
+  border-bottom: none;
+  border-radius: 15px 15px 0 0;
+}
+
+.modal-header-custom .btn-close {
+  filter: invert(1);
+}
+
+.modal-body-custom {
+  background: white;
+  border-radius: 0 0 15px 15px;
+}
+
+.modal-form-input {
+  border: 2px solid rgba(255, 140, 0, 0.3);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.modal-form-input:focus {
+  border-color: var(--solar-primary);
+  box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25);
+}
+
+.btn-modal-submit {
+  background: var(--solar-gradient-primary);
+  border: none;
+  color: var(--solar-dark);
+  font-weight: 700;
+  border-radius: 15px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--solar-shadow-primary);
+}
+
+.btn-modal-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--solar-shadow-hover);
+  color: var(--solar-dark);
 }
 
 /* Responsive Design */
+@media (max-width: 992px) {
+  .hero-stats {
+    justify-content: center;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .urgency-stats {
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
-  .solar-hero-content {
-    padding: 2rem 1.5rem;
-    margin: 0 1rem;
+  .solar-hero {
+    min-height: 90vh;
   }
   
-  .benefits-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .hero-content {
+    padding: 1rem 0;
   }
   
-  .benefit-card {
-    padding: 2rem 1.5rem;
-  }
-  
-  .solar-form-container {
-    padding: 2rem 1.5rem;
-    margin: 0 1rem;
-  }
-  
-  .consultation-buttons {
-    max-width: 100%;
-  }
-  
-  .solar-flip-card {
-    height: 280px;
-  }
-  
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-stats {
     gap: 1rem;
   }
   
   .stat-number {
-    font-size: 2.5rem;
+    font-size: 2rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .urgency-stats {
+    gap: 1rem;
+  }
+  
+  .urgency-number {
+    font-size: 1.8rem;
+  }
+  
+  .main-form-card .card-body {
+    padding: 2rem 1.5rem;
+  }
+  
+  .consultation-options {
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-stats .stat {
+    flex: 1;
+    min-width: 80px;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .btn-primary-glow,
+  .btn-secondary-outline {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .urgency-stats .urgency-stat {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .main-form-card .card-body {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.benefit-card,
+.testimonial-card,
+.main-form-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Accessibility */
+.benefit-card:focus-within,
+.testimonial-card:focus-within,
+.hero-form-card:focus-within {
+  outline: 2px solid var(--solar-primary);
+  outline-offset: 2px;
+}
+
+button:focus,
+.btn:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--solar-primary);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .solar-page,
+  .solar-hero,
+  .benefits-section,
+  .testimonials-section,
+  .urgency-section,
+  .main-form-section {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .benefit-card,
+  .testimonial-card,
+  .main-form-card {
+    border: 1px solid #ccc !important;
+    break-inside: avoid;
   }
 }

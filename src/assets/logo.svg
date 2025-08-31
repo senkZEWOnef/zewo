@@ -43,8 +43,8 @@
   <!-- Text: ze (same size as orld) -->
   <text x="65" y="40" font-family="'Cormorant Garamond', serif" font-size="28" font-weight="400" fill="url(#textGradient)" filter="url(#dropshadow)">ze</text>
   
-  <!-- Text: WOW with emphasis but same size, different weight -->
-  <text x="95" y="40" font-family="'Cormorant Garamond', serif" font-size="28" font-weight="700" fill="url(#wowGradient)" filter="url(#glow)">WOW</text>
+  <!-- Text: WOW with same size and weight as other text -->
+  <text x="95" y="40" font-family="'Cormorant Garamond', serif" font-size="28" font-weight="400" fill="url(#wowGradient)" filter="url(#glow)">WOW</text>
   
   <!-- Text: orld (same size as ze) -->
   <text x="155" y="40" font-family="'Cormorant Garamond', serif" font-size="28" font-weight="400" fill="url(#textGradient)" filter="url(#dropshadow)">orld</text>
