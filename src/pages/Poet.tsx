@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Button, Card, Badge } from "react-bootstrap";
+import { Container, Row, Col, Button, Badge } from "react-bootstrap";
 import poetHero from "../assets/poet.jpeg";
 import "../styles/Poet.css";
 import fiveamCover from "../assets/fiveamcover.jpeg";

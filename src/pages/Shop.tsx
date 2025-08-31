@@ -5,7 +5,6 @@ import {
   Row,
   Col,
   Button,
-  Card,
   Badge,
 } from "react-bootstrap";
 import "../styles/Shop.css";

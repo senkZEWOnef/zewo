@@ -1,21 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container, Row, Col, Form, Button, Badge, Card, Modal } from "react-bootstrap";
 import solarHero from "../assets/solar.jpeg";
 import "../styles/Solar.css";
-import solarImg1 from "../assets/solarimage1.jpg";
-import solarImg2 from "../assets/solarimage2.jpg";
-import solarImg3 from "../assets/solarimage3.jpg";
 
 const Solar = () => {
   const [showQuickForm, setShowQuickForm] = useState(false);
   const [formType, setFormType] = useState('consultation'); // 'consultation' or 'callback'
-
-  const scrollToForm = () => {
-    const formSection = document.getElementById("solar-form");
-    if (formSection) {
-      formSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   const handleQuickStart = (type: string) => {
     setFormType(type);

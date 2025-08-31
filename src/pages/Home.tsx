@@ -1,5 +1,4 @@
 import { Container, Row, Col, Button, Carousel, Badge } from "react-bootstrap";
-import Footer from "../components/Footer";
 import "../styles/Home.css";
 
 // Real images

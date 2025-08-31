@@ -7,7 +7,6 @@ import {
   Spinner,
   Row,
   Col,
-  Card,
 } from "react-bootstrap";
 import "../styles/AdminDashboard.css";
 
