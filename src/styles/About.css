@@ -902,11 +902,24 @@
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .cert-item {
   padding: 1rem;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.cert-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--about-accent);
+  transform: translateY(-1px);
 }
 
 .cert-link {

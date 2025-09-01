@@ -4,39 +4,47 @@ import profileImg from "../assets/rome.jpg";
 import "../styles/About.css";
 
 const About = () => {
-  // Sample web apps data - replace with your actual projects
+  // Real web applications built by Ralph Ulysse
   const webApps = [
     {
+      title: "Cut by Zewo",
+      description: "Professional cabinet making and woodworking business platform with project showcases, client management, and service booking system.",
+      tech: ["React", "Node.js", "PostgreSQL", "Bootstrap"],
+      liveUrl: "https://cutbyzewo.netlify.app",
+      githubUrl: "https://github.com/senkZEWOnef/CutbyZewo",
+      icon: "🔨"
+    },
+    {
+      title: "Stoic Wisdom by Zewo",
+      description: "Self-growth and mindfulness app featuring daily stoic quotes, journaling capabilities, goal tracking, and motivational tools for personal development.",
+      tech: ["React", "Firebase", "CSS3", "Local Storage"],
+      liveUrl: "https://stoicwisdombyzewo.netlify.app",
+      githubUrl: "https://github.com/senkZEWOnef/StoicWisdombyZewo",
+      icon: "🧘"
+    },
+    {
+      title: "Scan & Order by Zewo",
+      description: "QR code-based food ordering system for food trucks enabling quick, contactless ordering experiences with real-time order management.",
+      tech: ["React", "QR Code API", "Payment Integration", "PWA"],
+      liveUrl: "https://scanandorderbyzewo.netlify.app",
+      githubUrl: "https://github.com/senkZEWOnef/ScanAndOrderByZewo",
+      icon: "📱"
+    },
+    {
+      title: "Spaces",
+      description: "Wedding photo sharing platform allowing participants to upload, share, and view photos from wedding events in real-time with secure private galleries.",
+      tech: ["React", "Firebase Storage", "Authentication", "Real-time DB"],
+      liveUrl: "https://spaces-wedding.netlify.app",
+      githubUrl: "https://github.com/senkZEWOnef/Spaces",
+      icon: "📸"
+    },
+    {
       title: "zeWOWorld Platform",
-      description: "A comprehensive platform showcasing engineering, solar, building, and poetry services with modern React architecture and premium UX design.",
+      description: "This comprehensive platform showcasing engineering, solar, building, and poetry services with modern React architecture and premium UX design.",
       tech: ["React", "TypeScript", "Bootstrap", "Supabase", "Vite"],
       liveUrl: "https://zewoworld.com",
-      githubUrl: "https://github.com/ralphyzu/zewoworld",
+      githubUrl: "https://github.com/senkZEWOnef/zewo",
       icon: "🌟"
-    },
-    {
-      title: "Solar Energy Calculator",
-      description: "An intelligent solar panel calculator for Puerto Rico residents to estimate savings and energy independence potential.",
-      tech: ["React", "Chart.js", "Weather API", "Bootstrap"],
-      liveUrl: "https://solar-calc-pr.vercel.app",
-      githubUrl: "https://github.com/ralphyzu/solar-calculator",
-      icon: "☀️"
-    },
-    {
-      title: "Poetry Archive",
-      description: "Digital archive and reading platform for my published poetry collections with search, categorization, and reading analytics.",
-      tech: ["Next.js", "MDX", "Tailwind", "Framer Motion"],
-      liveUrl: "https://poetry.zewoworld.com",
-      githubUrl: "https://github.com/ralphyzu/poetry-archive",
-      icon: "📚"
-    },
-    {
-      title: "Custom Builder Portfolio",
-      description: "Interactive portfolio showcasing custom woodworking projects with 3D galleries and client testimonials.",
-      tech: ["Three.js", "React", "GSAP", "Node.js"],
-      liveUrl: "https://builder.zewoworld.com",
-      githubUrl: "https://github.com/ralphyzu/builder-portfolio",
-      icon: "🔨"
     }
   ];
 
@@ -103,7 +111,7 @@ const About = () => {
                 
                 <div className="social-links">
                   <a 
-                    href="https://github.com/ralphyzu" 
+                    href="https://github.com/senkZEWOnef" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="social-btn github-btn"
@@ -179,7 +187,6 @@ const About = () => {
               <div className="timeline-content">
                 <div className="timeline-header">
                   <h3>Bachelor of Science: Computer Engineering</h3>
-                  <span className="timeline-date">2018 - 2022</span>
                 </div>
                 <h4 className="timeline-subtitle">
                   <a 
@@ -208,7 +215,6 @@ const About = () => {
               <div className="timeline-content">
                 <div className="timeline-header">
                   <h3>Instructor</h3>
-                  <span className="timeline-date">Sep 2021 - Sep 2022</span>
                 </div>
                 <h4 className="timeline-subtitle">
                   <a 
@@ -236,7 +242,6 @@ const About = () => {
               <div className="timeline-content">
                 <div className="timeline-header">
                   <h3>Cabinet Designer</h3>
-                  <span className="timeline-date">Jun 2018 - 2022</span>
                 </div>
                 <h4 className="timeline-subtitle">Las Americas Design - Mayagüez, PR</h4>
                 <ul className="timeline-description">
@@ -260,7 +265,6 @@ const About = () => {
               <div className="timeline-content">
                 <div className="timeline-header">
                   <h3>Founder & Custom Builder</h3>
-                  <span className="timeline-date">2022 - Present</span>
                 </div>
                 <h4 className="timeline-subtitle">zeWOWorld - San Juan, PR</h4>
                 <ul className="timeline-description">
@@ -295,30 +299,60 @@ const About = () => {
             <div className="projects-grid">
               <div className="project-card">
                 <div className="project-icon">
-                  <i className="bi bi-flask"></i>
+                  <i className="bi bi-tools"></i>
                 </div>
                 <div className="project-content">
-                  <h4>Python Flask REST API</h4>
-                  <p>Collaborated with classmates to build a booking system web application with PostgreSQL database</p>
+                  <h4>Cut by Zewo</h4>
+                  <p>Professional cabinet making and woodworking business platform with project showcases and client management</p>
                   <div className="project-tech">
-                    <span className="tech-tag">Python</span>
-                    <span className="tech-tag">Flask</span>
-                    <span className="tech-tag">PostgreSQL</span>
+                    <span className="tech-tag">
+                      <a href="https://github.com/senkZEWOnef/CutbyZewo" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div className="project-card">
                 <div className="project-icon">
-                  <i className="bi bi-mortarboard"></i>
+                  <i className="bi bi-heart-fill"></i>
                 </div>
                 <div className="project-content">
-                  <h4>Moodle Services Enhancement</h4>
-                  <p>Capstone project improving university Moodle services with new plugins deployed the following semester</p>
+                  <h4>Stoic Wisdom by Zewo</h4>
+                  <p>Self-growth app with journaling, stoic quotes, goal tracking, and motivational tools for personal development</p>
                   <div className="project-tech">
-                    <span className="tech-tag">PHP</span>
-                    <span className="tech-tag">MySQL</span>
-                    <span className="tech-tag">Moodle API</span>
+                    <span className="tech-tag">
+                      <a href="https://github.com/senkZEWOnef/StoicWisdombyZewo" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="project-card">
+                <div className="project-icon">
+                  <i className="bi bi-qr-code-scan"></i>
+                </div>
+                <div className="project-content">
+                  <h4>Scan & Order by Zewo</h4>
+                  <p>QR code-based food ordering system for food trucks, enabling quick and contactless ordering experiences</p>
+                  <div className="project-tech">
+                    <span className="tech-tag">
+                      <a href="https://github.com/senkZEWOnef/ScanAndOrderByZewo" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="project-card">
+                <div className="project-icon">
+                  <i className="bi bi-camera-fill"></i>
+                </div>
+                <div className="project-content">
+                  <h4>Spaces</h4>
+                  <p>Wedding photo sharing platform allowing participants to share and view photos from wedding events in real-time</p>
+                  <div className="project-tech">
+                    <span className="tech-tag">
+                      <a href="https://github.com/senkZEWOnef/Spaces" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -329,11 +363,26 @@ const About = () => {
                 </div>
                 <div className="project-content">
                   <h4>zeWOWorld Platform</h4>
-                  <p>Full-stack platform showcasing multiple services with modern React architecture</p>
+                  <p>This comprehensive platform showcasing engineering, solar, building, and poetry services with modern React architecture</p>
                   <div className="project-tech">
                     <span className="tech-tag">
-                      <a href="https://github.com/zewo" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                      <a href="https://github.com/senkZEWOnef/zewo" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                     </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="project-card">
+                <div className="project-icon">
+                  <i className="bi bi-building"></i>
+                </div>
+                <div className="project-content">
+                  <h4>Client Websites</h4>
+                  <p>Custom websites for medical services, retail stores, and various businesses with modern responsive designs</p>
+                  <div className="project-tech">
+                    <span className="tech-tag">React</span>
+                    <span className="tech-tag">Node.js</span>
+                    <span className="tech-tag">Custom Design</span>
                   </div>
                 </div>
               </div>
@@ -360,7 +409,7 @@ const About = () => {
                     </div>
                     <div className="language-item">
                       <span className="language-name">French</span>
-                      <span className="language-level">Fluent</span>
+                      <span className="language-level">Native</span>
                     </div>
                     <div className="language-item">
                       <span className="language-name">Italian</span>
@@ -379,17 +428,84 @@ const About = () => {
                     <i className="bi bi-award me-2"></i>
                     Certifications
                   </h4>
-                  <div className="cert-item">
-                    <a 
-                      href="https://www.coursera.org/google-certificates/data-analytics-certificate"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cert-link"
-                    >
-                      <i className="bi bi-google"></i>
-                      Google Data Analytics Certificate
-                      <span className="cert-status">In Progress</span>
-                    </a>
+                  <div className="cert-list">
+                    <div className="cert-item">
+                      <a 
+                        href="https://www.coursera.org/google-certificates/data-analytics-certificate"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cert-link"
+                      >
+                        <i className="bi bi-google"></i>
+                        Google Data Analytics Certificate
+                      </a>
+                    </div>
+                    <div className="cert-item">
+                      <a 
+                        href="https://codewithmosh.com/p/the-complete-python-programming-course-beginner-to-advanced"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cert-link"
+                      >
+                        <i className="bi bi-code-slash"></i>
+                        Complete Python Mastery - Code with Mosh
+                      </a>
+                    </div>
+                    <div className="cert-item">
+                      <a 
+                        href="https://codewithmosh.com/p/the-ultimate-react-course"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cert-link"
+                      >
+                        <i className="bi bi-bootstrap"></i>
+                        React 18 Course - Code with Mosh
+                      </a>
+                    </div>
+                    <div className="cert-item">
+                      <a 
+                        href="https://codewithmosh.com/p/complete-sql-mastery"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cert-link"
+                      >
+                        <i className="bi bi-database"></i>
+                        Complete SQL Mastery - Code with Mosh
+                      </a>
+                    </div>
+                    <div className="cert-item">
+                      <a 
+                        href="https://codewithmosh.com/p/the-complete-node-js-course"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cert-link"
+                      >
+                        <i className="bi bi-server"></i>
+                        Complete Node.js Course - Code with Mosh
+                      </a>
+                    </div>
+                    <div className="cert-item">
+                      <a 
+                        href="https://codewithmosh.com/p/the-ultimate-git-course"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cert-link"
+                      >
+                        <i className="bi bi-git"></i>
+                        Ultimate Git Course - Code with Mosh
+                      </a>
+                    </div>
+                    <div className="cert-item">
+                      <a 
+                        href="https://codewithmosh.com/p/ultimate-javascript-series"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cert-link"
+                      >
+                        <i className="bi bi-filetype-js"></i>
+                        Ultimate JavaScript Series - Code with Mosh
+                      </a>
+                    </div>
                   </div>
                 </div>
               </Col>

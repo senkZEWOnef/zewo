@@ -39,7 +39,7 @@ const Engineer = () => {
       title: "See My Work",
       en: "Explore my open-source and portfolio on GitHub.",
       es: "Explora mi código abierto y portafolio en GitHub.",
-      github: "https://github.com/YOUR_GITHUB_USERNAME",
+      github: "https://github.com/senkZEWOnef",
     },
   ];
 
@@ -99,8 +99,7 @@ const Engineer = () => {
               variant="outline-light"
               className="engineer-btn-secondary px-5 py-3"
               size="lg"
-              href="/resume.pdf"
-              target="_blank"
+              href="/about"
             >
               <i className="bi bi-file-earmark-person me-2"></i>
               View Resume
