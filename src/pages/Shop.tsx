@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import {
   Container,
@@ -8,10 +7,6 @@ import {
   Badge,
 } from "react-bootstrap";
 import "../styles/Shop.css";
-import book1 from "../assets/stillyoucover.jpeg";
-import book2 from "../assets/romecover.jpeg";
-import book3 from "../assets/fiveamcover.jpeg";
-import book4 from "../assets/theoldguitaristcover.jpeg";
 import vanity1 from "../assets/vanity1.jpeg";
 import closet1 from "../assets/closet1.jpeg";
 import kitchen1 from "../assets/kitchen1.jpeg";
@@ -26,74 +21,43 @@ type Product = {
 };
 
 const Shop = () => {
-  const [category, setCategory] = useState<"books" | "cabinets">("books");
   const { addItem } = useCart();
 
-  const books: Product[] = [
-    {
-      title: "Still You",
-      img: book1,
-      description:
-        "A deeply personal collection about love, longing, and return.",
-      price: "$20",
-    },
-    {
-      title: "Rome",
-      img: book2,
-      description:
-        "A lyrical journey through the eternal city’s hidden moments.",
-      price: "$18",
-    },
-    {
-      title: "Five AM",
-      img: book3,
-      description: "Poems born in the quiet, restless early hours.",
-      price: "$15",
-    },
-    {
-      title: "The Old Guitarist",
-      img: book4,
-      description:
-        "Verses inspired by Picasso’s painting — blue, broken, beautiful.",
-      price: "$17",
-    },
-  ];
-
-  const cabinets: Product[] = [
+  const products: Product[] = [
     {
       title: "Modern Vanity",
       img: vanity1,
-      description: "Elegant custom bathroom vanity.",
+      description: "Elegant custom bathroom vanity with premium finishes.",
       price: "$400",
     },
     {
       title: "Walk-In Closet",
       img: closet1,
-      description: "Maximize your space with style.",
+      description: "Maximize your space with style and organization.",
       price: "$1500",
     },
     {
       title: "Compact Kitchen",
       img: kitchen1,
-      description: "Perfect for small apartments.",
+      description: "Perfect for small apartments, big on functionality.",
       price: "$3200",
     },
     {
       title: "Custom Shelf Unit",
       img: other1,
-      description: "Handmade shelf, fits any space.",
+      description: "Handmade shelf system, fits any space perfectly.",
       price: "$250",
     },
   ];
 
   const handleAddToCart = (item: Product, idx: number) => {
     const cartItem = {
-      id: `${category}-${idx}`,
+      id: `woodwork-${idx}`,
       title: item.title,
       price: item.price,
       img: item.img,
       description: item.description,
-      category,
+      category: "cabinets" as const,
     };
     addItem(cartItem);
   };
@@ -105,36 +69,26 @@ const Shop = () => {
         <div className="shop-hero-content" data-aos="fade-up">
           <div className="mb-4">
             <Badge bg="warning" text="dark" className="px-4 py-2 mb-3 shop-badge-pulse">
-              <i className="bi bi-shop me-2"></i>PREMIUM COLLECTION
+              <i className="bi bi-hammer me-2"></i>CUSTOM WOODWORK
             </Badge>
           </div>
           <h1 className="shop-title mb-4">
-            Curated Creations
+            Handcrafted Furniture
           </h1>
           <p className="shop-subtitle">
-            Discover handcrafted poetry books and bespoke woodwork — 
-            where artistry meets craftsmanship in every piece.
+            Discover bespoke woodwork and custom cabinetry — 
+            where craftsmanship meets functionality in every piece.
           </p>
-          <div className="d-flex gap-3 justify-content-center flex-wrap mt-4">
-            <Button
-              className={`category-btn ${category === 'books' ? 'active' : ''}`}
-              onClick={() => setCategory('books')}
-            >
-              <i className="bi bi-journal-text me-2"></i>
-              Poetry Collection
-            </Button>
-            <Button
-              className={`category-btn ${category === 'cabinets' ? 'active' : ''}`}
-              onClick={() => setCategory('cabinets')}
-            >
-              <i className="bi bi-hammer me-2"></i>
-              Custom Woodwork
-            </Button>
+          <div className="text-center mt-4">
+            <small className="text-muted">
+              <i className="bi bi-info-circle me-2"></i>
+              Looking for poetry books? Visit my <a href="/poet" className="text-warning">blog & poetry page</a> for Amazon links.
+            </small>
           </div>
         </div>
       </section>
 
-      {/* Category Toggle Section */}
+      {/* Category Section */}
       <section className="category-toggle-section">
         <Container>
           <div className="text-center">
@@ -143,12 +97,11 @@ const Shop = () => {
               color: "#daa520",
               fontSize: "2.2rem"
             }}>
-              {category === 'books' ? 'Literary Collection' : 'Handcrafted Woodwork'}
+              Handcrafted Woodwork
             </h3>
             <p className="text-muted mb-4">
-              {category === 'books' 
-                ? 'Four volumes of poetry exploring love, loss, identity, and the spaces between silence and song.'
-                : 'Custom furniture and cabinetry designed and built with precision, passion, and attention to detail.'}
+              Custom furniture and cabinetry designed and built with precision, passion, and attention to detail. 
+              Each piece is crafted from premium materials using traditional techniques.
             </p>
           </div>
         </Container>
@@ -158,8 +111,8 @@ const Shop = () => {
       <section className="products-section">
         <Container>
           <Row className="g-4 justify-content-center">
-            {(category === "books" ? books : cabinets).map((item, idx) => (
-              <Col md={6} lg={3} key={`${category}-${idx}`}>
+            {products.map((item, idx) => (
+              <Col md={6} lg={3} key={`woodwork-${idx}`}>
                 <div
                   className="product-card h-100"
                   data-aos="fade-up"
@@ -191,33 +144,59 @@ const Shop = () => {
         </Container>
       </section>
 
-      {/* Featured Collection */}
+      {/* Featured Craftsmanship */}
       <section className="featured-products-section">
         <Container>
           <div className="featured-content" data-aos="fade-up">
             <h2 className="featured-title">
-              {category === 'books' ? 'Award-Winning Poetry' : 'Master Craftsmanship'}
+              Master Craftsmanship
             </h2>
             <p className="featured-subtitle">
-              {category === 'books'
-                ? 'Each book represents years of reflection, observation, and the distillation of human experience into verse that resonates across cultures and time.'
-                : 'Every piece is meticulously designed and handcrafted using premium materials and traditional techniques passed down through generations of skilled artisans.'}
+              Every piece is meticulously designed and handcrafted using premium materials and traditional techniques 
+              passed down through generations of skilled artisans. From initial concept to final installation, 
+              we ensure every detail meets the highest standards of quality and beauty.
             </p>
             <div className="d-flex justify-content-center gap-4 flex-wrap mt-4">
               <div className="text-center">
-                <div className="stat-number">{category === 'books' ? '4' : '50+'}</div>
-                <div className="stat-label">{category === 'books' ? 'Published Volumes' : 'Custom Pieces'}</div>
+                <div className="stat-number">50+</div>
+                <div className="stat-label">Custom Pieces</div>
               </div>
               <div className="text-center">
-                <div className="stat-number">{category === 'books' ? '1000+' : '25+'}</div>
-                <div className="stat-label">{category === 'books' ? 'Copies Sold' : 'Happy Clients'}</div>
+                <div className="stat-number">25+</div>
+                <div className="stat-label">Happy Clients</div>
               </div>
               <div className="text-center">
-                <div className="stat-number">{category === 'books' ? '5⭐' : '100%'}</div>
-                <div className="stat-label">{category === 'books' ? 'Average Rating' : 'Satisfaction Rate'}</div>
+                <div className="stat-number">100%</div>
+                <div className="stat-label">Satisfaction Rate</div>
               </div>
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* Custom Order Info */}
+      <section className="py-5" style={{ background: "linear-gradient(135deg, rgba(19, 26, 51, 0.6), rgba(25, 25, 112, 0.2))" }}>
+        <Container>
+          <Row className="align-items-center">
+            <Col lg={8}>
+              <h3 className="mb-3" style={{ color: "#daa520" }}>Need a Custom Piece?</h3>
+              <p className="text-muted mb-0">
+                Don't see exactly what you're looking for? I specialize in creating custom furniture and cabinetry 
+                tailored to your specific needs and space. From concept to completion, let's bring your vision to life.
+              </p>
+            </Col>
+            <Col lg={4} className="text-lg-end mt-3 mt-lg-0">
+              <Button 
+                variant="outline-warning" 
+                size="lg"
+                href="/appointment"
+                className="px-4 py-3"
+              >
+                <i className="bi bi-calendar me-2"></i>
+                Schedule Consultation
+              </Button>
+            </Col>
+          </Row>
         </Container>
       </section>
 
@@ -257,7 +236,7 @@ const Shop = () => {
                 </li>
                 <li>
                   <a href="/poet" className="text-white">
-                    Poet
+                    Poetry & Blog
                   </a>
                 </li>
                 <li>

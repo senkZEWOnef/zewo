@@ -1,14 +1,12 @@
-import { Navbar, Nav, Container, Button, Badge } from "react-bootstrap";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-import { useCart } from "../context/CartContext";
 import Logo from "./Logo";
 
 const NavigationBar = () => {
   const userContext = useUser();
   const user = userContext?.user;
   const signOut = userContext?.signOut;
-  const { getTotalItems } = useCart();
 
   return (
     <Navbar
@@ -34,35 +32,32 @@ const NavigationBar = () => {
               Builder
             </NavLink>
             <NavLink to="/poet" className="nav-link nav-accent">
-              Poet
-            </NavLink>
-
-            <NavLink to="/shop" className="nav-link nav-accent">
-              Shop
+              Blog & Poetry
             </NavLink>
 
             <NavLink to="/about" className="nav-link nav-accent">
               About
             </NavLink>
 
-            {!user && (
-              <>
-                <NavLink to="/signup" className="nav-link nav-accent">
-                  Sign Up
-                </NavLink>
-                <NavLink to="/login" className="nav-link nav-accent">
-                  Login
-                </NavLink>
-              </>
-            )}
+            {/* Admin backdoor access */}
+            <NavLink
+              to="/admin"
+              className="nav-link nav-accent ms-3"
+              style={{
+                opacity: 0.3,
+                fontSize: "0.9rem",
+                transition: "opacity 0.3s ease",
+              }}
+              onMouseEnter={(e) => (e.target.style.opacity = "1")}
+              onMouseLeave={(e) => (e.target.style.opacity = "0.3")}
+            >
+              <i className="bi bi-gear"></i>
+            </NavLink>
 
             {user && (
               <>
-                <NavLink to="/admin" className="nav-link nav-accent">
-                  Admin
-                </NavLink>
                 <span className="nav-link text-light">
-                  Welcome, {user.email}
+                  Hey Zewo
                 </span>
                 <Button
                   variant="outline-warning"
@@ -74,20 +69,6 @@ const NavigationBar = () => {
                 </Button>
               </>
             )}
-
-            <NavLink to="/cart" className="nav-link fs-5 ms-3 nav-accent position-relative">
-              <i className="bi bi-cart"></i>
-              {getTotalItems() > 0 && (
-                <Badge
-                  bg="warning"
-                  text="dark"
-                  className="position-absolute top-0 start-100 translate-middle rounded-pill"
-                  style={{ fontSize: '0.7rem' }}
-                >
-                  {getTotalItems()}
-                </Badge>
-              )}
-            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

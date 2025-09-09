@@ -251,89 +251,117 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* Latest Insights */}
-      <section className="py-5 insights-section" style={{ 
+      {/* Words */}
+      <section className="py-5 words-section" style={{ 
         background: "linear-gradient(135deg, rgba(19,26,51,0.8) 0%, rgba(10,15,44,0.9) 100%)",
         position: "relative"
       }}>
         <Container>
-          <div className="text-center mb-5" data-aos="fade-up">
-            <Badge bg="info" text="white" className="px-4 py-2 mb-3" style={{ fontSize: "0.9rem", letterSpacing: "1px" }}>
-              LATEST INSIGHTS
-            </Badge>
-            <h2
-              className="section-title"
-              style={{
-                fontFamily: "Cormorant Garamond",
-                fontSize: "clamp(2rem, 5vw, 3.5rem)",
-                fontWeight: "300",
-                marginBottom: "1.5rem",
-                background: "linear-gradient(135deg, #17a2b8, #fff)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Thoughts & Reflections
-            </h2>
-            <p className="lead text-muted mx-auto" style={{ maxWidth: "600px" }}>
-              Exploring ideas at the intersection of technology, culture, and human experience
-            </p>
-          </div>
           <Row>
             {[
               {
-                title: "Why We Play",
-                preview: "A look at sportsmanship beyond winning.",
+                title: "The Weight of Words",
+                preview: "There's something sacred about the moment when a thought becomes a word, when silence breaks into meaning...",
+                category: "Thoughts",
+                date: "Sep 5, 2024",
+                readTime: "3 min read",
+                type: "thoughts"
               },
               {
-                title: "Power and Silence",
-                preview: "Thoughts on listening and governance.",
+                title: "Morning Coffee",
+                preview: "Steam rises like prayers / from the cup between my palms— / morning's first communion...",
+                category: "Poetry",
+                date: "Sep 3, 2024",
+                readTime: "1 min read",
+                type: "poems"
               },
               {
-                title: "Haitian Corners",
-                preview: "Stories from Port-au-Prince to Mayagüez.",
+                title: "On Heritage and Home",
+                preview: "Growing up between cultures teaches you that home isn't always a place—sometimes it's a feeling, a language...",
+                category: "Thoughts",
+                date: "Aug 28, 2024",
+                readTime: "4 min read",
+                type: "thoughts"
               },
               {
-                title: "The Quiet Teacher",
-                preview: "Lessons learned in stillness.",
+                title: "City Rain",
+                preview: "The city wears rain / like a well-loved coat— / familiar, comfortable, / transforming...",
+                category: "Poetry",
+                date: "Aug 25, 2024",
+                readTime: "1 min read",
+                type: "poems"
               },
             ].map((item, idx) => (
               <Col md={6} className="mb-4" key={idx}>
                 <div
-                  onClick={() => (window.location.href = "/poet#opinions")}
-                  className="insight-card p-4 rounded h-100 position-relative overflow-hidden"
+                  onClick={() => (window.location.href = "/poet")}
+                  className="word-card p-4 rounded h-100 position-relative overflow-hidden"
                   data-aos="fade-up"
                   data-aos-delay={idx * 150}
                   style={{
-                    background: "linear-gradient(135deg, rgba(23,162,184,0.1) 0%, rgba(255,215,0,0.1) 100%)",
+                    background: item.type === "poems" 
+                      ? "linear-gradient(135deg, rgba(40,167,69,0.1) 0%, rgba(255,215,0,0.1) 100%)"
+                      : "linear-gradient(135deg, rgba(23,162,184,0.1) 0%, rgba(255,215,0,0.1) 100%)",
                     border: "1px solid rgba(255,255,255,0.1)",
                     backdropFilter: "blur(10px)",
                     cursor: "pointer",
                     transition: "all 0.3s ease"
                   }}
                 >
-                  <div className="d-flex align-items-start gap-3">
-                    <div className="insight-icon">
-                      <i className="bi bi-lightbulb fs-4 text-info"></i>
+                  <div className="word-card-content">
+                    <div className="d-flex justify-content-between align-items-center mb-3">
+                      <Badge 
+                        bg={item.type === "poems" ? "success" : "info"}
+                        className="category-badge"
+                      >
+                        <i className={`bi ${item.type === "poems" ? "bi-journal-text" : "bi-lightbulb"} me-2`}></i>
+                        {item.category}
+                      </Badge>
+                      <div className="word-meta text-muted small">
+                        <span>{item.date}</span>
+                        <span className="ms-2">• {item.readTime}</span>
+                      </div>
                     </div>
-                    <div className="flex-grow-1">
-                      <h5 className="fw-bold mb-2" style={{ color: "#ffd700" }}>
-                        {item.title}
-                      </h5>
-                      <p className="mb-3" style={{ fontSize: "1rem", color: "#ccc", lineHeight: "1.6" }}>
-                        {item.preview}
-                      </p>
-                      <div className="d-flex align-items-center text-info small">
-                        <span>Read more</span>
+                    <h5 className="fw-bold mb-3" style={{ 
+                      color: "#ffd700", 
+                      fontFamily: "Cormorant Garamond",
+                      fontSize: "1.3rem"
+                    }}>
+                      {item.title}
+                    </h5>
+                    <p className="mb-3" style={{ 
+                      fontSize: "1rem", 
+                      color: "#ccc", 
+                      lineHeight: "1.6",
+                      fontFamily: item.type === "poems" ? "Cormorant Garamond" : "inherit",
+                      fontStyle: item.type === "poems" ? "italic" : "normal"
+                    }}>
+                      {item.preview}
+                    </p>
+                    <div className="d-flex align-items-center justify-content-between">
+                      <div className="d-flex align-items-center text-warning small">
+                        <span>Read {item.type === "poems" ? "poem" : "full post"}</span>
                         <i className="bi bi-arrow-right ms-2"></i>
                       </div>
                     </div>
                   </div>
-                  <div className="insight-glow"></div>
+                  <div className="word-glow"></div>
                 </div>
               </Col>
             ))}
           </Row>
+          <div className="text-center mt-4" data-aos="fade-up">
+            <Button 
+              variant="outline-info" 
+              size="lg"
+              href="/poet"
+              className="px-4 py-3"
+              style={{ borderRadius: "25px" }}
+            >
+              <i className="bi bi-journal-text me-2"></i>
+              View All Posts & Poetry
+            </Button>
+          </div>
         </Container>
       </section>
 
@@ -373,12 +401,7 @@ const Home = () => {
                 </li>
                 <li>
                   <a href="/poet" className="text-white">
-                    Poet
-                  </a>
-                </li>
-                <li>
-                  <a href="/shop" className="text-white">
-                    Shop
+                    Blog & Poetry
                   </a>
                 </li>
               </ul>

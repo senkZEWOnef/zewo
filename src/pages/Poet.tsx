@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Button, Badge } from "react-bootstrap";
+import { Container, Row, Col, Button, Badge, Form } from "react-bootstrap";
 import poetHero from "../assets/poet.jpeg";
 import "../styles/Poet.css";
 import fiveamCover from "../assets/fiveamcover.jpeg";
@@ -7,45 +7,135 @@ import romeCover from "../assets/romecover.jpeg";
 import oldGuitaristCover from "../assets/theoldguitaristcover.jpeg";
 import stillYouCover from "../assets/stillyoucover.jpeg";
 
+type BlogPost = {
+  id: number;
+  title: string;
+  content: string;
+  excerpt: string;
+  category: "thoughts" | "poems";
+  date: string;
+  readTime: string;
+};
+
 const Poet = () => {
-  const [view, setView] = useState<"poetry" | "opinions">("poetry");
+  const [selectedCategory, setSelectedCategory] = useState<"all" | "thoughts" | "poems">("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const todayPoem = {
-    title: "The Quiet Sea",
-    content: `Today's tide carries my thoughts  
-to shores where you wait —  
-where silence is our language,  
-and every wave a soft confession.`,
-  };
-
-  const poemArchive = [
-    { title: "Dusk Song", excerpt: "At dusk, your name is a lantern..." },
-    { title: "Unwritten Letters", excerpt: "So many letters I never sent..." },
-    { title: "After Rain", excerpt: "After rain, everything whispers you..." },
-  ];
-
-  const todayOpinion = {
-    title: "On Stillness and Noise",
-    content: `In a world so loud, stillness is a rebellion.  
-A place where ideas grow slowly, without applause.`,
-  };
-
-  const opinionsArchive = [
+  const blogPosts: BlogPost[] = [
     {
-      title: "Why Silence Matters",
-      category: "Other",
-      preview: "Thoughts on the wisdom found in stillness...",
+      id: 1,
+      title: "The Weight of Words",
+      content: `There's something sacred about the moment when a thought becomes a word, when silence breaks into meaning. 
+
+I've been thinking about the responsibility we carry as writers, as people who shape language into bridges between hearts. Every poem I write, every reflection I share, carries the weight of someone else's understanding.
+
+In the early morning hours, when the world is still quiet and the mind is most honest, I find myself asking: what do my words do in the world? Do they heal or harm? Do they build understanding or create distance?
+
+The answer, I think, lies not in perfection but in intention. In the willingness to be vulnerable, to be wrong, to be human in a world that often demands otherwise.`,
+      excerpt: "There's something sacred about the moment when a thought becomes a word, when silence breaks into meaning...",
+      category: "thoughts",
+      date: "2024-09-05",
+      readTime: "3 min read"
     },
     {
-      title: "Haiti: Beyond Headlines",
-      category: "Haiti & PR Stories",
-      preview: "A personal look at roots, history, and hope...",
+      id: 2,
+      title: "Morning Coffee",
+      content: `Steam rises like prayers
+from the cup between my palms—
+morning's first communion.
+
+The world awakens slowly,
+but I am already here,
+witness to the quiet miracle
+of another day beginning.
+
+In this sacred pause
+between sleep and waking,
+I remember who I am
+beneath all the noise.`,
+      excerpt: "Steam rises like prayers from the cup between my palms—morning's first communion...",
+      category: "poems",
+      date: "2024-09-03",
+      readTime: "1 min read"
     },
     {
-      title: "Sportsmanship Redefined",
-      category: "Sports",
-      preview: "The true measure of a game well played...",
+      id: 3,
+      title: "On Heritage and Home",
+      content: `Growing up between cultures teaches you that home isn't always a place—sometimes it's a feeling, a language, a way of understanding the world that exists in the spaces between belonging.
+
+My Haitian roots run deep, carrying stories of resilience that my grandparents whispered into my ear during long summer evenings in Port-au-Prince. My Puerto Rican upbringing shaped my understanding of community, of how music and food and laughter can heal wounds that words cannot touch.
+
+Being a bridge between worlds means carrying multiple truths simultaneously. It means understanding that identity isn't singular—it's a conversation between all the parts of yourself, past and present, inherited and chosen.
+
+Today, when people ask me where I'm from, I don't give them geography. I give them poetry. Because that's where I truly live—in the language that encompasses all of me.`,
+      excerpt: "Growing up between cultures teaches you that home isn't always a place—sometimes it's a feeling, a language...",
+      category: "thoughts",
+      date: "2024-08-28",
+      readTime: "4 min read"
     },
+    {
+      id: 4,
+      title: "City Rain",
+      content: `The city wears rain
+like a well-loved coat—
+familiar, comfortable,
+transforming.
+
+Puddles become mirrors
+reflecting neon dreams
+and the hurried footsteps
+of people going somewhere
+important.
+
+But I stop here,
+in the middle of it all,
+to watch the water
+wash yesterday away.`,
+      excerpt: "The city wears rain like a well-loved coat—familiar, comfortable, transforming...",
+      category: "poems",
+      date: "2024-08-25",
+      readTime: "1 min read"
+    },
+    {
+      id: 5,
+      title: "The Art of Listening",
+      content: `In our age of constant noise, listening has become a revolutionary act. Not just hearing—anyone can do that—but truly listening. The kind that requires you to quiet your own mind, to resist the urge to formulate a response while someone else is speaking.
+
+I've learned that the best conversations happen not when we're trying to be heard, but when we're genuinely curious about what others have to say. There's wisdom in every story, even the ones that challenge our own beliefs.
+
+Listening taught me that poetry isn't just about writing—it's about receiving. Receiving the world as it is, in all its beauty and brokenness, and then finding words worthy of what we've witnessed.
+
+So today, I challenge you: listen to someone who sees the world differently than you do. Not to change their mind, but to understand their heart. You might be surprised by what you learn about both of you.`,
+      excerpt: "In our age of constant noise, listening has become a revolutionary act. Not just hearing—anyone can do that...",
+      category: "thoughts",
+      date: "2024-08-20",
+      readTime: "3 min read"
+    },
+    {
+      id: 6,
+      title: "Silence",
+      content: `Between words
+lives the truth
+we're too afraid
+to speak.
+
+In the pause
+before confession,
+in the breath
+before goodbye,
+in the space
+where love
+learns its name.
+
+Silence isn't empty—
+it's full
+of everything
+we almost said.`,
+      excerpt: "Between words lives the truth we're too afraid to speak...",
+      category: "poems",
+      date: "2024-08-15",
+      readTime: "1 min read"
+    }
   ];
 
   const books = [
@@ -53,27 +143,36 @@ A place where ideas grow slowly, without applause.`,
       title: "Five AM",
       cover: fiveamCover,
       intro: "Poems born in the quiet, restless early hours of dawn.",
-      link: "/books/five-am",
+      amazonLink: "https://amazon.com/five-am-ralph-ulysse",
     },
     {
       title: "Rome",
       cover: romeCover,
       intro: "A lyrical journey through the eternal city's hidden moments.",
-      link: "/books/rome",
+      amazonLink: "https://amazon.com/rome-ralph-ulysse",
     },
     {
       title: "The Old Guitarist",
       cover: oldGuitaristCover,
-      intro: "Verses inspired by Picasso’s painting — blue, broken, beautiful.",
-      link: "/books/the-old-guitarist",
+      intro: "Verses inspired by Picasso's painting — blue, broken, beautiful.",
+      amazonLink: "https://amazon.com/old-guitarist-ralph-ulysse",
     },
     {
       title: "Still You",
       cover: stillYouCover,
       intro: "A deeply personal collection about love, distance, and return.",
-      link: "/books/still-you",
+      amazonLink: "https://amazon.com/still-you-ralph-ulysse",
     },
   ];
+
+  const filteredPosts = blogPosts
+    .filter(post => {
+      const matchesCategory = selectedCategory === "all" || post.category === selectedCategory;
+      const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesCategory && matchesSearch;
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div style={{ backgroundColor: "#0a0f2c", color: "white" }}>
@@ -92,7 +191,7 @@ A place where ideas grow slowly, without applause.`,
         <div className="poet-hero-content" data-aos="fade-up">
           <div className="mb-4">
             <Badge bg="warning" text="dark" className="px-4 py-2 mb-3 poet-badge-pulse">
-              <i className="bi bi-pen me-2"></i>POET & WRITER
+              <i className="bi bi-journal-text me-2"></i>BLOG & POETRY
             </Badge>
           </div>
           <h1
@@ -104,7 +203,7 @@ A place where ideas grow slowly, without applause.`,
               letterSpacing: "2px",
             }}
           >
-            Poetry & Reflections
+            Words & Reflections
           </h1>
           <p 
             className="poet-subtitle mb-5"
@@ -114,215 +213,142 @@ A place where ideas grow slowly, without applause.`,
               margin: "0 auto 2rem"
             }}
           >
-            "Words to carry, thoughts to linger — where silence speaks louder than noise."
+            "A space for free-flowing thoughts and poetry — where silence speaks louder than noise."
           </p>
-          <div className="d-flex gap-3 justify-content-center flex-wrap">
-            <Button
-              className={`poet-hero-btn ${view === 'poetry' ? 'active' : ''}`}
-              onClick={() => setView("poetry")}
-            >
-              <i className="bi bi-book me-2"></i>
-              Today's Poem
-            </Button>
-            <Button
-              className={`poet-hero-btn ${view === 'opinions' ? 'active' : ''}`}
-              onClick={() => setView("opinions")}
-            >
-              <i className="bi bi-chat-quote me-2"></i>
-              Read Reflections
-            </Button>
-          </div>
         </div>
       </section>
 
-      {/* Toggle Navigation */}
-      <section className="text-center my-5">
-        <div className="poet-toggle-nav">
-          <Button
-            className={`toggle-btn ${view === "poetry" ? "active" : ""}`}
-            onClick={() => setView("poetry")}
-          >
-            <i className="bi bi-journal-text me-2"></i>
-            Poetry
-          </Button>
-          <Button
-            className={`toggle-btn ${view === "opinions" ? "active" : ""}`}
-            onClick={() => setView("opinions")}
-          >
-            <i className="bi bi-lightbulb me-2"></i>
-            Reflections
-          </Button>
-        </div>
+      {/* Filter Navigation */}
+      <section className="filter-section py-5">
+        <Container>
+          <Row className="justify-content-center">
+            <Col lg={8}>
+              <div className="d-flex flex-column flex-md-row gap-3 align-items-center justify-content-between mb-4">
+                <div className="d-flex gap-2 flex-wrap">
+                  <Button
+                    variant={selectedCategory === "all" ? "warning" : "outline-warning"}
+                    className="filter-btn"
+                    onClick={() => setSelectedCategory("all")}
+                  >
+                    <i className="bi bi-grid me-2"></i>
+                    All Posts ({blogPosts.length})
+                  </Button>
+                  <Button
+                    variant={selectedCategory === "thoughts" ? "info" : "outline-info"}
+                    className="filter-btn"
+                    onClick={() => setSelectedCategory("thoughts")}
+                  >
+                    <i className="bi bi-lightbulb me-2"></i>
+                    Thoughts ({blogPosts.filter(p => p.category === "thoughts").length})
+                  </Button>
+                  <Button
+                    variant={selectedCategory === "poems" ? "success" : "outline-success"}
+                    className="filter-btn"
+                    onClick={() => setSelectedCategory("poems")}
+                  >
+                    <i className="bi bi-journal-text me-2"></i>
+                    Poems ({blogPosts.filter(p => p.category === "poems").length})
+                  </Button>
+                </div>
+                <Form.Control
+                  type="search"
+                  placeholder="Search posts..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  style={{ maxWidth: "300px" }}
+                  className="search-input"
+                />
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </section>
 
-      {/* Poetry View */}
-      {view === "poetry" && (
-        <section className="content-section fade-in-content">
-          <div className="content-bg"></div>
-          <Container>
-            <div className="text-center mb-5" data-aos="fade-up">
-              <Badge bg="info" text="white" className="px-4 py-2 mb-3">
-                <i className="bi bi-heart me-2"></i>FEATURED POEM
-              </Badge>
-              <h2
-                className="section-title mb-4"
-                style={{
-                  fontFamily: "Cormorant Garamond",
-                  fontSize: "clamp(2rem, 5vw, 3rem)",
-                  fontWeight: 300,
-                  background: "linear-gradient(135deg, #8b4513, #fff)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Today's Verse
-              </h2>
-            </div>
-            
-            <div className="featured-content-card" data-aos="fade-up" data-aos-delay="200">
-              <h3 className="featured-title">{todayPoem.title}</h3>
-              <div className="featured-content">{todayPoem.content}</div>
-              <div className="text-center mt-4">
-                <small className="text-muted">
-                  <i className="bi bi-calendar3 me-2"></i>
-                  {new Date().toLocaleDateString('en-US', { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                  })}
-                </small>
-              </div>
-            </div>
-
-            <div className="text-center mb-5" data-aos="fade-up">
-              <Badge bg="secondary" text="white" className="px-4 py-2 mb-3">
-                <i className="bi bi-collection me-2"></i>ARCHIVE
-              </Badge>
-              <h2
-                className="section-title mb-4"
-                style={{
-                  fontFamily: "Cormorant Garamond",
-                  fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
-                  fontWeight: 300,
-                  color: "#daa520",
-                }}
-              >
-                From the Collection
-              </h2>
-              <p className="lead text-muted mx-auto" style={{ maxWidth: "600px" }}>
-                Explore verses from my journey — each poem a moment captured in time.
-              </p>
-            </div>
-            
-            <Row className="g-4">
-              {poemArchive.map((poem, idx) => (
-                <Col md={4} key={idx}>
-                  <div
-                    className="archive-card"
+      {/* Blog Posts */}
+      <section className="blog-posts-section pb-5">
+        <Container>
+          <Row className="g-4">
+            {filteredPosts.length > 0 ? (
+              filteredPosts.map((post, idx) => (
+                <Col lg={6} key={post.id}>
+                  <article
+                    className="blog-post-card h-100"
                     data-aos="fade-up"
                     data-aos-delay={idx * 150}
                   >
-                    <h5 className="archive-card-title">{poem.title}</h5>
-                    <p className="archive-card-excerpt">{poem.excerpt}</p>
-                    <Button className="archive-card-btn">
-                      <i className="bi bi-arrow-right me-2"></i>
-                      Read Full Poem
-                    </Button>
-                    <div className="archive-glow"></div>
-                  </div>
+                    <div className="blog-post-header">
+                      <div className="d-flex justify-content-between align-items-center mb-3">
+                        <Badge 
+                          bg={post.category === "poems" ? "success" : "info"}
+                          className="category-badge"
+                        >
+                          <i className={`bi ${post.category === "poems" ? "bi-journal-text" : "bi-lightbulb"} me-2`}></i>
+                          {post.category === "poems" ? "Poetry" : "Thoughts"}
+                        </Badge>
+                        <div className="blog-meta text-muted">
+                          <small>
+                            <i className="bi bi-calendar3 me-1"></i>
+                            {new Date(post.date).toLocaleDateString('en-US', { 
+                              month: 'short', 
+                              day: 'numeric', 
+                              year: 'numeric' 
+                            })}
+                          </small>
+                          <small className="ms-3">
+                            <i className="bi bi-clock me-1"></i>
+                            {post.readTime}
+                          </small>
+                        </div>
+                      </div>
+                      <h2 className="blog-post-title">{post.title}</h2>
+                      <p className="blog-post-excerpt">{post.excerpt}</p>
+                    </div>
+                    <div className="blog-post-content">
+                      <div className={`content-preview ${post.category === "poems" ? "poem-format" : ""}`}>
+                        {post.content.split('\n').slice(0, post.category === "poems" ? 8 : 4).map((line, lineIdx) => (
+                          <span key={lineIdx}>
+                            {line}
+                            {lineIdx < (post.category === "poems" ? 8 : 4) - 1 && <br />}
+                          </span>
+                        ))}
+                        {post.content.split('\n').length > (post.category === "poems" ? 8 : 4) && (
+                          <span className="text-muted">... continue reading</span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="blog-post-footer mt-auto pt-3">
+                      <Button 
+                        variant="outline-warning" 
+                        size="sm"
+                        className="read-more-btn"
+                      >
+                        <i className="bi bi-arrow-right me-2"></i>
+                        Read Full {post.category === "poems" ? "Poem" : "Post"}
+                      </Button>
+                    </div>
+                    <div className="blog-post-glow"></div>
+                  </article>
                 </Col>
-              ))}
-            </Row>
-          </Container>
-        </section>
-      )}
+              ))
+            ) : (
+              <Col xs={12}>
+                <div className="text-center py-5">
+                  <i className="bi bi-search fs-1 text-muted mb-3"></i>
+                  <h3 className="text-muted">No posts found</h3>
+                  <p className="text-muted">Try adjusting your search or filter criteria.</p>
+                </div>
+              </Col>
+            )}
+          </Row>
+        </Container>
+      </section>
 
-      {/* Opinions View */}
-      {view === "opinions" && (
-        <section className="content-section fade-in-content">
-          <div className="content-bg"></div>
-          <Container>
-            <div className="text-center mb-5" data-aos="fade-up">
-              <Badge bg="success" text="white" className="px-4 py-2 mb-3">
-                <i className="bi bi-chat-square-quote me-2"></i>TODAY'S THOUGHTS
-              </Badge>
-              <h2
-                className="section-title mb-4"
-                style={{
-                  fontFamily: "Cormorant Garamond",
-                  fontSize: "clamp(2rem, 5vw, 3rem)",
-                  fontWeight: 300,
-                  background: "linear-gradient(135deg, #4b0082, #fff)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Daily Reflections
-              </h2>
-            </div>
-            
-            <div className="featured-content-card" data-aos="fade-up" data-aos-delay="200">
-              <h3 className="featured-title">{todayOpinion.title}</h3>
-              <div className="featured-content" style={{ fontStyle: 'normal' }}>{todayOpinion.content}</div>
-              <div className="text-center mt-4">
-                <small className="text-muted">
-                  <i className="bi bi-lightbulb me-2"></i>
-                  Reflection • {new Date().toLocaleDateString()}
-                </small>
-              </div>
-            </div>
-
-            <div className="text-center mb-5" data-aos="fade-up">
-              <Badge bg="secondary" text="white" className="px-4 py-2 mb-3">
-                <i className="bi bi-journal-bookmark me-2"></i>ARCHIVE
-              </Badge>
-              <h2
-                className="section-title mb-4"
-                style={{
-                  fontFamily: "Cormorant Garamond",
-                  fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
-                  fontWeight: 300,
-                  color: "#daa520",
-                }}
-              >
-                Thoughts & Commentary
-              </h2>
-              <p className="lead text-muted mx-auto" style={{ maxWidth: "600px" }}>
-                Essays on culture, identity, and the human experience — perspectives shaped by heritage and observation.
-              </p>
-            </div>
-            
-            <Row className="g-4">
-              {opinionsArchive.map((op, idx) => (
-                <Col md={4} key={idx}>
-                  <div
-                    className="archive-card"
-                    data-aos="fade-up"
-                    data-aos-delay={idx * 150}
-                  >
-                    <div className="archive-card-category">{op.category}</div>
-                    <h5 className="archive-card-title">{op.title}</h5>
-                    <p className="archive-card-excerpt">{op.preview}</p>
-                    <Button className="archive-card-btn">
-                      <i className="bi bi-arrow-right me-2"></i>
-                      Read Full Article
-                    </Button>
-                    <div className="archive-glow"></div>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </Container>
-        </section>
-      )}
-
-      {/* Books Showcase */}
+      {/* Books on Amazon */}
       <section className="py-5 books-section">
         <Container>
           <div className="text-center mb-5" data-aos="fade-up">
             <Badge bg="warning" text="dark" className="px-4 py-2 mb-3">
-              <i className="bi bi-journals me-2"></i>PUBLISHED WORKS
+              <i className="bi bi-journals me-2"></i>PUBLISHED BOOKS
             </Badge>
             <h2
               className="section-title mb-4"
@@ -335,45 +361,48 @@ A place where ideas grow slowly, without applause.`,
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Literary Collection
+              Available on Amazon
             </h2>
             <p className="lead text-muted mx-auto" style={{ maxWidth: "700px" }}>
-              Four books of poetry exploring love, loss, identity, and the spaces between silence and song.
+              Four collections of poetry exploring love, loss, identity, and the spaces between silence and song. Available in digital and print editions.
             </p>
           </div>
           <Row className="g-4 justify-content-center">
             {books.map((book, idx) => (
               <Col md={6} lg={3} key={idx}>
                 <div
-                  className="book-card h-100"
+                  className="amazon-book-card h-100"
                   data-aos="fade-up"
                   data-aos-delay={idx * 150}
                 >
-                  <img
-                    src={book.cover}
-                    alt={book.title}
-                    className="w-100"
-                  />
+                  <div className="book-cover-container">
+                    <img
+                      src={book.cover}
+                      alt={book.title}
+                      className="book-cover"
+                    />
+                  </div>
                   <div className="book-card-body">
                     <h4 className="book-title">{book.title}</h4>
                     <p className="book-intro">{book.intro}</p>
-                    <Button className="book-btn" href={book.link}>
-                      <i className="bi bi-book me-2"></i>
-                      Explore Collection
+                    <Button 
+                      className="amazon-btn w-100" 
+                      href={book.amazonLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="bi bi-cart me-2"></i>
+                      Buy on Amazon
                     </Button>
+                  </div>
+                  <div className="amazon-badge">
+                    <i className="bi bi-amazon"></i>
                   </div>
                   <div className="book-glow"></div>
                 </div>
               </Col>
             ))}
           </Row>
-          
-          <div className="text-center mt-5" data-aos="fade-up">
-            <p className="text-muted">
-              <i className="bi bi-shop me-2"></i>
-              Available in digital and print editions • <a href="/shop" className="text-warning">Visit Shop</a>
-            </p>
-          </div>
         </Container>
       </section>
 
@@ -430,12 +459,7 @@ A place where ideas grow slowly, without applause.`,
                 </li>
                 <li>
                   <a href="/poet" className="text-white">
-                    Poet
-                  </a>
-                </li>
-                <li>
-                  <a href="/shop" className="text-white">
-                    Shop
+                    Blog & Poetry
                   </a>
                 </li>
               </ul>

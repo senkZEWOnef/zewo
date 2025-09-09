@@ -10,18 +10,14 @@ import Builder from "./pages/Builder";
 
 import AdminDashboard from "./pages/AdminDashboard";
 import Poet from "./pages/Poet";
-import Shop from "./pages/Shop";
-import SignUp from "./pages/Auth/SignUp";
-import Login from "./pages/Auth/Login";
-import Dashboard from "./pages/Dashboard";
 import NavigationBar from "./components/NavigationBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
 import ProductAdmin from "./pages/ProductAdmin";
 import AdminMessages from "./pages/AdminMessages";
-import Cart from "./pages/CartFIX"; // ✅ EXACT match!
 import Solar from "./pages/solar";
 import Appointment from "./pages/Appointment";
+import Login from "./pages/Auth/Login";
 function App() {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -36,25 +32,34 @@ function App() {
           <Route path="/engineer" element={<Engineer />} />
           <Route path="/builder" element={<Builder />} />
           <Route path="/poet" element={<Poet />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/solar" element={<Solar />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/product-admin" element={<ProductAdmin />} />
-          <Route path="/admin/messages" element={<AdminMessages />} />
+          <Route path="/login" element={<Login />} />
           <Route
-            path="/dashboard"
+            path="/admin"
             element={
               <ProtectedRoute>
-                <Dashboard />
+                <AdminDashboard />
               </ProtectedRoute>
             }
           />
-          <Route path="/cart" element={<Cart />} />{" "}
-          {/* ✅ Matches CartFIX.tsx */}
+          <Route
+            path="/product-admin"
+            element={
+              <ProtectedRoute>
+                <ProductAdmin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/messages"
+            element={
+              <ProtectedRoute>
+                <AdminMessages />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </>
