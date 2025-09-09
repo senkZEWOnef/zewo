@@ -48,8 +48,8 @@ const NavigationBar = () => {
                 fontSize: "0.9rem",
                 transition: "opacity 0.3s ease",
               }}
-              onMouseEnter={(e) => (e.target.style.opacity = "1")}
-              onMouseLeave={(e) => (e.target.style.opacity = "0.3")}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.opacity = "1")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.opacity = "0.3")}
             >
               <i className="bi bi-gear"></i>
             </NavLink>
