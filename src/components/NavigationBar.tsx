@@ -22,6 +22,9 @@ const NavigationBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center">
+            <NavLink to="/about" className="nav-link nav-accent">
+              About
+            </NavLink>
             <NavLink to="/engineer" className="nav-link nav-accent">
               Engineer
             </NavLink>
@@ -33,10 +36,6 @@ const NavigationBar = () => {
             </NavLink>
             <NavLink to="/poet" className="nav-link nav-accent">
               Blog & Poetry
-            </NavLink>
-
-            <NavLink to="/about" className="nav-link nav-accent">
-              About
             </NavLink>
 
             {/* Admin backdoor access */}

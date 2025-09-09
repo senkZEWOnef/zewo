@@ -45,6 +45,14 @@ const About = () => {
       liveUrl: "https://zewoworld.com",
       githubUrl: "https://github.com/senkZEWOnef/zewo",
       icon: "🌟"
+    },
+    {
+      title: "Bennett Salon de Beauté",
+      description: "Professional beauty salon webapp offering manicure services, nail art, and beauty treatments with appointment booking and service management system.",
+      tech: ["React", "Bootstrap", "CSS3", "Responsive Design"],
+      liveUrl: "https://bennettsalon.netlify.app",
+      githubUrl: "https://github.com/senkZEWOnef/bennettsalon",
+      icon: "💅"
     }
   ];
 
