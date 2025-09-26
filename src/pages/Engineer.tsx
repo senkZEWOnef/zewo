@@ -235,6 +235,271 @@ const Engineer = () => {
         </Container>
       </section>
 
+      {/* Service Plans */}
+      <section className="py-5 plans-section" style={{ 
+        background: "linear-gradient(135deg, rgba(14,19,55,0.9), rgba(19,26,51,0.8))",
+        position: "relative"
+      }}>
+        <Container>
+          <div className="text-center mb-5" data-aos="fade-up">
+            <Badge bg="warning" text="dark" className="px-4 py-2 mb-3">
+              <i className="bi bi-star me-2"></i>SERVICE PLANS
+            </Badge>
+            <h2
+              className="section-title mb-4"
+              style={{ 
+                fontFamily: "Cormorant Garamond",
+                fontSize: "clamp(2rem, 5vw, 3.5rem)",
+                fontWeight: "300",
+                background: "linear-gradient(135deg, #ffd700, #fff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Digital Solutions That Scale
+            </h2>
+            <p className="lead text-light mx-auto" style={{ maxWidth: "700px" }}>
+              Choose the perfect plan for your business needs. From startups to enterprises, I've got you covered with web development and digital marketing services.
+            </p>
+          </div>
+          
+          <Row className="g-4 justify-content-center">
+            {/* Starter Plan */}
+            <Col lg={4} md={6}>
+              <Card
+                className="plan-card h-100 border-0 position-relative overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay="100"
+                style={{
+                  background: "linear-gradient(135deg, rgba(19,26,51,0.9) 0%, rgba(14,19,55,0.8) 100%)",
+                  backdropFilter: "blur(10px)",
+                  border: "2px solid rgba(255,215,0,0.2)",
+                  borderRadius: "20px"
+                }}
+              >
+                <Card.Body className="p-4 text-center">
+                  <div className="plan-icon mb-3">
+                    <i className="bi bi-rocket-takeoff" style={{ fontSize: "3rem", color: "#28a745" }}></i>
+                  </div>
+                  <h4 className="plan-title mb-3" style={{
+                    fontFamily: "Cormorant Garamond",
+                    fontSize: "2rem",
+                    fontWeight: "600",
+                    color: "#28a745"
+                  }}>
+                    Starter Plan
+                  </h4>
+                  <p className="plan-subtitle mb-4 text-light">Perfect for small businesses and startups</p>
+                  
+                  <ul className="list-unstyled text-start mb-4">
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-success me-3"></i>
+                      <span className="text-light">Modern, mobile-responsive website</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-success me-3"></i>
+                      <span className="text-light">Lead capture forms & contact integration</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-success me-3"></i>
+                      <span className="text-light">12 social media posts/month (FB + IG)</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-success me-3"></i>
+                      <span className="text-light">4 TikTok videos/month</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-success me-3"></i>
+                      <span className="text-light">Website maintenance & hosting</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-success me-3"></i>
+                      <span className="text-light">Monthly analytics report</span>
+                    </li>
+                  </ul>
+                  
+                  <Button 
+                    variant="success" 
+                    className="w-100 py-3" 
+                    href="#contact"
+                    style={{ borderRadius: "10px", fontWeight: "600" }}
+                  >
+                    <i className="bi bi-chat-dots me-2"></i>
+                    Get Started
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            {/* Growth Plan */}
+            <Col lg={4} md={6}>
+              <Card
+                className="plan-card h-100 border-0 position-relative overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay="200"
+                style={{
+                  background: "linear-gradient(135deg, rgba(19,26,51,0.9) 0%, rgba(14,19,55,0.8) 100%)",
+                  backdropFilter: "blur(10px)",
+                  border: "2px solid rgba(255,215,0,0.4)",
+                  borderRadius: "20px",
+                  transform: "scale(1.05)"
+                }}
+              >
+                <div className="position-absolute start-50 translate-middle" style={{ top: "15px", zIndex: 10 }}>
+                  <Badge bg="dark" text="warning" className="px-3 py-2" style={{ 
+                    border: "2px solid #ffd700",
+                    fontWeight: "bold",
+                    fontSize: "0.9rem"
+                  }}>
+                    <i className="bi bi-star-fill me-1"></i>MOST POPULAR
+                  </Badge>
+                </div>
+                <Card.Body className="p-4 text-center">
+                  <div className="plan-icon mb-3">
+                    <i className="bi bi-graph-up-arrow" style={{ fontSize: "3rem", color: "#ffd700" }}></i>
+                  </div>
+                  <h4 className="plan-title mb-3" style={{
+                    fontFamily: "Cormorant Garamond",
+                    fontSize: "2rem",
+                    fontWeight: "600",
+                    color: "#ffd700"
+                  }}>
+                    Growth Plan
+                  </h4>
+                  <p className="plan-subtitle mb-4 text-light">Ideal for growing businesses ready to scale</p>
+                  
+                  <ul className="list-unstyled text-start mb-4">
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-warning me-3"></i>
+                      <span className="text-light"><strong>Everything in Starter Plan</strong></span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-warning me-3"></i>
+                      <span className="text-light">4 blog articles/month for SEO</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-warning me-3"></i>
+                      <span className="text-light">Paid ads management (Facebook & Google)</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-warning me-3"></i>
+                      <span className="text-light">Extra TikTok/Reels production</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-warning me-3"></i>
+                      <span className="text-light">Advanced analytics & competitor analysis</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill text-warning me-3"></i>
+                      <span className="text-light">Community management & engagement</span>
+                    </li>
+                  </ul>
+                  
+                  <Button 
+                    variant="warning" 
+                    className="w-100 py-3" 
+                    href="#contact"
+                    style={{ borderRadius: "10px", fontWeight: "600" }}
+                  >
+                    <i className="bi bi-rocket me-2"></i>
+                    Scale Your Business
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            {/* Ultimate Plan */}
+            <Col lg={4} md={6}>
+              <Card
+                className="plan-card h-100 border-0 position-relative overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay="300"
+                style={{
+                  background: "linear-gradient(135deg, rgba(19,26,51,0.9) 0%, rgba(14,19,55,0.8) 100%)",
+                  backdropFilter: "blur(10px)",
+                  border: "2px solid rgba(138,43,226,0.4)",
+                  borderRadius: "20px"
+                }}
+              >
+                <Card.Body className="p-4 text-center">
+                  <div className="plan-icon mb-3">
+                    <i className="bi bi-gem" style={{ fontSize: "3rem", color: "#8a2be2" }}></i>
+                  </div>
+                  <h4 className="plan-title mb-3" style={{
+                    fontFamily: "Cormorant Garamond",
+                    fontSize: "2rem",
+                    fontWeight: "600",
+                    color: "#8a2be2"
+                  }}>
+                    Ultimate Plan
+                  </h4>
+                  <p className="plan-subtitle mb-4 text-light">Complete digital transformation for enterprises</p>
+                  
+                  <ul className="list-unstyled text-start mb-4">
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill me-3" style={{ color: "#8a2be2" }}></i>
+                      <span className="text-light"><strong>Everything in Growth Plan</strong></span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill me-3" style={{ color: "#8a2be2" }}></i>
+                      <span className="text-light">Custom web application development</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill me-3" style={{ color: "#8a2be2" }}></i>
+                      <span className="text-light">API integrations & automation workflows</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill me-3" style={{ color: "#8a2be2" }}></i>
+                      <span className="text-light">Multi-platform content strategy</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill me-3" style={{ color: "#8a2be2" }}></i>
+                      <span className="text-light">Dedicated account manager</span>
+                    </li>
+                    <li className="mb-3 d-flex align-items-center">
+                      <i className="bi bi-check-circle-fill me-3" style={{ color: "#8a2be2" }}></i>
+                      <span className="text-light">24/7 priority support & consulting</span>
+                    </li>
+                  </ul>
+                  
+                  <Button 
+                    variant="outline-light" 
+                    className="w-100 py-3" 
+                    href="#contact"
+                    style={{ 
+                      borderRadius: "10px", 
+                      fontWeight: "600",
+                      borderColor: "#8a2be2",
+                      color: "#8a2be2"
+                    }}
+                  >
+                    <i className="bi bi-lightning me-2"></i>
+                    Go Ultimate
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+
+          <div className="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
+            <p className="text-light mb-3">
+              <i className="bi bi-info-circle me-2"></i>
+              Custom pricing based on your specific needs and project scope
+            </p>
+            <Button 
+              variant="outline-warning" 
+              size="lg" 
+              href="#contact"
+              className="px-5 py-3"
+              style={{ borderRadius: "50px" }}
+            >
+              <i className="bi bi-calendar-check me-2"></i>
+              Schedule a Free Consultation
+            </Button>
+          </div>
+        </Container>
+      </section>
+
       {/* Request Form */}
       <section id="contact" className="py-5 contact-section" style={{ 
         background: "linear-gradient(135deg, rgba(19,26,51,0.8), rgba(10,15,44,0.9))",

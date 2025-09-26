@@ -34,8 +34,8 @@ const NavigationBar = () => {
             <NavLink to="/builder" className="nav-link nav-accent">
               Builder
             </NavLink>
-            <NavLink to="/poet" className="nav-link nav-accent">
-              Blog & Poetry
+            <NavLink to="/blog" className="nav-link nav-accent">
+              Blog
             </NavLink>
 
             {/* Admin backdoor access */}

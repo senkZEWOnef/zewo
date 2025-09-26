@@ -39,7 +39,7 @@ const Home = () => {
             {
               img: poetImg,
               title: "Writing from the Soul",
-              link: "/poet",
+              link: "/blog",
             },
           ].map((slide, idx) => (
             <Carousel.Item
@@ -182,10 +182,10 @@ const Home = () => {
                 link: "/builder",
               },
               {
-                title: "Poet",
-                desc: "Books and verses about love, identity, and memory — written from the heart.",
+                title: "Blog & Poetry",
+                desc: "Thoughts on engineering, life insights, and verses about love, identity, and memory.",
                 img: poetImg,
-                link: "/poet",
+                link: "/blog",
               },
             ].map((section, idx) => (
               <Col md={6} lg={3} className="text-center mb-4" key={idx}>
@@ -251,115 +251,279 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* Words */}
+      {/* Blog & Thoughts */}
       <section className="py-5 words-section" style={{ 
         background: "linear-gradient(135deg, rgba(19,26,51,0.8) 0%, rgba(10,15,44,0.9) 100%)",
         position: "relative"
       }}>
         <Container>
-          <Row>
-            {[
-              {
-                title: "The Weight of Words",
-                preview: "There's something sacred about the moment when a thought becomes a word, when silence breaks into meaning...",
-                category: "Thoughts",
-                date: "Sep 5, 2024",
-                readTime: "3 min read",
-                type: "thoughts"
-              },
-              {
-                title: "Morning Coffee",
-                preview: "Steam rises like prayers / from the cup between my palms— / morning's first communion...",
-                category: "Poetry",
-                date: "Sep 3, 2024",
-                readTime: "1 min read",
-                type: "poems"
-              },
-              {
-                title: "On Heritage and Home",
-                preview: "Growing up between cultures teaches you that home isn't always a place—sometimes it's a feeling, a language...",
-                category: "Thoughts",
-                date: "Aug 28, 2024",
-                readTime: "4 min read",
-                type: "thoughts"
-              },
-              {
-                title: "City Rain",
-                preview: "The city wears rain / like a well-loved coat— / familiar, comfortable, / transforming...",
-                category: "Poetry",
-                date: "Aug 25, 2024",
-                readTime: "1 min read",
-                type: "poems"
-              },
-            ].map((item, idx) => (
-              <Col md={6} className="mb-4" key={idx}>
-                <div
-                  onClick={() => (window.location.href = "/poet")}
-                  className="word-card p-4 rounded h-100 position-relative overflow-hidden"
-                  data-aos="fade-up"
-                  data-aos-delay={idx * 150}
-                  style={{
-                    background: item.type === "poems" 
-                      ? "linear-gradient(135deg, rgba(40,167,69,0.1) 0%, rgba(255,215,0,0.1) 100%)"
-                      : "linear-gradient(135deg, rgba(23,162,184,0.1) 0%, rgba(255,215,0,0.1) 100%)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    backdropFilter: "blur(10px)",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease"
-                  }}
-                >
-                  <div className="word-card-content">
-                    <div className="d-flex justify-content-between align-items-center mb-3">
-                      <Badge 
-                        bg={item.type === "poems" ? "success" : "info"}
-                        className="category-badge"
-                      >
-                        <i className={`bi ${item.type === "poems" ? "bi-journal-text" : "bi-lightbulb"} me-2`}></i>
-                        {item.category}
-                      </Badge>
-                      <div className="word-meta text-muted small">
-                        <span>{item.date}</span>
-                        <span className="ms-2">• {item.readTime}</span>
+          <div className="text-center mb-5" data-aos="fade-up">
+            <Badge bg="primary" className="px-4 py-2 mb-3" style={{ fontSize: "0.9rem", letterSpacing: "1px" }}>
+              LATEST THOUGHTS
+            </Badge>
+            <h2
+              className="section-title"
+              style={{
+                fontFamily: "Cormorant Garamond",
+                fontSize: "clamp(2rem, 5vw, 3.5rem)",
+                fontWeight: "300",
+                marginBottom: "1.5rem",
+                background: "linear-gradient(135deg, #8b5cf6, #fff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              From the Blog
+            </h2>
+            <p className="lead text-muted mx-auto" style={{ maxWidth: "600px" }}>
+              Quick insights, deeper thoughts, and creative expressions on engineering, building, and life
+            </p>
+          </div>
+          {/* Recent Blog Posts */}
+          <div className="mb-5">
+            <h3 className="text-center mb-4" style={{ 
+              color: "#8b5cf6", 
+              fontFamily: "Cormorant Garamond",
+              fontSize: "1.8rem"
+            }}>
+              Latest Blog Posts
+            </h3>
+            <Row>
+              {[
+                {
+                  title: "Building the Future",
+                  preview: "Just finished working on a new React project with some amazing features. The intersection of engineering and creativity never ceases to amaze me. 🚀",
+                  category: "Engineering",
+                  date: "2h ago",
+                  type: "blog",
+                  avatar: "R"
+                },
+                {
+                  title: "Puerto Rico Tech Scene",
+                  preview: "The tech ecosystem in Puerto Rico is growing rapidly. Seeing more developers and entrepreneurs building innovative solutions for local and global markets. Exciting times ahead! 🌴💻",
+                  category: "Tech Thoughts",
+                  date: "1 day ago",
+                  type: "blog",
+                  avatar: "R"
+                },
+              ].map((item, idx) => (
+                <Col md={6} className="mb-4" key={idx}>
+                  <div
+                    onClick={() => (window.location.href = "/blog")}
+                    className="word-card p-4 rounded h-100 position-relative overflow-hidden"
+                    data-aos="fade-up"
+                    data-aos-delay={idx * 150}
+                    style={{
+                      background: "linear-gradient(135deg, rgba(139,92,246,0.1) 0%, rgba(99,102,241,0.1) 100%)",
+                      border: "1px solid rgba(139,92,246,0.2)",
+                      backdropFilter: "blur(10px)",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease"
+                    }}
+                  >
+                    <div className="word-card-content">
+                      {/* Twitter-style header */}
+                      <div className="d-flex align-items-center mb-3">
+                        <div
+                          className="rounded-circle me-3 d-flex align-items-center justify-content-center"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            background: "linear-gradient(135deg, #8b5cf6, #6366f1)",
+                            fontSize: "1rem",
+                            color: "white",
+                            fontWeight: "bold"
+                          }}
+                        >
+                          {item.avatar}
+                        </div>
+                        <div className="flex-grow-1">
+                          <div className="d-flex align-items-center">
+                            <span className="text-light fw-semibold me-2">Ralph Ulysse</span>
+                            <span className="text-muted small">@zewo · {item.date}</span>
+                          </div>
+                          <Badge bg="primary" className="category-badge small">
+                            <i className="bi bi-lightbulb me-1"></i>
+                            {item.category}
+                          </Badge>
+                        </div>
+                      </div>
+
+                      <h5 className="fw-bold mb-2" style={{ 
+                        color: "#8b5cf6", 
+                        fontFamily: "Cormorant Garamond",
+                        fontSize: "1.3rem"
+                      }}>
+                        {item.title}
+                      </h5>
+                      <p className="mb-3" style={{ 
+                        fontSize: "1rem", 
+                        color: "#ccc", 
+                        lineHeight: "1.6"
+                      }}>
+                        {item.preview}
+                      </p>
+                      
+                      {/* Twitter-style actions */}
+                      <div className="d-flex align-items-center justify-content-between pt-2" style={{
+                        borderTop: "1px solid rgba(139,92,246,0.2)"
+                      }}>
+                        <div className="d-flex align-items-center gap-3">
+                          <span className="text-muted small d-flex align-items-center">
+                            <i className="bi bi-heart me-1"></i>
+                            {Math.floor(Math.random() * 20) + 5}
+                          </span>
+                          <span className="text-muted small d-flex align-items-center">
+                            <i className="bi bi-share me-1"></i>
+                            {Math.floor(Math.random() * 10) + 1}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center text-warning small">
+                          <span>Read more</span>
+                          <i className="bi bi-arrow-right ms-2"></i>
+                        </div>
                       </div>
                     </div>
-                    <h5 className="fw-bold mb-3" style={{ 
-                      color: "#ffd700", 
-                      fontFamily: "Cormorant Garamond",
-                      fontSize: "1.3rem"
-                    }}>
-                      {item.title}
-                    </h5>
-                    <p className="mb-3" style={{ 
-                      fontSize: "1rem", 
-                      color: "#ccc", 
-                      lineHeight: "1.6",
-                      fontFamily: item.type === "poems" ? "Cormorant Garamond" : "inherit",
-                      fontStyle: item.type === "poems" ? "italic" : "normal"
-                    }}>
-                      {item.preview}
-                    </p>
-                    <div className="d-flex align-items-center justify-content-between">
-                      <div className="d-flex align-items-center text-warning small">
-                        <span>Read {item.type === "poems" ? "poem" : "full post"}</span>
-                        <i className="bi bi-arrow-right ms-2"></i>
-                      </div>
-                    </div>
+                    <div className="word-glow"></div>
                   </div>
-                  <div className="word-glow"></div>
-                </div>
-              </Col>
-            ))}
-          </Row>
+                </Col>
+              ))}
+            </Row>
+          </div>
+
+          {/* Recent Poems */}
+          <div>
+            <h3 className="text-center mb-4" style={{ 
+              color: "#22c55e", 
+              fontFamily: "Cormorant Garamond",
+              fontSize: "1.8rem"
+            }}>
+              Latest Poems
+            </h3>
+            <Row>
+              {[
+                {
+                  title: "Morning Coffee",
+                  preview: "Steam rises like prayers / from the cup between my palms— / morning's first communion...",
+                  category: "Poetry",
+                  date: "3 days ago",
+                  type: "poems",
+                  avatar: "R"
+                },
+                {
+                  title: "Heritage",
+                  preview: "I carry my grandmother's hands, / my father's stubborn hope, / my mother's quiet strength...",
+                  category: "Poetry",
+                  date: "1 week ago",
+                  type: "poems",
+                  avatar: "R"
+                },
+              ].map((item, idx) => (
+                <Col md={6} className="mb-4" key={idx}>
+                  <div
+                    onClick={() => (window.location.href = "/poems")}
+                    className="word-card p-4 rounded h-100 position-relative overflow-hidden"
+                    data-aos="fade-up"
+                    data-aos-delay={(idx + 2) * 150}
+                    style={{
+                      background: "linear-gradient(135deg, rgba(34,197,94,0.1) 0%, rgba(16,185,129,0.1) 100%)",
+                      border: "1px solid rgba(34,197,94,0.2)",
+                      backdropFilter: "blur(10px)",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease"
+                    }}
+                  >
+                    <div className="word-card-content">
+                      {/* Twitter-style header */}
+                      <div className="d-flex align-items-center mb-3">
+                        <div
+                          className="rounded-circle me-3 d-flex align-items-center justify-content-center"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            background: "linear-gradient(135deg, #22c55e, #16a34a)",
+                            fontSize: "1rem",
+                            color: "white",
+                            fontWeight: "bold"
+                          }}
+                        >
+                          {item.avatar}
+                        </div>
+                        <div className="flex-grow-1">
+                          <div className="d-flex align-items-center">
+                            <span className="text-light fw-semibold me-2">Ralph Ulysse</span>
+                            <span className="text-muted small">@zewo · {item.date}</span>
+                          </div>
+                          <Badge bg="success" className="category-badge small">
+                            <i className="bi bi-journal-text me-1"></i>
+                            {item.category}
+                          </Badge>
+                        </div>
+                      </div>
+
+                      <h5 className="fw-bold mb-2" style={{ 
+                        color: "#22c55e", 
+                        fontFamily: "Cormorant Garamond",
+                        fontSize: "1.3rem"
+                      }}>
+                        "{item.title}"
+                      </h5>
+                      <p className="mb-3" style={{ 
+                        fontSize: "1rem", 
+                        color: "#ccc", 
+                        lineHeight: "1.6",
+                        fontFamily: "Cormorant Garamond",
+                        fontStyle: "italic"
+                      }}>
+                        {item.preview}
+                      </p>
+                      
+                      {/* Twitter-style actions */}
+                      <div className="d-flex align-items-center justify-content-between pt-2" style={{
+                        borderTop: "1px solid rgba(34,197,94,0.2)"
+                      }}>
+                        <div className="d-flex align-items-center gap-3">
+                          <span className="text-muted small d-flex align-items-center">
+                            <i className="bi bi-heart me-1"></i>
+                            {Math.floor(Math.random() * 30) + 15}
+                          </span>
+                          <span className="text-muted small d-flex align-items-center">
+                            <i className="bi bi-share me-1"></i>
+                            {Math.floor(Math.random() * 15) + 5}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center text-warning small">
+                          <span>Read poem</span>
+                          <i className="bi bi-arrow-right ms-2"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="word-glow"></div>
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          </div>
           <div className="text-center mt-4" data-aos="fade-up">
             <Button 
-              variant="outline-info" 
+              variant="outline-primary" 
               size="lg"
-              href="/poet"
+              href="/blog"
+              className="px-4 py-3 me-3"
+              style={{ borderRadius: "25px" }}
+            >
+              <i className="bi bi-pencil-square me-2"></i>
+              View All Blog Posts
+            </Button>
+            <Button 
+              variant="outline-success" 
+              size="lg"
+              href="/poems"
               className="px-4 py-3"
               style={{ borderRadius: "25px" }}
             >
               <i className="bi bi-journal-text me-2"></i>
-              View All Posts & Poetry
+              View All Poems
             </Button>
           </div>
         </Container>
@@ -400,16 +564,16 @@ const Home = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/poet" className="text-white">
-                    Blog & Poetry
+                  <a href="/blog" className="text-white">
+                    Blog
                   </a>
                 </li>
               </ul>
             </Col>
             <Col md={4}>
               <h5>Contact</h5>
-              <p><i className="bi bi-envelope me-2"></i>contact@zewo.dev</p>
-              <p><i className="bi bi-phone me-2"></i>(787) 555-1234</p>
+              <p><i className="bi bi-envelope me-2"></i>ralph.ulysse509@gmail.com</p>
+              <p><i className="bi bi-phone me-2"></i>(785) 317-6894</p>
               <p><i className="bi bi-geo-alt me-2"></i>San Juan, Puerto Rico</p>
               <div className="d-flex gap-3 fs-4">
                 <a

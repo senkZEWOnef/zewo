@@ -53,6 +53,38 @@ const About = () => {
       liveUrl: "https://bennettsalon.netlify.app",
       githubUrl: "https://github.com/senkZEWOnef/bennettsalon",
       icon: "💅"
+    },
+    {
+      title: "Acevedo Eléctricos",
+      description: "Sitio web moderno y profesional para Acevedo Eléctricos con sistema de reservas, procesamiento de pagos, tienda de productos y galería de proyectos. Completamente en español para el mercado puertorriqueño.",
+      tech: ["React", "Payment Integration", "Bootstrap", "Spanish Localization"],
+      liveUrl: "https://acevedoelectricosbyzewo.netlify.app",
+      githubUrl: "https://github.com/senkZEWOnef/AcevedoElectricsbyZewo",
+      icon: "⚡"
+    },
+    {
+      title: "BookIt by Zewo",
+      description: "A Calendly built for WhatsApp. Service providers get a shareable booking link that confirms appointments, collects deposits, and sends updates via WhatsApp first (with SMS fallback). Bilingual (EN/ES), Puerto Rico-friendly (Stripe + ATH Móvil).",
+      tech: ["React", "WhatsApp API", "Stripe", "ATH Móvil", "SMS Integration"],
+      liveUrl: "https://bookitbyzewo.netlify.app",
+      githubUrl: "https://github.com/senkZEWOnef/bookitbyzewo",
+      icon: "📅"
+    },
+    {
+      title: "iRepair",
+      description: "Una aplicación web completa para un negocio de reparación de electrónicos que incluye sistema de citas, venta de productos y gestión de clientes para Puerto Rico.",
+      tech: ["Next.js 15", "Tailwind CSS", "Prisma", "NextAuth.js", "Stripe", "ATH Móvil"],
+      liveUrl: "https://irepairbyzewo.netlify.app",
+      githubUrl: "https://github.com/senkZEWOnef/iRepair",
+      icon: "🔧"
+    },
+    {
+      title: "PlacasPR",
+      description: "A complete solar panel review and lead generation website built with Next.js, tailored specifically for the Puerto Rico market with affiliate monetization and local installer partnerships.",
+      tech: ["Next.js 14", "Tailwind CSS", "Google Analytics", "React Hook Form", "Affiliate Integration"],
+      liveUrl: "https://placaspr.netlify.app",
+      githubUrl: "https://github.com/senkZEWOnef/PlacasPR",
+      icon: "☀️"
     }
   ];
 
@@ -552,15 +584,65 @@ const About = () => {
                   </div>
                   
                   <div className="portfolio-links">
-                    <a 
-                      href={app.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="portfolio-btn"
-                    >
-                      <i className="bi bi-globe"></i>
-                      Live Demo
-                    </a>
+                    {app.title === "BookIt by Zewo" ? (
+                      <a 
+                        href="/projects/bookit"
+                        className="portfolio-btn"
+                      >
+                        <i className="bi bi-info-circle"></i>
+                        View Details
+                      </a>
+                    ) : app.title === "Acevedo Eléctricos" ? (
+                      <a 
+                        href="/projects/acevedo-electrics"
+                        className="portfolio-btn"
+                      >
+                        <i className="bi bi-info-circle"></i>
+                        Ver Detalles
+                      </a>
+                    ) : app.title === "Bennett Salon de Beauté" ? (
+                      <a 
+                        href="/projects/bennett-salon"
+                        className="portfolio-btn"
+                      >
+                        <i className="bi bi-info-circle"></i>
+                        View Details
+                      </a>
+                    ) : app.title === "iRepair" ? (
+                      <a 
+                        href="/projects/irepair"
+                        className="portfolio-btn"
+                      >
+                        <i className="bi bi-info-circle"></i>
+                        Ver Detalles
+                      </a>
+                    ) : app.title === "Cut by Zewo" ? (
+                      <a 
+                        href="/projects/cut-by-zewo"
+                        className="portfolio-btn"
+                      >
+                        <i className="bi bi-info-circle"></i>
+                        View Details
+                      </a>
+                    ) : app.title === "PlacasPR" ? (
+                      <a 
+                        href="/projects/placaspr"
+                        className="portfolio-btn"
+                      >
+                        <i className="bi bi-info-circle"></i>
+                        View Details
+                      </a>
+                    ) : (
+                      <a 
+                        href={app.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="portfolio-btn"
+                      >
+                        <i className="bi bi-globe"></i>
+                        Live Demo
+                      </a>
+                    )}
                     <a 
                       href={app.githubUrl}
                       target="_blank"

@@ -1,17 +1,25 @@
-import { useState, FormEvent } from "react";
-import { supabase } from "../../supabase";
+import { useState, FormEvent, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 import Logo from "../../components/Logo";
 import "../../styles/Auth.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [authMode, setAuthMode] = useState<'username' | 'password'>('username');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { setUser } = useUser();
+
+  // Randomly choose username or password on component mount
+  useEffect(() => {
+    const modes: ('username' | 'password')[] = ['username', 'password'];
+    const randomMode = modes[Math.floor(Math.random() * modes.length)];
+    setAuthMode(randomMode);
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -19,16 +27,36 @@ const Login = () => {
     setMessage("");
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        setMessage(error.message);
+      const ADMIN_USERNAME = "zewo";
+      const ADMIN_PASSWORD = "Poesie509$";
+      
+      let isValid = false;
+      
+      if (authMode === 'username') {
+        isValid = inputValue === ADMIN_USERNAME;
       } else {
+        isValid = inputValue === ADMIN_PASSWORD;
+      }
+
+      if (isValid) {
+        // Create a mock user object for admin
+        const adminUser = {
+          id: "admin-user-id",
+          email: "admin@zewoworld.com",
+          aud: "authenticated",
+          role: "authenticated",
+          email_confirmed_at: new Date().toISOString(),
+          app_metadata: { provider: "local", role: "admin" },
+          user_metadata: { username: "zewo" },
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        };
+        
+        setUser(adminUser);
         setMessage("Login successful! Redirecting...");
         setTimeout(() => navigate("/admin"), 1500);
+      } else {
+        setMessage(`Invalid ${authMode}. Please try again.`);
       }
     } catch (err) {
       console.error("Login error:", err);
@@ -63,44 +91,40 @@ const Login = () => {
         <Form onSubmit={handleSubmit} className={`auth-form ${loading ? 'auth-loading' : ''}`}>
           <Form.Group className="auth-form-group">
             <Form.Label className="auth-label">
-              <i className="bi bi-envelope"></i>
-              Email Address
+              <i className={`bi bi-${authMode === 'username' ? 'person' : 'lock'}`}></i>
+              {authMode === 'username' ? 'Username' : 'Password'}
             </Form.Label>
-            <Form.Control
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="auth-input"
-              placeholder="Enter your email address"
-              disabled={loading}
-            />
-          </Form.Group>
-
-          <Form.Group className="auth-form-group">
-            <Form.Label className="auth-label">
-              <i className="bi bi-lock"></i>
-              Password
-            </Form.Label>
-            <div className="password-input-group">
+            {authMode === 'password' ? (
+              <div className="password-input-group">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  className="auth-input"
+                  placeholder="Enter your password"
+                  disabled={loading}
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                  disabled={loading}
+                >
+                  <i className={`bi bi-eye${showPassword ? '-slash' : ''}`}></i>
+                </button>
+              </div>
+            ) : (
               <Form.Control
-                type={showPassword ? "text" : "password"}
+                type="text"
                 required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 className="auth-input"
-                placeholder="Enter your password"
+                placeholder="Enter your username"
                 disabled={loading}
               />
-              <button
-                type="button"
-                className="password-toggle-btn"
-                onClick={() => setShowPassword(!showPassword)}
-                disabled={loading}
-              >
-                <i className={`bi bi-eye${showPassword ? '-slash' : ''}`}></i>
-              </button>
-            </div>
+            )}
           </Form.Group>
 
           <Button

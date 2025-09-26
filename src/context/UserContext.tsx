@@ -1,6 +1,21 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "../supabase";
-import { User } from "@supabase/supabase-js";
+
+interface User {
+  id: string;
+  email: string;
+  aud: string;
+  role: string;
+  email_confirmed_at: string;
+  app_metadata: {
+    provider: string;
+    role: string;
+  };
+  user_metadata: {
+    username: string;
+  };
+  created_at: string;
+  updated_at: string;
+}
 
 type UserContextType = {
   user: User | null;
@@ -16,30 +31,35 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setUser(data?.session?.user ?? null);
-      setLoadingUser(false);
-    });
-
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null);
-        setLoadingUser(false);
+    // Check for stored user session in localStorage
+    const storedUser = localStorage.getItem('zewo-admin-user');
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (error) {
+        localStorage.removeItem('zewo-admin-user');
       }
-    );
-
-    return () => {
-      listener?.subscription.unsubscribe();
-    };
+    }
+    setLoadingUser(false);
   }, []);
 
+  // Store user in localStorage when set
+  const setUserWithStorage = (user: User | null) => {
+    setUser(user);
+    if (user) {
+      localStorage.setItem('zewo-admin-user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('zewo-admin-user');
+    }
+  };
+
   const signOut = async () => {
-    await supabase.auth.signOut();
+    localStorage.removeItem('zewo-admin-user');
     setUser(null);
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, signOut, loadingUser }}>
+    <UserContext.Provider value={{ user, setUser: setUserWithStorage, signOut, loadingUser }}>
       {children}
     </UserContext.Provider>
   );
