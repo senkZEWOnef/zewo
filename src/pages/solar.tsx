@@ -650,6 +650,90 @@ const Solar = () => {
           </Form>
         </Modal.Body>
       </Modal>
+
+      {/* Footer */}
+      <footer
+        className="text-white py-5"
+        style={{ backgroundColor: "#131a33" }}
+      >
+        <Container>
+          <Row>
+            <Col md={4} className="mb-3">
+              <h4 style={{ fontFamily: "Cormorant Garamond" }}>Zewo</h4>
+              <p style={{ color: "#ccc" }}>Build. Code. Write.</p>
+            </Col>
+            <Col md={4} className="mb-3">
+              <h5>Quick Links</h5>
+              <ul className="list-unstyled" style={{ color: "#aaa" }}>
+                <li>
+                  <a href="/" className="text-white">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="/engineer" className="text-white">
+                    Engineer
+                  </a>
+                </li>
+                <li>
+                  <a href="/solar" className="text-white">
+                    Solar Energy
+                  </a>
+                </li>
+                <li>
+                  <a href="/builder" className="text-white">
+                    Builder
+                  </a>
+                </li>
+                <li>
+                  <a href="/blog" className="text-white">
+                    Blog
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col md={4}>
+              <h5>Contact</h5>
+              <p><i className="bi bi-envelope me-2"></i>ralph.ulysse509@gmail.com</p>
+              <p><i className="bi bi-phone me-2"></i>(785) 317-6894</p>
+              <p><i className="bi bi-geo-alt me-2"></i>San Juan, Puerto Rico</p>
+              <div className="d-flex gap-3 fs-4">
+                <a
+                  href="https://instagram.com/zewoworld"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-instagram"></i>
+                </a>
+                <a
+                  href="https://github.com/zewo"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-github"></i>
+                </a>
+                <a
+                  href="https://facebook.com/zewoworld"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-facebook"></i>
+                </a>
+                <a
+                  href="https://youtube.com/@zewoworld"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-youtube"></i>
+                </a>
+              </div>
+            </Col>
+          </Row>
+          <p className="text-center mt-4 small text-muted">
+            &copy; {new Date().getFullYear()} Zewo by Ralph Ulysse
+          </p>
+        </Container>
+      </footer>
     </div>
   );
 };

@@ -466,8 +466,8 @@ we almost said.`,
             </Col>
             <Col md={4}>
               <h5>Contact</h5>
-              <p>Email: your@email.com</p>
-              <p>Phone: (787) 555-1234</p>
+              <p>Email: ralph.ulysse509@gmail.com</p>
+              <p>Phone: (785) 317-6894</p>
               <div className="d-flex gap-3 fs-4">
                 <a
                   href="https://instagram.com/yourhandle"
