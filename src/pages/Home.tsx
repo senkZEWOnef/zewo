@@ -28,124 +28,329 @@ const Home = () => {
       {/* Hero Slideshow */}
       <section className="position-relative overflow-hidden">
         <div className="hero-particles"></div>
-        <Carousel fade interval={6000} controls indicators className="hero-carousel">
-          {[
-            {
-              img: homeImage,
-              title: "Welcome to zeWOWorld",
-              link: "/", // stays on Home
-            },
-            {
-              img: engineerImg,
-              title: "Engineering Your Ideas",
-              link: "/engineer",
-            },
-            {
-              img: solarImg,
-              title: "Powering You with Solar",
-              link: "/solar",
-            },
-            {
-              img: builderImg,
-              title: "Building with Heart",
-              link: "/builder",
-            },
-            {
-              img: poetImg,
-              title: "Writing from the Soul",
-              link: "/blog",
-            },
-          ].map((slide, idx) => (
-            <Carousel.Item
-              key={idx}
-              style={{
-                height: "75vh",
-                cursor: slide.link !== "/" ? "pointer" : "default",
-                backgroundImage: `linear-gradient(45deg, rgba(10,15,44,0.3), rgba(19,26,51,0.6)), url(${slide.img})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundAttachment: "fixed",
-                position: "relative",
-              }}
-              onClick={() => {
-                if (slide.link !== "/") {
-                  window.location.href = slide.link;
-                }
-              }}
-            >
-              <div className="d-flex flex-column align-items-center justify-content-center h-100 hero-overlay position-relative">
-                <div className="text-center animate-fade-up">
-                  <h1
-                    className="hero-title mb-4"
-                    style={{
-                      fontFamily: "Cormorant Garamond",
-                      fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-                      fontWeight: "400",
-                      textShadow: "3px 3px 6px rgba(0,0,0,0.7)",
-                      letterSpacing: "2px",
-                    }}
-                  >
-                    {slide.title}
-                  </h1>
-                  <div className="tagline-container mb-5">
-                    <p className="lead tagline" style={{ 
-                      fontSize: "clamp(1.1rem, 3vw, 1.8rem)",
-                      fontWeight: "300",
-                      letterSpacing: "1px",
-                      textShadow: "2px 2px 4px rgba(0,0,0,0.8)"
-                    }}>
-                      <span className="text-warning fw-bold">Build.</span>{" "}
-                      <span className="text-info fw-bold">Code.</span>{" "}
-                      <span className="text-success fw-bold">Write.</span>
-                    </p>
-                  </div>
+        <Carousel interval={5000} controls={true} indicators={true} className="hero-carousel" pause="hover" wrap={true}>
+          <Carousel.Item
+            style={{
+              height: "75vh",
+              cursor: "default",
+              backgroundImage: `linear-gradient(45deg, rgba(10,15,44,0.3), rgba(19,26,51,0.6)), url(${homeImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundAttachment: "fixed",
+              position: "relative",
+            }}
+          >
+            <div className="d-flex flex-column align-items-center justify-content-center h-100 hero-overlay position-relative">
+              <div className="text-center animate-fade-up">
+                <h1
+                  className="hero-title mb-4"
+                  style={{
+                    fontFamily: "Cormorant Garamond",
+                    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                    fontWeight: "400",
+                    textShadow: "3px 3px 6px rgba(0,0,0,0.7)",
+                    letterSpacing: "2px",
+                  }}
+                >
+                  Welcome to zeWOWorld
+                </h1>
+                <div className="tagline-container mb-5">
+                  <p className="lead tagline" style={{ 
+                    fontSize: "clamp(1.1rem, 3vw, 1.8rem)",
+                    fontWeight: "300",
+                    letterSpacing: "1px",
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.8)"
+                  }}>
+                    <span className="text-warning fw-bold">Build.</span>{" "}
+                    <span className="text-info fw-bold">Code.</span>{" "}
+                    <span className="text-success fw-bold">Write.</span>
+                  </p>
                 </div>
-                {slide.link !== "/" && (
-                  <div className="d-flex gap-3 justify-content-center animate-fade-up-delay">
-                    <Button
-                      variant="outline-warning"
-                      size="lg"
-                      className="hero-btn px-4 py-3"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.location.href = slide.link;
-                      }}
-                    >
-                      <i className="bi bi-arrow-right me-2"></i>
-                      Explore This Path
-                    </Button>
-                    <Button
-                      variant="outline-light"
-                      size="lg"
-                      className="hero-btn-secondary px-4 py-3"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.location.href = "/about";
-                      }}
-                    >
-                      Learn More
-                    </Button>
-                  </div>
-                )}
-                {slide.link === "/" && (
-                  <div className="hero-stats d-flex gap-4 mt-5">
-                    <div className="text-center">
-                      <div className="stat-number">4+</div>
-                      <div className="stat-label">Years Experience</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="stat-number">50+</div>
-                      <div className="stat-label">Projects Completed</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="stat-number">4</div>
-                      <div className="stat-label">Books Published</div>
-                    </div>
-                  </div>
-                )}
               </div>
-            </Carousel.Item>
-          ))}
+              <div className="hero-stats d-flex gap-4 mt-5">
+                <div className="text-center">
+                  <div className="stat-number">4+</div>
+                  <div className="stat-label">Years Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="stat-number">50+</div>
+                  <div className="stat-label">Projects Completed</div>
+                </div>
+                <div className="text-center">
+                  <div className="stat-number">4</div>
+                  <div className="stat-label">Books Published</div>
+                </div>
+              </div>
+            </div>
+          </Carousel.Item>
+          
+          <Carousel.Item
+            style={{
+              height: "75vh",
+              cursor: "pointer",
+              backgroundImage: `linear-gradient(45deg, rgba(10,15,44,0.3), rgba(19,26,51,0.6)), url(${engineerImg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundAttachment: "fixed",
+              position: "relative",
+            }}
+            onClick={() => window.location.href = "/engineer"}
+          >
+            <div className="d-flex flex-column align-items-center justify-content-center h-100 hero-overlay position-relative">
+              <div className="text-center animate-fade-up">
+                <h1
+                  className="hero-title mb-4"
+                  style={{
+                    fontFamily: "Cormorant Garamond",
+                    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                    fontWeight: "400",
+                    textShadow: "3px 3px 6px rgba(0,0,0,0.7)",
+                    letterSpacing: "2px",
+                  }}
+                >
+                  Engineering Your Ideas
+                </h1>
+                <div className="tagline-container mb-5">
+                  <p className="lead tagline" style={{ 
+                    fontSize: "clamp(1.1rem, 3vw, 1.8rem)",
+                    fontWeight: "300",
+                    letterSpacing: "1px",
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.8)"
+                  }}>
+                    <span className="text-warning fw-bold">Build.</span>{" "}
+                    <span className="text-info fw-bold">Code.</span>{" "}
+                    <span className="text-success fw-bold">Write.</span>
+                  </p>
+                </div>
+              </div>
+              <div className="d-flex gap-3 justify-content-center animate-fade-up-delay">
+                <Button
+                  variant="outline-warning"
+                  size="lg"
+                  className="hero-btn px-4 py-3"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = "/engineer";
+                  }}
+                >
+                  <i className="bi bi-arrow-right me-2"></i>
+                  Explore This Path
+                </Button>
+                <Button
+                  variant="outline-light"
+                  size="lg"
+                  className="hero-btn-secondary px-4 py-3"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = "/about";
+                  }}
+                >
+                  Learn More
+                </Button>
+              </div>
+            </div>
+          </Carousel.Item>
+
+          <Carousel.Item
+            style={{
+              height: "75vh",
+              cursor: "pointer",
+              backgroundImage: `linear-gradient(45deg, rgba(10,15,44,0.3), rgba(19,26,51,0.6)), url(${solarImg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundAttachment: "fixed",
+              position: "relative",
+            }}
+            onClick={() => window.location.href = "/solar"}
+          >
+            <div className="d-flex flex-column align-items-center justify-content-center h-100 hero-overlay position-relative">
+              <div className="text-center animate-fade-up">
+                <h1
+                  className="hero-title mb-4"
+                  style={{
+                    fontFamily: "Cormorant Garamond",
+                    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                    fontWeight: "400",
+                    textShadow: "3px 3px 6px rgba(0,0,0,0.7)",
+                    letterSpacing: "2px",
+                  }}
+                >
+                  Powering You with Solar
+                </h1>
+                <div className="tagline-container mb-5">
+                  <p className="lead tagline" style={{ 
+                    fontSize: "clamp(1.1rem, 3vw, 1.8rem)",
+                    fontWeight: "300",
+                    letterSpacing: "1px",
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.8)"
+                  }}>
+                    <span className="text-warning fw-bold">Build.</span>{" "}
+                    <span className="text-info fw-bold">Code.</span>{" "}
+                    <span className="text-success fw-bold">Write.</span>
+                  </p>
+                </div>
+              </div>
+              <div className="d-flex gap-3 justify-content-center animate-fade-up-delay">
+                <Button
+                  variant="outline-warning"
+                  size="lg"
+                  className="hero-btn px-4 py-3"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = "/solar";
+                  }}
+                >
+                  <i className="bi bi-arrow-right me-2"></i>
+                  Explore This Path
+                </Button>
+                <Button
+                  variant="outline-light"
+                  size="lg"
+                  className="hero-btn-secondary px-4 py-3"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = "/about";
+                  }}
+                >
+                  Learn More
+                </Button>
+              </div>
+            </div>
+          </Carousel.Item>
+
+          <Carousel.Item
+            style={{
+              height: "75vh",
+              cursor: "pointer",
+              backgroundImage: `linear-gradient(45deg, rgba(10,15,44,0.3), rgba(19,26,51,0.6)), url(${builderImg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundAttachment: "fixed",
+              position: "relative",
+            }}
+            onClick={() => window.location.href = "/builder"}
+          >
+            <div className="d-flex flex-column align-items-center justify-content-center h-100 hero-overlay position-relative">
+              <div className="text-center animate-fade-up">
+                <h1
+                  className="hero-title mb-4"
+                  style={{
+                    fontFamily: "Cormorant Garamond",
+                    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                    fontWeight: "400",
+                    textShadow: "3px 3px 6px rgba(0,0,0,0.7)",
+                    letterSpacing: "2px",
+                  }}
+                >
+                  Building with Heart
+                </h1>
+                <div className="tagline-container mb-5">
+                  <p className="lead tagline" style={{ 
+                    fontSize: "clamp(1.1rem, 3vw, 1.8rem)",
+                    fontWeight: "300",
+                    letterSpacing: "1px",
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.8)"
+                  }}>
+                    <span className="text-warning fw-bold">Build.</span>{" "}
+                    <span className="text-info fw-bold">Code.</span>{" "}
+                    <span className="text-success fw-bold">Write.</span>
+                  </p>
+                </div>
+              </div>
+              <div className="d-flex gap-3 justify-content-center animate-fade-up-delay">
+                <Button
+                  variant="outline-warning"
+                  size="lg"
+                  className="hero-btn px-4 py-3"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = "/builder";
+                  }}
+                >
+                  <i className="bi bi-arrow-right me-2"></i>
+                  Explore This Path
+                </Button>
+                <Button
+                  variant="outline-light"
+                  size="lg"
+                  className="hero-btn-secondary px-4 py-3"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = "/about";
+                  }}
+                >
+                  Learn More
+                </Button>
+              </div>
+            </div>
+          </Carousel.Item>
+
+          <Carousel.Item
+            style={{
+              height: "75vh",
+              cursor: "pointer",
+              backgroundImage: `linear-gradient(45deg, rgba(10,15,44,0.3), rgba(19,26,51,0.6)), url(${poetImg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundAttachment: "fixed",
+              position: "relative",
+            }}
+            onClick={() => window.location.href = "/blog"}
+          >
+            <div className="d-flex flex-column align-items-center justify-content-center h-100 hero-overlay position-relative">
+              <div className="text-center animate-fade-up">
+                <h1
+                  className="hero-title mb-4"
+                  style={{
+                    fontFamily: "Cormorant Garamond",
+                    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                    fontWeight: "400",
+                    textShadow: "3px 3px 6px rgba(0,0,0,0.7)",
+                    letterSpacing: "2px",
+                  }}
+                >
+                  Writing from the Soul
+                </h1>
+                <div className="tagline-container mb-5">
+                  <p className="lead tagline" style={{ 
+                    fontSize: "clamp(1.1rem, 3vw, 1.8rem)",
+                    fontWeight: "300",
+                    letterSpacing: "1px",
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.8)"
+                  }}>
+                    <span className="text-warning fw-bold">Build.</span>{" "}
+                    <span className="text-info fw-bold">Code.</span>{" "}
+                    <span className="text-success fw-bold">Write.</span>
+                  </p>
+                </div>
+              </div>
+              <div className="d-flex gap-3 justify-content-center animate-fade-up-delay">
+                <Button
+                  variant="outline-warning"
+                  size="lg"
+                  className="hero-btn px-4 py-3"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = "/blog";
+                  }}
+                >
+                  <i className="bi bi-arrow-right me-2"></i>
+                  Explore This Path
+                </Button>
+                <Button
+                  variant="outline-light"
+                  size="lg"
+                  className="hero-btn-secondary px-4 py-3"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = "/about";
+                  }}
+                >
+                  Learn More
+                </Button>
+              </div>
+            </div>
+          </Carousel.Item>
         </Carousel>
       </section>
 
@@ -290,7 +495,7 @@ const Home = () => {
               From the Blog
             </h2>
             <p className="lead text-muted mx-auto" style={{ maxWidth: "600px" }}>
-              Quick insights, deeper thoughts, and creative expressions on engineering, building, and life
+              Quick insights, deeper thoughts, creative expressions, and music discoveries from my journey through tech and life
             </p>
           </div>
           {/* Recent Blog Posts */}
@@ -484,6 +689,100 @@ const Home = () => {
               ))}
             </Row>
           </div>
+
+          {/* Music Discovery */}
+          <div className="mb-5">
+            <h3 className="text-center mb-4" style={{ 
+              color: "#1ed760", 
+              fontFamily: "Cormorant Garamond",
+              fontSize: "1.8rem"
+            }}>
+              Music Discovery
+            </h3>
+            <Row className="justify-content-center">
+              <Col md={8}>
+                <div
+                  onClick={() => (window.location.href = "/music")}
+                  className="word-card p-4 rounded h-100 position-relative overflow-hidden"
+                  data-aos="fade-up"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(30,215,96,0.1) 0%, rgba(22,163,74,0.1) 100%)",
+                    border: "1px solid rgba(30,215,96,0.2)",
+                    backdropFilter: "blur(10px)",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease"
+                  }}
+                >
+                  <div className="word-card-content">
+                    {/* Music header */}
+                    <div className="d-flex align-items-center mb-3">
+                      <div
+                        className="rounded-circle me-3 d-flex align-items-center justify-content-center"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          background: "linear-gradient(135deg, #1ed760, #16a34a)",
+                          fontSize: "1rem",
+                          color: "white",
+                          fontWeight: "bold"
+                        }}
+                      >
+                        <i className="bi bi-spotify"></i>
+                      </div>
+                      <div className="flex-grow-1">
+                        <div className="d-flex align-items-center">
+                          <span className="text-light fw-semibold me-2">Ralph Ulysse</span>
+                          <span className="text-muted small">@zewo · Spotify Playlists</span>
+                        </div>
+                        <Badge bg="success" className="category-badge small">
+                          <i className="bi bi-music-note-list me-1"></i>
+                          Music Discovery
+                        </Badge>
+                      </div>
+                    </div>
+
+                    <h5 className="fw-bold mb-2" style={{ 
+                      color: "#1ed760", 
+                      fontFamily: "Cormorant Garamond",
+                      fontSize: "1.3rem"
+                    }}>
+                      Soundtracks to My Journey
+                    </h5>
+                    <p className="mb-3" style={{ 
+                      fontSize: "1rem", 
+                      color: "#ccc", 
+                      lineHeight: "1.6"
+                    }}>
+                      From deep focus coding sessions to late-night contemplations, discover the curated playlists that 
+                      fuel my creativity and accompany my daily adventures in tech and life.
+                    </p>
+                    
+                    {/* Music actions */}
+                    <div className="d-flex align-items-center justify-content-between pt-2" style={{
+                      borderTop: "1px solid rgba(30,215,96,0.2)"
+                    }}>
+                      <div className="d-flex align-items-center gap-3">
+                        <span className="text-muted small d-flex align-items-center">
+                          <i className="bi bi-music-note-list me-1"></i>
+                          Personal playlists
+                        </span>
+                        <span className="text-muted small d-flex align-items-center">
+                          <i className="bi bi-headphones me-1"></i>
+                          All genres
+                        </span>
+                      </div>
+                      <div className="d-flex align-items-center text-warning small">
+                        <span>Explore music</span>
+                        <i className="bi bi-arrow-right ms-2"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="word-glow"></div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+
           <div className="text-center mt-4" data-aos="fade-up">
             <Button 
               variant="outline-primary" 
@@ -499,15 +798,26 @@ const Home = () => {
               variant="outline-success" 
               size="lg"
               href="/poems"
-              className="px-4 py-3"
+              className="px-4 py-3 me-3"
               style={{ borderRadius: "25px" }}
             >
               <i className="bi bi-journal-text me-2"></i>
               View All Poems
             </Button>
+            <Button 
+              variant="outline-info" 
+              size="lg"
+              href="/music"
+              className="px-4 py-3"
+              style={{ borderRadius: "25px" }}
+            >
+              <i className="bi bi-spotify me-2"></i>
+              Discover My Music
+            </Button>
           </div>
         </Container>
       </section>
+
 
       {/* Footer */}
       <footer

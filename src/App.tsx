@@ -12,6 +12,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Poet from "./pages/Poet";
 import Blog from "./pages/Blog";
 import Poems from "./pages/Poems";
+import Music from "./pages/Music";
 import NavigationBar from "./components/NavigationBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
@@ -43,6 +44,7 @@ function App() {
           <Route path="/poet" element={<Poet />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/poems" element={<Poems />} />
+          <Route path="/music" element={<Music />} />
           <Route path="/about" element={<About />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/solar" element={<Solar />} />

@@ -7,7 +7,7 @@ import "../styles/About.css";
 const Blog = () => {
   const userContext = useUser();
   const user = userContext?.user;
-  const { posts, addPost, editPost, deletePost } = useContent();
+  const { posts, loading, addPost, editPost, deletePost } = useContent();
   const isAdmin = user?.email === "admin@zewoworld.com"; // Adjust admin email as needed
   
   const [filteredPosts, setFilteredPosts] = useState(posts);
@@ -31,16 +31,21 @@ const Blog = () => {
     setFilteredPosts(filtered);
   }, [posts, searchTerm]);
 
-  const handleCreatePost = () => {
+  const handleCreatePost = async () => {
     if (newPost.title.trim() && newPost.content.trim()) {
-      addPost({
-        title: newPost.title.trim(),
-        content: newPost.content.trim()
-      });
-      
-      setNewPost({ title: "", content: "" });
-      setCharCount(0);
-      setShowCreateModal(false);
+      try {
+        await addPost({
+          title: newPost.title.trim(),
+          content: newPost.content.trim()
+        });
+        
+        setNewPost({ title: "", content: "" });
+        setCharCount(0);
+        setShowCreateModal(false);
+      } catch (error) {
+        console.error('Error creating post:', error);
+        alert('Failed to create post. Please try again.');
+      }
     }
   };
 
@@ -83,26 +88,36 @@ const Blog = () => {
     }
   };
 
-  const confirmEditPost = () => {
+  const confirmEditPost = async () => {
     if (postToEdit && editPost_local.title.trim() && editPost_local.content.trim()) {
-      editPost(postToEdit.id, {
-        title: editPost_local.title.trim(),
-        content: editPost_local.content.trim()
-      });
-      
-      setShowEditModal(false);
-      setPostToEdit(null);
-      setEditPost_local({ title: "", content: "" });
-      setEditCharCount(0);
+      try {
+        await editPost(postToEdit.id, {
+          title: editPost_local.title.trim(),
+          content: editPost_local.content.trim()
+        });
+        
+        setShowEditModal(false);
+        setPostToEdit(null);
+        setEditPost_local({ title: "", content: "" });
+        setEditCharCount(0);
+      } catch (error) {
+        console.error('Error editing post:', error);
+        alert('Failed to edit post. Please try again.');
+      }
     }
   };
 
-  const confirmDeletePost = () => {
+  const confirmDeletePost = async () => {
     if (postToDelete) {
-      deletePost(postToDelete);
+      try {
+        await deletePost(postToDelete);
+        setShowDeleteModal(false);
+        setPostToDelete(null);
+      } catch (error) {
+        console.error('Error deleting post:', error);
+        alert('Failed to delete post. Please try again.');
+      }
     }
-    setShowDeleteModal(false);
-    setPostToDelete(null);
   };
 
   const formatDate = (dateString: string) => {
@@ -176,6 +191,15 @@ const Blog = () => {
                 <i className="bi bi-journal-text me-2"></i>
                 View Poetry Collection
               </Button>
+              <Button
+                variant="outline-info"
+                href="/music"
+                className="px-5 py-3"
+                size="lg"
+              >
+                <i className="bi bi-music-note me-2"></i>
+                Listen to My Music
+              </Button>
             </div>
           </div>
         </Container>
@@ -213,7 +237,16 @@ const Blog = () => {
       <section className="py-5">
         <Container>
           <Row>
-            {filteredPosts.length === 0 ? (
+            {loading ? (
+              <Col xs={12}>
+                <div className="text-center py-5">
+                  <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                  <h3 className="mt-3 text-muted">Loading posts...</h3>
+                </div>
+              </Col>
+            ) : filteredPosts.length === 0 ? (
                 <Col xs={12}>
                   <div className="text-center py-5">
                     <i className="bi bi-journal-text" style={{ fontSize: "4rem", color: "#8b5cf6", opacity: 0.5 }}></i>
@@ -254,7 +287,7 @@ const Blog = () => {
                           </div>
                           <div>
                             <h6 className="mb-0 text-light">Ralph Ulysse</h6>
-                            <small className="text-muted">@zewo · {formatDate(post.createdAt)}</small>
+                            <small className="text-muted">@zewo · {formatDate(post.created_at)}</small>
                           </div>
                         </div>
                         {isAdmin && (

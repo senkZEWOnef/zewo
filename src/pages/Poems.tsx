@@ -7,7 +7,7 @@ import "../styles/About.css";
 const Poems = () => {
   const userContext = useUser();
   const user = userContext?.user;
-  const { poems, addPoem, editPoem, deletePoem } = useContent();
+  const { poems, loading, addPoem, editPoem, deletePoem } = useContent();
   const isAdmin = user?.email === "admin@zewoworld.com"; // Adjust admin email as needed
   
   const [filteredPoems, setFilteredPoems] = useState(poems);
@@ -28,15 +28,20 @@ const Poems = () => {
     setFilteredPoems(filtered);
   }, [poems, searchTerm]);
 
-  const handleCreatePoem = () => {
+  const handleCreatePoem = async () => {
     if (newPoem.title.trim() && newPoem.content.trim()) {
-      addPoem({
-        title: newPoem.title.trim(),
-        content: newPoem.content.trim()
-      });
-      
-      setNewPoem({ title: "", content: "" });
-      setShowCreateModal(false);
+      try {
+        await addPoem({
+          title: newPoem.title.trim(),
+          content: newPoem.content.trim()
+        });
+        
+        setNewPoem({ title: "", content: "" });
+        setShowCreateModal(false);
+      } catch (error) {
+        console.error('Error creating poem:', error);
+        alert('Failed to create poem. Please try again.');
+      }
     }
   };
 
@@ -69,25 +74,35 @@ ${poem.content}
     setShowEditModal(true);
   };
 
-  const confirmEditPoem = () => {
+  const confirmEditPoem = async () => {
     if (poemToEdit && editPoem_local.title.trim() && editPoem_local.content.trim()) {
-      editPoem(poemToEdit.id, {
-        title: editPoem_local.title.trim(),
-        content: editPoem_local.content.trim()
-      });
-      
-      setShowEditModal(false);
-      setPoemToEdit(null);
-      setEditPoem_local({ title: "", content: "" });
+      try {
+        await editPoem(poemToEdit.id, {
+          title: editPoem_local.title.trim(),
+          content: editPoem_local.content.trim()
+        });
+        
+        setShowEditModal(false);
+        setPoemToEdit(null);
+        setEditPoem_local({ title: "", content: "" });
+      } catch (error) {
+        console.error('Error editing poem:', error);
+        alert('Failed to edit poem. Please try again.');
+      }
     }
   };
 
-  const confirmDeletePoem = () => {
+  const confirmDeletePoem = async () => {
     if (poemToDelete) {
-      deletePoem(poemToDelete);
+      try {
+        await deletePoem(poemToDelete);
+        setShowDeleteModal(false);
+        setPoemToDelete(null);
+      } catch (error) {
+        console.error('Error deleting poem:', error);
+        alert('Failed to delete poem. Please try again.');
+      }
     }
-    setShowDeleteModal(false);
-    setPoemToDelete(null);
   };
 
   const formatDate = (dateString: string) => {
@@ -201,7 +216,16 @@ ${poem.content}
       <section className="py-5">
         <Container>
           <Row>
-            {filteredPoems.length === 0 ? (
+            {loading ? (
+              <Col xs={12}>
+                <div className="text-center py-5">
+                  <div className="spinner-border text-success" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                  <h3 className="mt-3 text-muted">Loading poems...</h3>
+                </div>
+              </Col>
+            ) : filteredPoems.length === 0 ? (
                 <Col xs={12}>
                   <div className="text-center py-5">
                     <i className="bi bi-journal-text" style={{ fontSize: "4rem", color: "#22c55e", opacity: 0.5 }}></i>
@@ -242,7 +266,7 @@ ${poem.content}
                           </div>
                           <div>
                             <h6 className="mb-0 text-light">Ralph Ulysse</h6>
-                            <small className="text-muted">@zewo · {formatDate(poem.createdAt)}</small>
+                            <small className="text-muted">@zewo · {formatDate(poem.created_at)}</small>
                           </div>
                         </div>
                         {isAdmin && (
