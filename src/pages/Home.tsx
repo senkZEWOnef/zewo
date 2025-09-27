@@ -526,19 +526,16 @@ const Home = () => {
                     <div className="word-card-content">
                       {/* Twitter-style header */}
                       <div className="d-flex align-items-center mb-3">
-                        <div
-                          className="rounded-circle me-3 d-flex align-items-center justify-content-center"
+                        <img
+                          src={engineerImg}
+                          alt="Ralph Ulysse"
+                          className="rounded-circle me-3"
                           style={{
                             width: "40px",
                             height: "40px",
-                            background: "linear-gradient(135deg, #8b5cf6, #6366f1)",
-                            fontSize: "1rem",
-                            color: "white",
-                            fontWeight: "bold"
+                            objectFit: "cover"
                           }}
-                        >
-                          R
-                        </div>
+                        />
                         <div className="flex-grow-1">
                           <div className="d-flex align-items-center">
                             <span className="text-light fw-semibold me-2">Ralph Ulysse</span>
@@ -621,19 +618,16 @@ const Home = () => {
                     <div className="word-card-content">
                       {/* Twitter-style header */}
                       <div className="d-flex align-items-center mb-3">
-                        <div
-                          className="rounded-circle me-3 d-flex align-items-center justify-content-center"
+                        <img
+                          src={engineerImg}
+                          alt="Ralph Ulysse"
+                          className="rounded-circle me-3"
                           style={{
                             width: "40px",
                             height: "40px",
-                            background: "linear-gradient(135deg, #22c55e, #16a34a)",
-                            fontSize: "1rem",
-                            color: "white",
-                            fontWeight: "bold"
+                            objectFit: "cover"
                           }}
-                        >
-                          R
-                        </div>
+                        />
                         <div className="flex-grow-1">
                           <div className="d-flex align-items-center">
                             <span className="text-light fw-semibold me-2">Ralph Ulysse</span>

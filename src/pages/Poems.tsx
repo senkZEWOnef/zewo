@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Card, Form, Modal, Badge } from "react-bootstrap";
 import { useUser } from "../context/UserContext";
 import { useContent } from "../context/ContentContext";
+import engineerImg from "../assets/engineer.jpeg";
 import "../styles/About.css";
 
 const Poems = () => {
@@ -253,17 +254,16 @@ ${poem.content}
                       {/* Poem Header */}
                       <div className="d-flex align-items-start justify-content-between mb-4">
                         <div className="d-flex align-items-center">
-                          <div
-                            className="rounded-circle me-3 d-flex align-items-center justify-content-center"
+                          <img
+                            src={engineerImg}
+                            alt="Ralph Ulysse"
+                            className="rounded-circle me-3"
                             style={{
                               width: "50px",
                               height: "50px",
-                              background: "linear-gradient(135deg, #22c55e, #16a34a)",
-                              fontSize: "1.2rem"
+                              objectFit: "cover"
                             }}
-                          >
-                            R
-                          </div>
+                          />
                           <div>
                             <h6 className="mb-0 text-light">Ralph Ulysse</h6>
                             <small className="text-muted">@zewo · {formatDate(poem.created_at)}</small>
