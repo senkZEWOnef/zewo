@@ -1,4 +1,5 @@
 import { Container, Row, Col, Button, Carousel, Badge } from "react-bootstrap";
+import { useContent } from "../context/ContentContext";
 import "../styles/Home.css";
 
 // Real images
@@ -9,6 +10,19 @@ import poetImg from "../assets/poet.jpeg";
 import solarImg from "../assets/solar.jpg";
 
 const Home = () => {
+  const { posts, poems } = useContent();
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60));
+    
+    if (diffInHours < 1) return "Just now";
+    if (diffInHours < 24) return `${diffInHours}h ago`;
+    if (diffInHours < 48) return "1 day ago";
+    return date.toLocaleDateString();
+  };
+
   return (
     <div style={{ backgroundColor: "#0a0f2c", color: "white" }}>
       {/* Hero Slideshow */}
@@ -289,24 +303,7 @@ const Home = () => {
               Latest Blog Posts
             </h3>
             <Row>
-              {[
-                {
-                  title: "Building the Future",
-                  preview: "Just finished working on a new React project with some amazing features. The intersection of engineering and creativity never ceases to amaze me. 🚀",
-                  category: "Engineering",
-                  date: "2h ago",
-                  type: "blog",
-                  avatar: "R"
-                },
-                {
-                  title: "Puerto Rico Tech Scene",
-                  preview: "The tech ecosystem in Puerto Rico is growing rapidly. Seeing more developers and entrepreneurs building innovative solutions for local and global markets. Exciting times ahead! 🌴💻",
-                  category: "Tech Thoughts",
-                  date: "1 day ago",
-                  type: "blog",
-                  avatar: "R"
-                },
-              ].map((item, idx) => (
+              {posts.slice(0, 2).map((post, idx) => (
                 <Col md={6} className="mb-4" key={idx}>
                   <div
                     onClick={() => (window.location.href = "/blog")}
@@ -335,16 +332,16 @@ const Home = () => {
                             fontWeight: "bold"
                           }}
                         >
-                          {item.avatar}
+                          R
                         </div>
                         <div className="flex-grow-1">
                           <div className="d-flex align-items-center">
                             <span className="text-light fw-semibold me-2">Ralph Ulysse</span>
-                            <span className="text-muted small">@zewo · {item.date}</span>
+                            <span className="text-muted small">@zewo · {formatDate(post.createdAt)}</span>
                           </div>
                           <Badge bg="primary" className="category-badge small">
                             <i className="bi bi-lightbulb me-1"></i>
-                            {item.category}
+                            Blog Post
                           </Badge>
                         </div>
                       </div>
@@ -354,14 +351,14 @@ const Home = () => {
                         fontFamily: "Cormorant Garamond",
                         fontSize: "1.3rem"
                       }}>
-                        {item.title}
+                        {post.title}
                       </h5>
                       <p className="mb-3" style={{ 
                         fontSize: "1rem", 
                         color: "#ccc", 
                         lineHeight: "1.6"
                       }}>
-                        {item.preview}
+                        {post.content}
                       </p>
                       
                       {/* Twitter-style actions */}
@@ -371,11 +368,11 @@ const Home = () => {
                         <div className="d-flex align-items-center gap-3">
                           <span className="text-muted small d-flex align-items-center">
                             <i className="bi bi-heart me-1"></i>
-                            {Math.floor(Math.random() * 20) + 5}
+                            {post.likes}
                           </span>
                           <span className="text-muted small d-flex align-items-center">
                             <i className="bi bi-share me-1"></i>
-                            {Math.floor(Math.random() * 10) + 1}
+                            {post.shares}
                           </span>
                         </div>
                         <div className="d-flex align-items-center text-warning small">
@@ -401,24 +398,7 @@ const Home = () => {
               Latest Poems
             </h3>
             <Row>
-              {[
-                {
-                  title: "Morning Coffee",
-                  preview: "Steam rises like prayers / from the cup between my palms— / morning's first communion...",
-                  category: "Poetry",
-                  date: "3 days ago",
-                  type: "poems",
-                  avatar: "R"
-                },
-                {
-                  title: "Heritage",
-                  preview: "I carry my grandmother's hands, / my father's stubborn hope, / my mother's quiet strength...",
-                  category: "Poetry",
-                  date: "1 week ago",
-                  type: "poems",
-                  avatar: "R"
-                },
-              ].map((item, idx) => (
+              {poems.slice(0, 2).map((poem, idx) => (
                 <Col md={6} className="mb-4" key={idx}>
                   <div
                     onClick={() => (window.location.href = "/poems")}
@@ -447,16 +427,16 @@ const Home = () => {
                             fontWeight: "bold"
                           }}
                         >
-                          {item.avatar}
+                          R
                         </div>
                         <div className="flex-grow-1">
                           <div className="d-flex align-items-center">
                             <span className="text-light fw-semibold me-2">Ralph Ulysse</span>
-                            <span className="text-muted small">@zewo · {item.date}</span>
+                            <span className="text-muted small">@zewo · {formatDate(poem.createdAt)}</span>
                           </div>
                           <Badge bg="success" className="category-badge small">
                             <i className="bi bi-journal-text me-1"></i>
-                            {item.category}
+                            Poetry
                           </Badge>
                         </div>
                       </div>
@@ -466,7 +446,7 @@ const Home = () => {
                         fontFamily: "Cormorant Garamond",
                         fontSize: "1.3rem"
                       }}>
-                        "{item.title}"
+                        "{poem.title}"
                       </h5>
                       <p className="mb-3" style={{ 
                         fontSize: "1rem", 
@@ -475,7 +455,7 @@ const Home = () => {
                         fontFamily: "Cormorant Garamond",
                         fontStyle: "italic"
                       }}>
-                        {item.preview}
+                        {poem.content.split('\n').slice(0, 3).join(' / ')}...
                       </p>
                       
                       {/* Twitter-style actions */}
@@ -485,11 +465,11 @@ const Home = () => {
                         <div className="d-flex align-items-center gap-3">
                           <span className="text-muted small d-flex align-items-center">
                             <i className="bi bi-heart me-1"></i>
-                            {Math.floor(Math.random() * 30) + 15}
+                            {poem.likes}
                           </span>
                           <span className="text-muted small d-flex align-items-center">
                             <i className="bi bi-share me-1"></i>
-                            {Math.floor(Math.random() * 15) + 5}
+                            {poem.shares}
                           </span>
                         </div>
                         <div className="d-flex align-items-center text-warning small">

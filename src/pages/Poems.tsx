@@ -1,96 +1,24 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Card, Form, Modal, Badge } from "react-bootstrap";
 import { useUser } from "../context/UserContext";
+import { useContent } from "../context/ContentContext";
 import "../styles/About.css";
-
-interface Poem {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: string;
-  likes: number;
-  shares: number;
-}
 
 const Poems = () => {
   const userContext = useUser();
   const user = userContext?.user;
+  const { poems, addPoem, editPoem, deletePoem } = useContent();
   const isAdmin = user?.email === "admin@zewoworld.com"; // Adjust admin email as needed
   
-  const [poems, setPoems] = useState<Poem[]>([]);
-  const [filteredPoems, setFilteredPoems] = useState<Poem[]>([]);
+  const [filteredPoems, setFilteredPoems] = useState(poems);
   const [searchTerm, setSearchTerm] = useState("");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newPoem, setNewPoem] = useState({ title: "", content: "" });
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [poemToDelete, setPoemToDelete] = useState<string | null>(null);
-
-  // Mock initial poems (replace with actual data fetching)
-  useEffect(() => {
-    const mockPoems: Poem[] = [
-      {
-        id: "1",
-        title: "Morning Coffee",
-        content: `Steam rises like prayers
-from the cup between my palms—
-morning's first communion.
-
-The world awakens slow,
-but here in this quiet moment,
-I am already whole.`,
-        createdAt: new Date().toISOString(),
-        likes: 24,
-        shares: 8
-      },
-      {
-        id: "2", 
-        title: "City Rain",
-        content: `The city wears rain
-like a well-loved coat—
-familiar, comfortable,
-transforming.
-
-Each drop a story,
-each puddle a mirror
-reflecting what we
-choose to see.`,
-        createdAt: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
-        likes: 31,
-        shares: 12
-      },
-      {
-        id: "3",
-        title: "Heritage",
-        content: `I carry my grandmother's hands,
-my father's stubborn hope,
-my mother's quiet strength.
-
-In this new country,
-I am both the seed
-and the harvest.`,
-        createdAt: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
-        likes: 45,
-        shares: 18
-      },
-      {
-        id: "4",
-        title: "Builder's Prayer",
-        content: `Let my hands know wood
-like old friends know silence—
-intimate, reverent.
-
-Let each cut be clean,
-each joint true,
-each piece a small act
-of faith.`,
-        createdAt: new Date(Date.now() - 259200000).toISOString(), // 3 days ago
-        likes: 19,
-        shares: 7
-      }
-    ];
-    setPoems(mockPoems);
-    setFilteredPoems(mockPoems);
-  }, []);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [poemToEdit, setPoemToEdit] = useState<any>(null);
+  const [editPoem_local, setEditPoem_local] = useState({ title: "", content: "" });
 
   // Filter poems based on search term
   useEffect(() => {
@@ -102,22 +30,17 @@ of faith.`,
 
   const handleCreatePoem = () => {
     if (newPoem.title.trim() && newPoem.content.trim()) {
-      const poem: Poem = {
-        id: Date.now().toString(),
+      addPoem({
         title: newPoem.title.trim(),
-        content: newPoem.content.trim(),
-        createdAt: new Date().toISOString(),
-        likes: 0,
-        shares: 0
-      };
+        content: newPoem.content.trim()
+      });
       
-      setPoems([poem, ...poems]);
       setNewPoem({ title: "", content: "" });
       setShowCreateModal(false);
     }
   };
 
-  const shareToInstagram = (poem: Poem) => {
+  const shareToInstagram = (poem: any) => {
     // Generate Instagram story format for poems
     const storyText = `"${poem.title}"
 
@@ -140,13 +63,28 @@ ${poem.content}
     setShowDeleteModal(true);
   };
 
+  const handleEditPoem = (poem: any) => {
+    setPoemToEdit(poem);
+    setEditPoem_local({ title: poem.title, content: poem.content });
+    setShowEditModal(true);
+  };
+
+  const confirmEditPoem = () => {
+    if (poemToEdit && editPoem_local.title.trim() && editPoem_local.content.trim()) {
+      editPoem(poemToEdit.id, {
+        title: editPoem_local.title.trim(),
+        content: editPoem_local.content.trim()
+      });
+      
+      setShowEditModal(false);
+      setPoemToEdit(null);
+      setEditPoem_local({ title: "", content: "" });
+    }
+  };
+
   const confirmDeletePoem = () => {
     if (poemToDelete) {
-      const updatedPoems = poems.filter(poem => poem.id !== poemToDelete);
-      setPoems(updatedPoems);
-      setFilteredPoems(updatedPoems.filter(poem =>
-        poem.title.toLowerCase().includes(searchTerm.toLowerCase())
-      ));
+      deletePoem(poemToDelete);
     }
     setShowDeleteModal(false);
     setPoemToDelete(null);
@@ -319,6 +257,14 @@ ${poem.content}
                               Share
                             </Button>
                             <Button
+                              variant="outline-warning"
+                              size="sm"
+                              onClick={() => handleEditPoem(poem)}
+                              className="d-flex align-items-center"
+                            >
+                              <i className="bi bi-pencil"></i>
+                            </Button>
+                            <Button
                               variant="outline-danger"
                               size="sm"
                               onClick={() => handleDeletePoem(poem.id)}
@@ -331,7 +277,7 @@ ${poem.content}
                       </div>
 
                       {/* Poem Content */}
-                      <div className="text-center mb-4">
+                      <div className="mb-4">
                         <h2 className="mb-4" style={{ 
                           color: "#22c55e", 
                           fontFamily: "Cormorant Garamond",
@@ -341,14 +287,13 @@ ${poem.content}
                           "{poem.title}"
                         </h2>
                         <div 
-                          className="poem-content mx-auto"
+                          className="poem-content"
                           style={{ 
                             fontSize: "1.2rem", 
                             lineHeight: "2",
                             fontFamily: "Cormorant Garamond",
                             fontStyle: "italic",
                             color: "#e5e5e5",
-                            maxWidth: "500px",
                             whiteSpace: "pre-line"
                           }}
                         >
@@ -514,6 +459,84 @@ ${poem.content}
           >
             <i className="bi bi-trash me-2"></i>
             Delete Poem
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Edit Poem Modal */}
+      <Modal 
+        show={showEditModal} 
+        onHide={() => setShowEditModal(false)}
+        size="lg"
+        centered
+      >
+        <Modal.Header 
+          closeButton 
+          style={{ 
+            backgroundColor: "#131a33", 
+            borderBottom: "1px solid rgba(34,197,94,0.2)",
+            color: "white"
+          }}
+        >
+          <Modal.Title>
+            <i className="bi bi-journal-text me-2"></i>
+            Edit Poem
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: "#1a1f3a", color: "white" }}>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Give your poem a title..."
+                value={editPoem_local.title}
+                onChange={(e) => setEditPoem_local({ ...editPoem_local, title: e.target.value })}
+                style={{
+                  backgroundColor: "rgba(34,197,94,0.1)",
+                  border: "1px solid rgba(34,197,94,0.3)",
+                  color: "white"
+                }}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Content</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={8}
+                placeholder="Let your verses flow..."
+                value={editPoem_local.content}
+                onChange={(e) => setEditPoem_local({ ...editPoem_local, content: e.target.value })}
+                style={{
+                  backgroundColor: "rgba(34,197,94,0.1)",
+                  border: "1px solid rgba(34,197,94,0.3)",
+                  color: "white",
+                  resize: "vertical",
+                  fontFamily: "Cormorant Garamond",
+                  fontStyle: "italic",
+                  fontSize: "1.1rem"
+                }}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer style={{ 
+          backgroundColor: "#131a33", 
+          borderTop: "1px solid rgba(34,197,94,0.2)" 
+        }}>
+          <Button 
+            variant="outline-secondary" 
+            onClick={() => setShowEditModal(false)}
+          >
+            Cancel
+          </Button>
+          <Button 
+            variant="success" 
+            onClick={confirmEditPoem}
+            disabled={!editPoem_local.title.trim() || !editPoem_local.content.trim()}
+          >
+            <i className="bi bi-check2 me-2"></i>
+            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

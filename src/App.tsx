@@ -15,6 +15,7 @@ import Poems from "./pages/Poems";
 import NavigationBar from "./components/NavigationBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
+import { ContentProvider } from "./context/ContentContext";
 import ProductAdmin from "./pages/ProductAdmin";
 import AdminMessages from "./pages/AdminMessages";
 import Solar from "./pages/solar";
@@ -32,7 +33,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <ContentProvider>
       <NavigationBar />
       <div className="container mt-4">
         <Routes>
@@ -78,7 +79,7 @@ function App() {
           />
         </Routes>
       </div>
-    </>
+    </ContentProvider>
   );
 }
 

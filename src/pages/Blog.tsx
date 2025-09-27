@@ -1,55 +1,27 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Card, Form, Modal, Badge } from "react-bootstrap";
 import { useUser } from "../context/UserContext";
+import { useContent } from "../context/ContentContext";
 import "../styles/About.css";
-
-interface BlogPost {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: string;
-  likes: number;
-  shares: number;
-}
 
 const Blog = () => {
   const userContext = useUser();
   const user = userContext?.user;
+  const { posts, addPost, editPost, deletePost } = useContent();
   const isAdmin = user?.email === "admin@zewoworld.com"; // Adjust admin email as needed
   
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState(posts);
   const [searchTerm, setSearchTerm] = useState("");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newPost, setNewPost] = useState({ title: "", content: "" });
   const [charCount, setCharCount] = useState(0);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [postToDelete, setPostToDelete] = useState<string | null>(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [postToEdit, setPostToEdit] = useState<any>(null);
+  const [editPost_local, setEditPost_local] = useState({ title: "", content: "" });
+  const [editCharCount, setEditCharCount] = useState(0);
   const maxChars = 280; // Twitter-like character limit
-
-  // Mock initial posts (replace with actual data fetching)
-  useEffect(() => {
-    const mockPosts: BlogPost[] = [
-      {
-        id: "1",
-        title: "Building the Future",
-        content: "Just finished working on a new React project with some amazing features. The intersection of engineering and creativity never ceases to amaze me. 🚀",
-        createdAt: new Date().toISOString(),
-        likes: 12,
-        shares: 3
-      },
-      {
-        id: "2", 
-        title: "Puerto Rico Tech Scene",
-        content: "The tech ecosystem in Puerto Rico is growing rapidly. Seeing more developers and entrepreneurs building innovative solutions for local and global markets. Exciting times ahead! 🌴💻",
-        createdAt: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
-        likes: 8,
-        shares: 5
-      }
-    ];
-    setPosts(mockPosts);
-    setFilteredPosts(mockPosts);
-  }, []);
 
   // Filter posts based on search term
   useEffect(() => {
@@ -61,16 +33,11 @@ const Blog = () => {
 
   const handleCreatePost = () => {
     if (newPost.title.trim() && newPost.content.trim()) {
-      const post: BlogPost = {
-        id: Date.now().toString(),
+      addPost({
         title: newPost.title.trim(),
-        content: newPost.content.trim(),
-        createdAt: new Date().toISOString(),
-        likes: 0,
-        shares: 0
-      };
+        content: newPost.content.trim()
+      });
       
-      setPosts([post, ...posts]);
       setNewPost({ title: "", content: "" });
       setCharCount(0);
       setShowCreateModal(false);
@@ -84,7 +51,7 @@ const Blog = () => {
     }
   };
 
-  const shareToInstagram = (post: BlogPost) => {
+  const shareToInstagram = (post: any) => {
     // Generate Instagram story format
     const storyText = `${post.title}\n\n${post.content}\n\n🌐 Read more at zewoworld.com`;
     
@@ -102,13 +69,37 @@ const Blog = () => {
     setShowDeleteModal(true);
   };
 
+  const handleEditPost = (post: any) => {
+    setPostToEdit(post);
+    setEditPost_local({ title: post.title, content: post.content });
+    setEditCharCount(post.content.length);
+    setShowEditModal(true);
+  };
+
+  const handleEditContentChange = (content: string) => {
+    if (content.length <= maxChars) {
+      setEditPost_local({ ...editPost_local, content });
+      setEditCharCount(content.length);
+    }
+  };
+
+  const confirmEditPost = () => {
+    if (postToEdit && editPost_local.title.trim() && editPost_local.content.trim()) {
+      editPost(postToEdit.id, {
+        title: editPost_local.title.trim(),
+        content: editPost_local.content.trim()
+      });
+      
+      setShowEditModal(false);
+      setPostToEdit(null);
+      setEditPost_local({ title: "", content: "" });
+      setEditCharCount(0);
+    }
+  };
+
   const confirmDeletePost = () => {
     if (postToDelete) {
-      const updatedPosts = posts.filter(post => post.id !== postToDelete);
-      setPosts(updatedPosts);
-      setFilteredPosts(updatedPosts.filter(post =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
-      ));
+      deletePost(postToDelete);
     }
     setShowDeleteModal(false);
     setPostToDelete(null);
@@ -276,6 +267,14 @@ const Blog = () => {
                             >
                               <i className="bi bi-instagram me-2"></i>
                               Share
+                            </Button>
+                            <Button
+                              variant="outline-warning"
+                              size="sm"
+                              onClick={() => handleEditPost(post)}
+                              className="d-flex align-items-center"
+                            >
+                              <i className="bi bi-pencil"></i>
                             </Button>
                             <Button
                               variant="outline-danger"
@@ -460,6 +459,86 @@ const Blog = () => {
           >
             <i className="bi bi-trash me-2"></i>
             Delete Post
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Edit Post Modal */}
+      <Modal 
+        show={showEditModal} 
+        onHide={() => setShowEditModal(false)}
+        size="lg"
+        centered
+      >
+        <Modal.Header 
+          closeButton 
+          style={{ 
+            backgroundColor: "#131a33", 
+            borderBottom: "1px solid rgba(139,92,246,0.2)",
+            color: "white"
+          }}
+        >
+          <Modal.Title>
+            <i className="bi bi-pencil-square me-2"></i>
+            Edit Post
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: "#1a1f3a", color: "white" }}>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Give your post a catchy title..."
+                value={editPost_local.title}
+                onChange={(e) => setEditPost_local({ ...editPost_local, title: e.target.value })}
+                style={{
+                  backgroundColor: "rgba(139,92,246,0.1)",
+                  border: "1px solid rgba(139,92,246,0.3)",
+                  color: "white"
+                }}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <div className="d-flex justify-content-between align-items-center mb-2">
+                <Form.Label>Content</Form.Label>
+                <small className={`${editCharCount > maxChars * 0.9 ? 'text-warning' : 'text-muted'}`}>
+                  {editCharCount}/{maxChars}
+                </small>
+              </div>
+              <Form.Control
+                as="textarea"
+                rows={4}
+                placeholder="What's on your mind? Share your thoughts..."
+                value={editPost_local.content}
+                onChange={(e) => handleEditContentChange(e.target.value)}
+                style={{
+                  backgroundColor: "rgba(139,92,246,0.1)",
+                  border: "1px solid rgba(139,92,246,0.3)",
+                  color: "white",
+                  resize: "none"
+                }}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer style={{ 
+          backgroundColor: "#131a33", 
+          borderTop: "1px solid rgba(139,92,246,0.2)" 
+        }}>
+          <Button 
+            variant="outline-secondary" 
+            onClick={() => setShowEditModal(false)}
+          >
+            Cancel
+          </Button>
+          <Button 
+            variant="primary" 
+            onClick={confirmEditPost}
+            disabled={!editPost_local.title.trim() || !editPost_local.content.trim()}
+          >
+            <i className="bi bi-check2 me-2"></i>
+            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
