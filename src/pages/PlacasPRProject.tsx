@@ -27,24 +27,6 @@ const PlacasPRProject = () => {
     { category: "Deployment", items: ["Optimized for Vercel deployment"], color: "#000" }
   ];
 
-  const projectStructure = [
-    {
-      folder: "app/",
-      description: "Main application structure",
-      subfolders: [
-        "layout.tsx - Root layout with analytics",
-        "page.tsx - Homepage with hero and lead capture",
-        "consultation/ - Lead capture form",
-        "articles/ - Article listing and content pages",
-        "api/ - Backend endpoints for leads and tracking"
-      ]
-    },
-    {
-      folder: "components/",
-      description: "Reusable components",
-      subfolders: ["AffiliateLink.tsx - Affiliate link component with tracking"]
-    }
-  ];
 
   const monetizationStrategy = [
     {

@@ -48,30 +48,6 @@ const IRepairProject = () => {
     { category: "Lenguaje", items: ["TypeScript completo"], color: "#3178c6" }
   ];
 
-  const projectStructure = [
-    {
-      folder: "app/",
-      description: "Estructura principal de la aplicación",
-      subfolders: [
-        "api/ - Endpoints de la API",
-        "auth/ - Páginas de autenticación", 
-        "booking/ - Sistema de citas",
-        "services/ - Información de servicios",
-        "shop/ - Tienda e-commerce"
-      ]
-    },
-    {
-      folder: "lib/",
-      description: "Configuraciones y utilidades",
-      subfolders: ["stripe.ts - Configuración de Stripe"]
-    },
-    {
-      folder: "prisma/",
-      description: "Esquema de base de datos",
-      subfolders: ["schema.prisma - Definición de modelos"]
-    }
-  ];
-
   const databaseSchema = [
     "Users: Cuentas de clientes y administradores",
     "Services: Servicios de reparación disponibles", 
