@@ -42,7 +42,7 @@ const About = () => {
       title: "zeWOWorld Platform",
       description: "This comprehensive platform showcasing engineering, solar, building, and poetry services with modern React architecture and premium UX design.",
       tech: ["React", "TypeScript", "Bootstrap", "Supabase", "Vite"],
-      liveUrl: "https://zewoworld.com",
+      liveUrl: "https://byzewo.com",
       githubUrl: "https://github.com/senkZEWOnef/zewo",
       icon: "🌟"
     },
@@ -169,7 +169,7 @@ const About = () => {
                     LinkedIn
                   </a>
                   <a 
-                    href="mailto:hello@zewoworld.com"
+                    href="mailto:hello@byzewo.com"
                     className="social-btn"
                   >
                     <i className="bi bi-envelope"></i>

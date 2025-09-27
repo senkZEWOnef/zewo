@@ -42,7 +42,7 @@ const Login = () => {
         // Create a mock user object for admin
         const adminUser = {
           id: "admin-user-id",
-          email: "admin@zewoworld.com",
+          email: "admin@byzewo.com",
           aud: "authenticated",
           role: "authenticated",
           email_confirmed_at: new Date().toISOString(),

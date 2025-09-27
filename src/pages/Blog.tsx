@@ -9,7 +9,7 @@ const Blog = () => {
   const userContext = useUser();
   const user = userContext?.user;
   const { posts, loading, addPost, editPost, deletePost } = useContent();
-  const isAdmin = user?.email === "admin@zewoworld.com"; // Adjust admin email as needed
+  const isAdmin = user?.email === "admin@byzewo.com"; // Adjust admin email as needed
   
   const [filteredPosts, setFilteredPosts] = useState(posts);
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,7 +59,7 @@ const Blog = () => {
 
   const shareToInstagram = (post: any) => {
     // Generate Instagram story format
-    const storyText = `${post.title}\n\n${post.content}\n\n🌐 Read more at zewoworld.com`;
+    const storyText = `${post.title}\n\n${post.content}\n\n🌐 Read more at byzewo.com`;
     
     // Copy to clipboard for manual sharing
     navigator.clipboard.writeText(storyText).then(() => {

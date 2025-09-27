@@ -9,7 +9,7 @@ const Poems = () => {
   const userContext = useUser();
   const user = userContext?.user;
   const { poems, loading, addPoem, editPoem, deletePoem } = useContent();
-  const isAdmin = user?.email === "admin@zewoworld.com"; // Adjust admin email as needed
+  const isAdmin = user?.email === "admin@byzewo.com"; // Adjust admin email as needed
   
   const [filteredPoems, setFilteredPoems] = useState(poems);
   const [searchTerm, setSearchTerm] = useState("");
@@ -54,7 +54,7 @@ ${poem.content}
 
 — Ralph Ulysse
 
-🌐 Read more poetry at zewoworld.com/poems`;
+🌐 Read more poetry at byzewo.com/poems`;
     
     // Copy to clipboard for manual sharing
     navigator.clipboard.writeText(storyText).then(() => {

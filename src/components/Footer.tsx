@@ -64,7 +64,7 @@ const Footer = () => {
             <h5>Contact</h5>
             <p>
               <i className="bi bi-envelope me-2"></i>
-              Email: hello@zewoworld.com
+              Email: hello@byzewo.com
             </p>
             <p>
               <i className="bi bi-telephone me-2"></i>
