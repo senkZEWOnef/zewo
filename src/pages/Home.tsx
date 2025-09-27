@@ -542,7 +542,7 @@ const Home = () => {
                         <div className="flex-grow-1">
                           <div className="d-flex align-items-center">
                             <span className="text-light fw-semibold me-2">Ralph Ulysse</span>
-                            <span className="text-muted small">@zewo · {formatDate(post.createdAt)}</span>
+                            <span className="text-muted small">@zewo · {formatDate(post.created_at)}</span>
                           </div>
                           <Badge bg="primary" className="category-badge small">
                             <i className="bi bi-lightbulb me-1"></i>
@@ -637,7 +637,7 @@ const Home = () => {
                         <div className="flex-grow-1">
                           <div className="d-flex align-items-center">
                             <span className="text-light fw-semibold me-2">Ralph Ulysse</span>
-                            <span className="text-muted small">@zewo · {formatDate(poem.createdAt)}</span>
+                            <span className="text-muted small">@zewo · {formatDate(poem.created_at)}</span>
                           </div>
                           <Badge bg="success" className="category-badge small">
                             <i className="bi bi-journal-text me-1"></i>
