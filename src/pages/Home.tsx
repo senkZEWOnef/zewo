@@ -68,7 +68,7 @@ const Home = () => {
               </div>
               <div className="hero-stats d-flex flex-column flex-sm-row gap-4 mt-5">
                 <div className="text-center">
-                  <div className="stat-number">4+</div>
+                  <div className="stat-number">10+</div>
                   <div className="stat-label">Years Coding</div>
                 </div>
                 <div className="text-center">
