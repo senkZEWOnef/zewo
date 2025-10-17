@@ -416,7 +416,7 @@ const Home = () => {
                 background: "linear-gradient(135deg, #8b5cf6, #fff)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                textAlign: "center !important",
+                textAlign: "center",
                 display: "block",
                 width: "100%",
               }}

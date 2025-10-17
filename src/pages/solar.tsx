@@ -43,26 +43,6 @@ const Solar = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "María González",
-      location: "San Juan",
-      quote: "Haven't paid an electric bill in 8 months! Best investment we ever made.",
-      savings: "$180/month"
-    },
-    {
-      name: "Carlos Vega",
-      location: "Bayamón",
-      quote: "No more blackouts disrupting our business. Solar gave us reliability.",
-      savings: "$350/month"
-    },
-    {
-      name: "Ana Rodriguez",
-      location: "Mayagüez",
-      quote: "The installation was seamless and savings started immediately.",
-      savings: "$220/month"
-    }
-  ];
 
   return (
     <div className="solar-page">
@@ -200,7 +180,7 @@ const Solar = () => {
               <i className="bi bi-star-fill me-2"></i>
               WHY CHOOSE SOLAR?
             </Badge>
-            <h2 className="section-title mb-4" style={{ textAlign: "center !important", display: "block", width: "100%" }}>
+            <h2 className="section-title mb-4" style={{ textAlign: "center", display: "block", width: "100%" }}>
               Transform Your Energy Future
             </h2>
             <p className="section-subtitle">
@@ -318,7 +298,7 @@ const Solar = () => {
               <i className="bi bi-form-check me-2"></i>
               GET STARTED TODAY
             </Badge>
-            <h2 className="section-title mb-4" style={{ textAlign: "center !important", display: "block", width: "100%" }}>
+            <h2 className="section-title mb-4" style={{ textAlign: "center", display: "block", width: "100%" }}>
               Your Solar Journey Starts Here
             </h2>
             <p className="section-subtitle">
