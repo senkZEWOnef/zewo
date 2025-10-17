@@ -200,7 +200,7 @@ const Solar = () => {
               <i className="bi bi-star-fill me-2"></i>
               WHY CHOOSE SOLAR?
             </Badge>
-            <h2 className="section-title mb-4">
+            <h2 className="section-title mb-4" style={{ textAlign: "center !important", display: "block", width: "100%" }}>
               Transform Your Energy Future
             </h2>
             <p className="section-subtitle">
@@ -243,68 +243,6 @@ const Solar = () => {
         </Container>
       </section>
 
-      {/* Social Proof Section */}
-      <section className="testimonials-section">
-        <Container>
-          <div className="text-center mb-5" data-aos="fade-up">
-            <Badge className="section-badge mb-3">
-              <i className="bi bi-people-fill me-2"></i>
-              SUCCESS STORIES
-            </Badge>
-            <h2 className="section-title mb-4">
-              Real Families, Real Savings
-            </h2>
-          </div>
-          
-          <Row className="g-4">
-            {testimonials.map((testimonial, idx) => (
-              <Col md={4} key={idx}>
-                <Card 
-                  className="testimonial-card h-100"
-                  data-aos="fade-up"
-                  data-aos-delay={idx * 150}
-                >
-                  <Card.Body>
-                    <div className="testimonial-header mb-3">
-                      <div className="testimonial-avatar">
-                        <i className="bi bi-person-circle"></i>
-                      </div>
-                      <div>
-                        <h6 className="testimonial-name">{testimonial.name}</h6>
-                        <p className="testimonial-location">{testimonial.location}</p>
-                      </div>
-                      <div className="testimonial-savings">
-                        <span className="savings-amount">{testimonial.savings}</span>
-                        <span className="savings-label">saved</span>
-                      </div>
-                    </div>
-                    
-                    <blockquote className="testimonial-quote">
-                      "{testimonial.quote}"
-                    </blockquote>
-                    
-                    <div className="testimonial-stars">
-                      {[...Array(5)].map((_, i) => (
-                        <i key={i} className="bi bi-star-fill"></i>
-                      ))}
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-          
-          <div className="text-center mt-5" data-aos="fade-up">
-            <Button 
-              className="btn-primary-glow btn-lg"
-              onClick={() => handleQuickStart('consultation')}
-            >
-              <i className="bi bi-trophy me-2"></i>
-              Join These Success Stories
-            </Button>
-          </div>
-        </Container>
-      </section>
 
       {/* Urgency Section */}
       <section className="urgency-section">
@@ -380,7 +318,7 @@ const Solar = () => {
               <i className="bi bi-form-check me-2"></i>
               GET STARTED TODAY
             </Badge>
-            <h2 className="section-title mb-4">
+            <h2 className="section-title mb-4" style={{ textAlign: "center !important", display: "block", width: "100%" }}>
               Your Solar Journey Starts Here
             </h2>
             <p className="section-subtitle">
@@ -395,7 +333,7 @@ const Solar = () => {
                   <Form>
                     {/* Contact Section */}
                     <div className="form-section mb-4">
-                      <h5 className="form-section-title">
+                      <h5 className="form-section-title" style={{ color: "#333" }}>
                         <i className="bi bi-person-circle me-2"></i>
                         Contact Information
                       </h5>
@@ -403,7 +341,7 @@ const Solar = () => {
                       <Row>
                         <Col md={6}>
                           <Form.Group className="mb-3">
-                            <Form.Label>First Name *</Form.Label>
+                            <Form.Label style={{ color: "#333" }}>First Name *</Form.Label>
                             <Form.Control 
                               type="text" 
                               className="main-form-input"
@@ -413,7 +351,7 @@ const Solar = () => {
                         </Col>
                         <Col md={6}>
                           <Form.Group className="mb-3">
-                            <Form.Label>Last Name *</Form.Label>
+                            <Form.Label style={{ color: "#333" }}>Last Name *</Form.Label>
                             <Form.Control 
                               type="text" 
                               className="main-form-input"
@@ -426,7 +364,7 @@ const Solar = () => {
                       <Row>
                         <Col md={6}>
                           <Form.Group className="mb-3">
-                            <Form.Label>Email Address *</Form.Label>
+                            <Form.Label style={{ color: "#333" }}>Email Address *</Form.Label>
                             <Form.Control 
                               type="email" 
                               className="main-form-input"
@@ -436,7 +374,7 @@ const Solar = () => {
                         </Col>
                         <Col md={6}>
                           <Form.Group className="mb-3">
-                            <Form.Label>Phone Number *</Form.Label>
+                            <Form.Label style={{ color: "#333" }}>Phone Number *</Form.Label>
                             <Form.Control 
                               type="tel" 
                               className="main-form-input"
@@ -449,13 +387,13 @@ const Solar = () => {
 
                     {/* Property Section */}
                     <div className="form-section mb-4">
-                      <h5 className="form-section-title">
+                      <h5 className="form-section-title" style={{ color: "#333" }}>
                         <i className="bi bi-house-fill me-2"></i>
                         Property Information
                       </h5>
                       
                       <Form.Group className="mb-3">
-                        <Form.Label>Property Address</Form.Label>
+                        <Form.Label style={{ color: "#333" }}>Property Address</Form.Label>
                         <Form.Control 
                           type="text" 
                           className="main-form-input"
@@ -466,7 +404,7 @@ const Solar = () => {
                       <Row>
                         <Col md={6}>
                           <Form.Group className="mb-3">
-                            <Form.Label>Home Type</Form.Label>
+                            <Form.Label style={{ color: "#333" }}>Home Type</Form.Label>
                             <Form.Select className="main-form-input">
                               <option>Select home type</option>
                               <option value="single-family">Single Family Home</option>
@@ -478,7 +416,7 @@ const Solar = () => {
                         </Col>
                         <Col md={6}>
                           <Form.Group className="mb-3">
-                            <Form.Label>Monthly Electric Bill</Form.Label>
+                            <Form.Label style={{ color: "#333" }}>Monthly Electric Bill</Form.Label>
                             <Form.Select className="main-form-input">
                               <option>Select bill range</option>
                               <option value="under-100">Under $100</option>
@@ -494,47 +432,67 @@ const Solar = () => {
 
                     {/* Preferences Section */}
                     <div className="form-section mb-4">
-                      <h5 className="form-section-title">
+                      <h5 className="form-section-title" style={{ color: "#333" }}>
                         <i className="bi bi-gear-fill me-2"></i>
                         Consultation Preferences
                       </h5>
                       
                       <Form.Group className="mb-3">
-                        <Form.Label>How would you like to connect?</Form.Label>
-                        <div className="consultation-options">
-                          <Form.Check
-                            type="radio"
-                            name="consultationType"
-                            id="consultation-virtual"
-                            label="Virtual Meeting (Video Call)"
-                            className="consultation-option"
-                          />
-                          <Form.Check
-                            type="radio"
-                            name="consultationType"
-                            id="consultation-in-person"
-                            label="In-Person Home Assessment"
-                            className="consultation-option"
-                          />
-                          <Form.Check
-                            type="radio"
-                            name="consultationType"
-                            id="consultation-phone"
-                            label="Phone Consultation"
-                            className="consultation-option"
-                          />
-                          <Form.Check
-                            type="radio"
-                            name="consultationType"
-                            id="consultation-callback"
-                            label="Request Call Back (Priority)"
-                            className="consultation-option highlight-option"
-                          />
+                        <Form.Label style={{ color: "#333" }}>How would you like to connect?</Form.Label>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" }}>
+                          <div style={{ 
+                            background: "rgba(255, 255, 255, 0.05)", 
+                            border: "1px solid rgba(255, 140, 0, 0.2)", 
+                            borderRadius: "12px", 
+                            padding: "1rem",
+                            cursor: "pointer"
+                          }}>
+                            <input type="radio" name="consultationType" id="consultation-virtual" style={{ marginRight: "0.5rem" }} />
+                            <label htmlFor="consultation-virtual" style={{ color: "#333", fontWeight: "500", cursor: "pointer" }}>
+                              Virtual Meeting (Video Call)
+                            </label>
+                          </div>
+                          <div style={{ 
+                            background: "rgba(255, 255, 255, 0.05)", 
+                            border: "1px solid rgba(255, 140, 0, 0.2)", 
+                            borderRadius: "12px", 
+                            padding: "1rem",
+                            cursor: "pointer"
+                          }}>
+                            <input type="radio" name="consultationType" id="consultation-in-person" style={{ marginRight: "0.5rem" }} />
+                            <label htmlFor="consultation-in-person" style={{ color: "#333", fontWeight: "500", cursor: "pointer" }}>
+                              In-Person Home Assessment
+                            </label>
+                          </div>
+                          <div style={{ 
+                            background: "rgba(255, 255, 255, 0.05)", 
+                            border: "1px solid rgba(255, 140, 0, 0.2)", 
+                            borderRadius: "12px", 
+                            padding: "1rem",
+                            cursor: "pointer"
+                          }}>
+                            <input type="radio" name="consultationType" id="consultation-phone" style={{ marginRight: "0.5rem" }} />
+                            <label htmlFor="consultation-phone" style={{ color: "#333", fontWeight: "500", cursor: "pointer" }}>
+                              Phone Consultation
+                            </label>
+                          </div>
+                          <div style={{ 
+                            background: "rgba(255, 140, 0, 0.1)", 
+                            border: "1px solid rgba(255, 140, 0, 0.4)", 
+                            borderRadius: "12px", 
+                            padding: "1rem",
+                            cursor: "pointer"
+                          }}>
+                            <input type="radio" name="consultationType" id="consultation-callback" style={{ marginRight: "0.5rem" }} />
+                            <label htmlFor="consultation-callback" style={{ color: "#333", fontWeight: "500", cursor: "pointer" }}>
+                              Request Call Back (Priority)
+                            </label>
+                          </div>
                         </div>
                       </Form.Group>
                       
                       <Form.Group className="mb-4">
-                        <Form.Label>Best Time to Contact</Form.Label>
+                        <Form.Label style={{ color: "#333" }}>Best Time to Contact</Form.Label>
                         <Form.Select className="main-form-input">
                           <option>Select preferred time</option>
                           <option value="morning">Morning (8AM - 12PM)</option>
@@ -545,7 +503,7 @@ const Solar = () => {
                       </Form.Group>
                       
                       <Form.Group className="mb-4">
-                        <Form.Label>Additional Information</Form.Label>
+                        <Form.Label style={{ color: "#333" }}>Additional Information</Form.Label>
                         <Form.Control 
                           as="textarea"
                           rows={3}
@@ -659,8 +617,8 @@ const Solar = () => {
         <Container>
           <Row>
             <Col md={4} className="mb-3">
-              <h4 style={{ fontFamily: "Cormorant Garamond" }}>Zewo</h4>
-              <p style={{ color: "#ccc" }}>Build. Code. Write.</p>
+              <h4 style={{ fontFamily: "Cormorant Garamond" }}>byZewo</h4>
+              <p style={{ color: "#ccc" }}>Code. Build. Create.</p>
             </Col>
             <Col md={4} className="mb-3">
               <h5>Quick Links</h5>
@@ -730,7 +688,7 @@ const Solar = () => {
             </Col>
           </Row>
           <p className="text-center mt-4 small text-muted">
-            &copy; {new Date().getFullYear()} Zewo by Ralph Ulysse
+            &copy; {new Date().getFullYear()} byZewo by Ralph Ulysse
           </p>
         </Container>
       </footer>

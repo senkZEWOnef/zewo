@@ -24,6 +24,12 @@
   z-index: 2;
 }
 
+@media (max-width: 768px) {
+  .hero-overlay {
+    padding: 40px 15px;
+  }
+}
+
 .animate-fade-up {
   animation: fadeUp 1s ease-out;
 }
@@ -119,9 +125,16 @@
 .hero-stats {
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.1);
-  padding: 30px;
+  padding: 20px;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 576px) {
+  .hero-stats {
+    padding: 15px;
+    margin-top: 2rem !important;
+  }
 }
 
 .stat-number {
@@ -136,6 +149,16 @@
   color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+@media (max-width: 576px) {
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
 }
 
 /* Expertise Cards */
@@ -442,4 +465,39 @@
 
 .flip-card-back {
   transform: rotateY(180deg);
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .expertise-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .word-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-btn, .hero-btn-secondary {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title::after {
+    width: 60px;
+    height: 2px;
+  }
+  
+  .expertise-img-container img {
+    height: 150px !important;
+  }
+  
+  .expertise-card {
+    padding: 1rem !important;
+  }
+  
+  .word-card {
+    padding: 1rem !important;
+  }
 }

@@ -6,17 +6,17 @@ import "aos/dist/aos.css";
 
 import Home from "./pages/Home";
 import Engineer from "./pages/Engineer";
-import Builder from "./pages/Builder";
+import Shop from "./pages/Shop";
 
 import AdminDashboard from "./pages/AdminDashboard";
 import Poet from "./pages/Poet";
 import Blog from "./pages/Blog";
 import Poems from "./pages/Poems";
-import Music from "./pages/Music";
 import NavigationBar from "./components/NavigationBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
 import { ContentProvider } from "./context/ContentContext";
+import { CartProvider } from "./context/CartContext";
 import ProductAdmin from "./pages/ProductAdmin";
 import AdminMessages from "./pages/AdminMessages";
 import Solar from "./pages/solar";
@@ -35,16 +35,16 @@ function App() {
 
   return (
     <ContentProvider>
-      <NavigationBar />
-      <div className="container mt-4">
+      <CartProvider>
+        <NavigationBar />
+      <div className="container-fluid px-3 px-md-4 mt-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/engineer" element={<Engineer />} />
-          <Route path="/builder" element={<Builder />} />
           <Route path="/poet" element={<Poet />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/poems" element={<Poems />} />
-          <Route path="/music" element={<Music />} />
+          <Route path="/shop" element={<Shop />} />
           <Route path="/about" element={<About />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/solar" element={<Solar />} />
@@ -81,6 +81,7 @@ function App() {
           />
         </Routes>
       </div>
+      </CartProvider>
     </ContentProvider>
   );
 }

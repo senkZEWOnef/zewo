@@ -192,15 +192,6 @@ const Blog = () => {
                 <i className="bi bi-journal-text me-2"></i>
                 View Poetry Collection
               </Button>
-              <Button
-                variant="outline-info"
-                href="/music"
-                className="px-5 py-3"
-                size="lg"
-              >
-                <i className="bi bi-music-note me-2"></i>
-                Listen to My Music
-              </Button>
             </div>
           </div>
         </Container>
@@ -261,7 +252,7 @@ const Blog = () => {
                 </Col>
               ) : (
                 filteredPosts.map((post) => (
-                  <Col xl={3} lg={4} md={6} className="mb-4" key={post.id}>
+                  <Col xl={3} lg={4} md={6} sm={6} className="mb-4" key={post.id}>
                     <Card
                       className="h-100 border-0"
                       style={{
@@ -291,21 +282,24 @@ const Blog = () => {
                           </div>
                         </div>
                         {isAdmin && (
-                          <div className="d-flex gap-2">
+                          <div className="d-flex gap-1 flex-wrap">
                             <Button
                               variant="outline-primary"
                               size="sm"
                               onClick={() => shareToInstagram(post)}
-                              className="d-flex align-items-center"
+                              className="d-flex align-items-center flex-fill flex-sm-grow-0"
+                              style={{ minWidth: "80px" }}
                             >
-                              <i className="bi bi-instagram me-2"></i>
-                              Share
+                              <i className="bi bi-instagram me-1"></i>
+                              <span className="d-none d-sm-inline">Share</span>
                             </Button>
                             <Button
                               variant="outline-warning"
                               size="sm"
                               onClick={() => handleEditPost(post)}
-                              className="d-flex align-items-center"
+                              className="d-flex align-items-center justify-content-center"
+                              style={{ minWidth: "40px" }}
+                              title="Edit Post"
                             >
                               <i className="bi bi-pencil"></i>
                             </Button>
@@ -313,7 +307,9 @@ const Blog = () => {
                               variant="outline-danger"
                               size="sm"
                               onClick={() => handleDeletePost(post.id)}
-                              className="d-flex align-items-center"
+                              className="d-flex align-items-center justify-content-center"
+                              style={{ minWidth: "40px" }}
+                              title="Delete Post"
                             >
                               <i className="bi bi-trash"></i>
                             </Button>
@@ -323,13 +319,18 @@ const Blog = () => {
 
                       {/* Post Content */}
                       <div className="mb-3">
-                        <h5 className="mb-2" style={{ color: "#8b5cf6" }}>
+                        <h5 className="mb-2" style={{ 
+                          color: "#8b5cf6",
+                          fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
+                          lineHeight: "1.3"
+                        }}>
                           {post.title}
                         </h5>
                         <p className="text-light mb-0" style={{ 
-                          fontSize: "1.1rem", 
+                          fontSize: "clamp(0.9rem, 2vw, 1.1rem)", 
                           lineHeight: "1.6",
-                          whiteSpace: "pre-wrap"
+                          whiteSpace: "pre-wrap",
+                          wordBreak: "break-word"
                         }}>
                           {post.content}
                         </p>
@@ -380,6 +381,7 @@ const Blog = () => {
         onHide={() => setShowCreateModal(false)}
         size="lg"
         centered
+        fullscreen="sm-down"
       >
         <Modal.Header 
           closeButton 
@@ -419,7 +421,7 @@ const Blog = () => {
               </div>
               <Form.Control
                 as="textarea"
-                rows={4}
+                rows={6}
                 placeholder="What's on your mind? Share your thoughts..."
                 value={newPost.content}
                 onChange={(e) => handleContentChange(e.target.value)}
@@ -427,8 +429,12 @@ const Blog = () => {
                   backgroundColor: "rgba(139,92,246,0.1)",
                   border: "1px solid rgba(139,92,246,0.3)",
                   color: "white",
-                  resize: "none"
+                  resize: "vertical",
+                  fontSize: "1rem",
+                  minHeight: "120px"
                 }}
+                autoComplete="off"
+                spellCheck="true"
               />
             </Form.Group>
           </Form>
@@ -502,6 +508,7 @@ const Blog = () => {
         onHide={() => setShowEditModal(false)}
         size="lg"
         centered
+        fullscreen="sm-down"
       >
         <Modal.Header 
           closeButton 
@@ -541,7 +548,7 @@ const Blog = () => {
               </div>
               <Form.Control
                 as="textarea"
-                rows={4}
+                rows={6}
                 placeholder="What's on your mind? Share your thoughts..."
                 value={editPost_local.content}
                 onChange={(e) => handleEditContentChange(e.target.value)}
@@ -549,8 +556,12 @@ const Blog = () => {
                   backgroundColor: "rgba(139,92,246,0.1)",
                   border: "1px solid rgba(139,92,246,0.3)",
                   color: "white",
-                  resize: "none"
+                  resize: "vertical",
+                  fontSize: "1rem",
+                  minHeight: "120px"
                 }}
+                autoComplete="off"
+                spellCheck="true"
               />
             </Form.Group>
           </Form>
@@ -575,6 +586,84 @@ const Blog = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <footer
+        className="text-white py-5"
+        style={{ backgroundColor: "#131a33" }}
+      >
+        <Container>
+          <Row>
+            <Col md={4} className="mb-3">
+              <h4 style={{ fontFamily: "Cormorant Garamond" }}>byZewo</h4>
+              <p style={{ color: "#ccc" }}>Code. Build. Create.</p>
+            </Col>
+            <Col md={4} className="mb-3">
+              <h5>Quick Links</h5>
+              <ul className="list-unstyled" style={{ color: "#aaa" }}>
+                <li>
+                  <a href="/" className="text-white">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="/engineer" className="text-white">
+                    Engineer
+                  </a>
+                </li>
+                <li>
+                  <a href="/solar" className="text-white">
+                    Solar Energy
+                  </a>
+                </li>
+                <li>
+                  <a href="/blog" className="text-white">
+                    Blog
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col md={4}>
+              <h5>Contact</h5>
+              <p><i className="bi bi-envelope me-2"></i>ralph.ulysse509@gmail.com</p>
+              <p><i className="bi bi-phone me-2"></i>(785) 317-6894</p>
+              <p><i className="bi bi-geo-alt me-2"></i>San Juan, Puerto Rico</p>
+              <div className="d-flex gap-3 fs-4">
+                <a
+                  href="https://instagram.com/zewoworld"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-instagram"></i>
+                </a>
+                <a
+                  href="https://github.com/zewo"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-github"></i>
+                </a>
+                <a
+                  href="https://facebook.com/zewoworld"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-facebook"></i>
+                </a>
+                <a
+                  href="https://youtube.com/@zewoworld"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-youtube"></i>
+                </a>
+              </div>
+            </Col>
+          </Row>
+          <p className="text-center mt-4 small text-muted">
+            &copy; {new Date().getFullYear()} byZewo by Ralph Ulysse
+          </p>
+        </Container>
+      </footer>
     </div>
   );
 };

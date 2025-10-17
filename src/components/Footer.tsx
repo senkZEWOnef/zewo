@@ -14,7 +14,7 @@ const Footer = () => {
               <Logo variant="dark" size="lg" />
             </div>
             <p style={{ color: "#ccc", fontSize: "1.1rem" }}>
-              Build. Code. Write. <span style={{ color: "#FFD700" }}>WOW!</span>
+              Code. Build. Create. <span style={{ color: "#FFD700" }}>WOW!</span>
             </p>
             <p style={{ color: "#aaa", fontSize: "0.9rem" }}>
               Professional services that deliver exceptional results.
@@ -39,18 +39,8 @@ const Footer = () => {
                 </a>
               </li>
               <li className="mt-2">
-                <a href="/builder" className="text-white-50 text-decoration-none">
-                  <i className="bi bi-hammer me-2"></i>Builder
-                </a>
-              </li>
-              <li className="mt-2">
-                <a href="/poet" className="text-white-50 text-decoration-none">
-                  <i className="bi bi-journal-text me-2"></i>Poet
-                </a>
-              </li>
-              <li className="mt-2">
-                <a href="/shop" className="text-white-50 text-decoration-none">
-                  <i className="bi bi-shop me-2"></i>Shop
+                <a href="/blog" className="text-white-50 text-decoration-none">
+                  <i className="bi bi-journal-text me-2"></i>Blog
                 </a>
               </li>
               <li className="mt-2">
@@ -120,7 +110,7 @@ const Footer = () => {
         </Row>
         <hr style={{ borderColor: '#333', marginTop: '2rem' }} />
         <p className="text-center mt-4 small text-muted">
-          &copy; {new Date().getFullYear()} zeWOWorld by Ralph Ulysse • Built with passion and purpose
+          &copy; {new Date().getFullYear()} byZewo by Ralph Ulysse • Built with passion and purpose
         </p>
       </Container>
     </footer>

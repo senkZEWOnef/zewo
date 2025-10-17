@@ -623,8 +623,8 @@ const Engineer = () => {
         <Container>
           <Row>
             <Col md={4} className="mb-3">
-              <h4 style={{ fontFamily: "Cormorant Garamond" }}>Zewo</h4>
-              <p style={{ color: "#ccc" }}>Build. Code. Write.</p>
+              <h4 style={{ fontFamily: "Cormorant Garamond" }}>byZewo</h4>
+              <p style={{ color: "#ccc" }}>Code. Build. Create.</p>
             </Col>
             <Col md={4} className="mb-3">
               <h5>Quick Links</h5>
@@ -698,7 +698,7 @@ const Engineer = () => {
             </Col>
           </Row>
           <p className="text-center mt-4 small text-muted">
-            &copy; {new Date().getFullYear()} Zewo by Ralph Ulysse
+            &copy; {new Date().getFullYear()} byZewo by Ralph Ulysse
           </p>
         </Container>
       </footer>

@@ -1,5 +1,4 @@
 import { Container, Row, Col } from "react-bootstrap";
-import Footer from "../components/Footer";
 import profileImg from "../assets/rome.jpg";
 import "../styles/About.css";
 
@@ -8,11 +7,11 @@ const About = () => {
   const webApps = [
     {
       title: "Cut by Zewo",
-      description: "Professional cabinet making and woodworking business platform with project showcases, client management, and service booking system.",
+      description: "Business management platform with project showcases, client management, and service booking system built with modern web technologies.",
       tech: ["React", "Node.js", "PostgreSQL", "Bootstrap"],
       liveUrl: "https://cutbyzewo.netlify.app",
       githubUrl: "https://github.com/senkZEWOnef/CutbyZewo",
-      icon: "🔨"
+      icon: "💼"
     },
     {
       title: "Stoic Wisdom by Zewo",
@@ -39,7 +38,7 @@ const About = () => {
       icon: "📸"
     },
     {
-      title: "zeWOWorld Platform",
+      title: "byZewo Platform",
       description: "This comprehensive platform showcasing engineering, solar, building, and poetry services with modern React architecture and premium UX design.",
       tech: ["React", "TypeScript", "Bootstrap", "Supabase", "Vite"],
       liveUrl: "https://byzewo.com",
@@ -102,12 +101,6 @@ const About = () => {
       tags: ["System Design", "Energy Analysis", "Grid Integration", "Puerto Rico Specialist"]
     },
     {
-      icon: "🔨",
-      title: "Custom Building & Woodwork",
-      description: "Crafting bespoke furniture and architectural elements with precision and artistic vision.",
-      tags: ["Cabinet Making", "Furniture Design", "Restoration", "Hand Tools", "CNC"]
-    },
-    {
       icon: "✍️",
       title: "Poetry & Writing",
       description: "Published poet exploring themes of identity, place, and human connection through verse.",
@@ -140,13 +133,13 @@ const About = () => {
                 <h1 className="about-title">Ralph Ulysse</h1>
                 
                 <p className="about-subtitle">
-                  I'm Ralph Ulysse — a poet, a software engineer, and a builder. I've 
-                  spent years shaping wood, shaping words, and shaping tools to bring 
-                  visions to life.
+                  I'm Ralph Ulysse — a full stack software engineer, poet, and consultant. I've 
+                  spent years crafting code, shaping words, and building digital solutions that 
+                  bring visions to life.
                 </p>
                 <p className="about-subtitle">
-                  I was born in Haiti. I've built a workshop, published poetry, and 
-                  launched apps — all in pursuit of honest, beautiful work.
+                  I was born in Haiti. I've published poetry, launched multiple web applications, 
+                  and helped businesses go digital — all in pursuit of elegant, impactful work.
                 </p>
                 
                 <div className="social-links">
@@ -304,14 +297,14 @@ const About = () => {
               </div>
               <div className="timeline-content">
                 <div className="timeline-header">
-                  <h3>Founder & Custom Builder</h3>
+                  <h3>Founder & Full Stack Engineer</h3>
                 </div>
-                <h4 className="timeline-subtitle">zeWOWorld - San Juan, PR</h4>
+                <h4 className="timeline-subtitle">byZewo - San Juan, PR</h4>
                 <ul className="timeline-description">
-                  <li>Founded custom cabinet making and woodworking company</li>
-                  <li>Expanded into web development and software solutions</li>
-                  <li>Built comprehensive service platform combining physical and digital craftsmanship</li>
-                  <li>Developed multiple web applications while growing woodworking business</li>
+                  <li>Founded byZewo focusing on full stack web development and digital solutions</li>
+                  <li>Built and deployed 10+ production web applications</li>
+                  <li>Developed comprehensive service platform showcasing engineering and consulting expertise</li>
+                  <li>Specialized in React, TypeScript, and modern cloud technologies</li>
                 </ul>
                 <div className="timeline-skills">
                   <span className="skill-badge">
@@ -327,7 +320,7 @@ const About = () => {
                     <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a>
                   </span>
                   <span className="skill-badge">Entrepreneurship</span>
-                  <span className="skill-badge">Custom Woodworking</span>
+                  <span className="skill-badge">Full Stack Development</span>
                 </div>
               </div>
             </div>
@@ -337,20 +330,6 @@ const About = () => {
           <div className="resume-projects" data-aos="fade-up">
             <h3 className="projects-title">Notable Projects & Achievements</h3>
             <div className="projects-grid">
-              <div className="project-card">
-                <div className="project-icon">
-                  <i className="bi bi-tools"></i>
-                </div>
-                <div className="project-content">
-                  <h4>Cut by Zewo</h4>
-                  <p>Professional cabinet making and woodworking business platform with project showcases and client management</p>
-                  <div className="project-tech">
-                    <span className="tech-tag">
-                      <a href="https://github.com/senkZEWOnef/CutbyZewo" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                    </span>
-                  </div>
-                </div>
-              </div>
 
               <div className="project-card">
                 <div className="project-icon">
@@ -402,7 +381,7 @@ const About = () => {
                   <i className="bi bi-globe"></i>
                 </div>
                 <div className="project-content">
-                  <h4>zeWOWorld Platform</h4>
+                  <h4>byZewo Platform</h4>
                   <p>This comprehensive platform showcasing engineering, solar, building, and poetry services with modern React architecture</p>
                   <div className="project-tech">
                     <span className="tech-tag">
@@ -666,8 +645,8 @@ const About = () => {
           <div className="contact-content" data-aos="fade-up">
             <h2 className="cta-title">Let's Create Something WOW Together</h2>
             <p className="cta-subtitle">
-              Whether you need engineering expertise, solar solutions, custom building, 
-              or want to discuss poetry and life — I'd love to connect.
+              Whether you need full stack development, solar energy consulting, 
+              or want to discuss technology and creative projects — I'd love to connect.
             </p>
             <a href="/engineer#contact" className="cta-btn">
               <i className="bi bi-chat-dots"></i>
@@ -677,7 +656,83 @@ const About = () => {
         </Container>
       </section>
 
-      <Footer />
+      <footer
+        className="text-white py-5"
+        style={{ backgroundColor: "#131a33" }}
+      >
+        <Container>
+          <Row>
+            <Col md={4} className="mb-3">
+              <h4 style={{ fontFamily: "Cormorant Garamond" }}>byZewo</h4>
+              <p style={{ color: "#ccc" }}>Code. Build. Create.</p>
+            </Col>
+            <Col md={4} className="mb-3">
+              <h5>Quick Links</h5>
+              <ul className="list-unstyled" style={{ color: "#aaa" }}>
+                <li>
+                  <a href="/" className="text-white">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="/engineer" className="text-white">
+                    Engineer
+                  </a>
+                </li>
+                <li>
+                  <a href="/solar" className="text-white">
+                    Solar Energy
+                  </a>
+                </li>
+                <li>
+                  <a href="/blog" className="text-white">
+                    Blog
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col md={4}>
+              <h5>Contact</h5>
+              <p><i className="bi bi-envelope me-2"></i>ralph.ulysse509@gmail.com</p>
+              <p><i className="bi bi-phone me-2"></i>(785) 317-6894</p>
+              <p><i className="bi bi-geo-alt me-2"></i>San Juan, Puerto Rico</p>
+              <div className="d-flex gap-3 fs-4">
+                <a
+                  href="https://instagram.com/zewoworld"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-instagram"></i>
+                </a>
+                <a
+                  href="https://github.com/zewo"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-github"></i>
+                </a>
+                <a
+                  href="https://facebook.com/zewoworld"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-facebook"></i>
+                </a>
+                <a
+                  href="https://youtube.com/@zewoworld"
+                  target="_blank"
+                  className="text-white"
+                >
+                  <i className="bi bi-youtube"></i>
+                </a>
+              </div>
+            </Col>
+          </Row>
+          <p className="text-center mt-4 small text-muted">
+            &copy; {new Date().getFullYear()} byZewo by Ralph Ulysse
+          </p>
+        </Container>
+      </footer>
     </div>
   );
 };

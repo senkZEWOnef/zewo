@@ -31,17 +31,17 @@ const NavigationBar = () => {
             <NavLink to="/solar" className="nav-link nav-accent">
               Solar Energy
             </NavLink>
-            <NavLink to="/builder" className="nav-link nav-accent">
-              Builder
-            </NavLink>
             <NavLink to="/blog" className="nav-link nav-accent">
               Blog
+            </NavLink>
+            <NavLink to="/shop" className="nav-link nav-accent">
+              Shop
             </NavLink>
 
             {/* Admin backdoor access */}
             <NavLink
               to="/admin"
-              className="nav-link nav-accent ms-3"
+              className="nav-link nav-accent ms-lg-3 ms-0"
               style={{
                 opacity: 0.3,
                 fontSize: "0.9rem",
@@ -62,7 +62,7 @@ const NavigationBar = () => {
                   variant="outline-warning"
                   size="sm"
                   onClick={signOut}
-                  className="ms-2"
+                  className="ms-lg-2 ms-0 mt-2 mt-lg-0"
                 >
                   Logout
                 </Button>
