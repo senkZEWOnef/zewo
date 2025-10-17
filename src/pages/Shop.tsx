@@ -216,16 +216,24 @@ const Shop = () => {
                     </p>
 
                     <div className="d-flex align-items-center justify-content-between">
-                      <span className="h5 mb-0" style={{ color: "#28a745", fontWeight: "bold" }}>
-                        {book.price}
-                      </span>
+                      <div>
+                        <span className="h5 mb-0" style={{ color: "#28a745", fontWeight: "bold" }}>
+                          {book.price}
+                        </span>
+                        <div>
+                          <Badge bg="danger" className="mt-1">
+                            <i className="bi bi-exclamation-triangle me-1"></i>
+                            Out of Stock
+                          </Badge>
+                        </div>
+                      </div>
                       <Button
-                        variant="primary"
-                        onClick={() => handleAddToCart(book, idx)}
+                        variant="secondary"
+                        disabled
                         className="px-4"
                       >
-                        <i className="bi bi-cart-plus me-2"></i>
-                        Add to Cart
+                        <i className="bi bi-cart-x me-2"></i>
+                        Out of Stock
                       </Button>
                     </div>
                   </Card.Body>
@@ -287,19 +295,18 @@ const Shop = () => {
                 </Col>
                 <Col md={4}>
                   <Button
-                    variant="warning"
+                    variant="secondary"
                     size="lg"
-                    onClick={handleAddComboToCart}
+                    disabled
                     className="px-4 py-3"
                     style={{ 
                       fontWeight: "bold",
                       fontSize: "1.1rem",
-                      borderRadius: "25px",
-                      boxShadow: "0 4px 15px rgba(255,215,0,0.4)"
+                      borderRadius: "25px"
                     }}
                   >
-                    <i className="bi bi-cart-plus me-2"></i>
-                    Add Bundle to Cart
+                    <i className="bi bi-cart-x me-2"></i>
+                    Bundle Out of Stock
                   </Button>
                 </Col>
               </Row>

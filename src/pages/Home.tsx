@@ -357,7 +357,7 @@ const Home = () => {
                       }}
                     />
                     <div className="expertise-overlay position-absolute top-0 start-0 w-100 h-100 rounded d-flex align-items-center justify-content-center">
-                      <i className={`bi ${idx === 0 ? 'bi-code-slash' : idx === 1 ? 'bi-sun' : idx === 2 ? 'bi-hammer' : 'bi-pen'} fs-1 text-warning opacity-0`}></i>
+                      <i className={`bi ${idx === 0 ? 'bi-code-slash' : idx === 1 ? 'bi-sun' : 'bi-pen'} fs-1 text-warning opacity-0`}></i>
                     </div>
                   </div>
                   <h5 className="expertise-title mb-3" style={{ 
@@ -421,7 +421,7 @@ const Home = () => {
                 width: "100%",
               }}
             >
-              From the Blog
+              Latest Thoughts
             </h2>
             <p className="lead mx-auto" style={{ maxWidth: "600px", color: "#fff" }}>
               Quick insights, deeper thoughts, creative expressions, and more discoveries from my journey through tech and life
@@ -711,6 +711,18 @@ const Home = () => {
                   className="text-white"
                 >
                   <i className="bi bi-youtube"></i>
+                </a>
+                <a
+                  href="/admin"
+                  className="text-white"
+                  style={{
+                    opacity: 0.3,
+                    transition: "opacity 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => ((e.target as HTMLElement).style.opacity = "1")}
+                  onMouseLeave={(e) => ((e.target as HTMLElement).style.opacity = "0.3")}
+                >
+                  <i className="bi bi-gear"></i>
                 </a>
               </div>
             </Col>

@@ -18,10 +18,62 @@
   transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.hero-carousel .carousel-control-prev,
+.hero-carousel .carousel-control-next {
+  width: 5%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0 8px 8px 0;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.hero-carousel .carousel-control-next {
+  border-radius: 8px 0 0 8px;
+}
+
+.hero-carousel .carousel-control-prev:hover,
+.hero-carousel .carousel-control-next:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-carousel .carousel-control-prev-icon,
+.hero-carousel .carousel-control-next-icon {
+  width: 2rem;
+  height: 2rem;
+  background-size: 100%;
+  filter: brightness(0) invert(1) drop-shadow(0 0 3px rgba(0,0,0,0.5));
+}
+
+.hero-carousel .carousel-indicators {
+  bottom: 20px;
+  margin-bottom: 0;
+  z-index: 10;
+}
+
+.hero-carousel .carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.hero-carousel .carousel-indicators .active {
+  background-color: #ffd700;
+  border-color: #ffd700;
+  transform: scale(1.2);
+}
+
 .hero-overlay {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(10, 15, 44, 0.6) 100%);
   padding: 80px 20px;
   z-index: 2;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -87,6 +139,7 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  pointer-events: auto;
 }
 
 .hero-btn::before {
@@ -115,6 +168,7 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
 }
 
 .hero-btn-secondary:hover {
@@ -480,6 +534,7 @@
   .hero-btn, .hero-btn-secondary {
     width: 100%;
     margin-bottom: 0.5rem;
+    pointer-events: auto;
   }
 }
 

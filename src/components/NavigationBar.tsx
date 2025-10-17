@@ -38,20 +38,6 @@ const NavigationBar = () => {
               Shop
             </NavLink>
 
-            {/* Admin backdoor access */}
-            <NavLink
-              to="/admin"
-              className="nav-link nav-accent ms-lg-3 ms-0"
-              style={{
-                opacity: 0.3,
-                fontSize: "0.9rem",
-                transition: "opacity 0.3s ease",
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.opacity = "1")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.opacity = "0.3")}
-            >
-              <i className="bi bi-gear"></i>
-            </NavLink>
 
             {user && (
               <>

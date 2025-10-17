@@ -643,7 +643,7 @@ const About = () => {
       <section className="contact-cta">
         <Container>
           <div className="contact-content" data-aos="fade-up">
-            <h2 className="cta-title">Let's Create Something WOW Together</h2>
+            <h2 className="cta-title">Let's Create Something Together</h2>
             <p className="cta-subtitle">
               Whether you need full stack development, solar energy consulting, 
               or want to discuss technology and creative projects — I'd love to connect.

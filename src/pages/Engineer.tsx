@@ -131,7 +131,7 @@ const Engineer = () => {
               <i className="bi bi-tools me-2"></i>SERVICES
             </Badge>
             <h2
-              className="section-title mb-4"
+              className="section-title mb-4 text-center"
               style={{ 
                 fontFamily: "Cormorant Garamond",
                 fontSize: "clamp(2rem, 5vw, 3.5rem)",
@@ -143,7 +143,7 @@ const Engineer = () => {
             >
               What I Can Do For You
             </h2>
-            <p className="lead text-muted mx-auto" style={{ maxWidth: "700px" }}>
+            <p className="lead mx-auto text-center" style={{ maxWidth: "700px", color: "#fff" }}>
               From concept to deployment, I deliver end-to-end solutions that drive business growth and operational efficiency.
             </p>
           </div>
@@ -510,7 +510,7 @@ const Engineer = () => {
             <Badge bg="success" text="white" className="px-4 py-2 mb-3">
               <i className="bi bi-chat-dots me-2"></i>GET IN TOUCH
             </Badge>
-            <h2 className="section-title mb-4" style={{
+            <h2 className="section-title mb-4 text-center" style={{
               fontFamily: "Cormorant Garamond",
               fontSize: "clamp(2rem, 5vw, 3rem)",
               fontWeight: "300",
@@ -518,7 +518,7 @@ const Engineer = () => {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>Request a Consultation</h2>
-            <p className="lead text-muted mx-auto" style={{ maxWidth: "600px" }}>
+            <p className="lead mx-auto text-center" style={{ maxWidth: "600px", color: "#fff" }}>
               Ready to transform your idea into reality? Let's discuss your project and create something amazing together.
             </p>
           </div>
