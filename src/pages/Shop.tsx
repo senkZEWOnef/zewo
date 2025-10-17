@@ -1,4 +1,4 @@
-import { useCart } from "../context/CartContext";
+// import { useCart } from "../context/CartContext"; // Temporarily disabled while restocking
 import {
   Container,
   Row,
@@ -26,7 +26,7 @@ type Book = {
 };
 
 const Shop = () => {
-  const { addItem } = useCart();
+  // const { addItem } = useCart(); // Temporarily disabled while restocking
 
   const books: Book[] = [
     {
@@ -58,29 +58,30 @@ const Shop = () => {
     }
   ];
 
-  const handleAddToCart = (book: Book, idx: number) => {
-    const cartItem = {
-      id: `book-${idx}`,
-      title: book.title,
-      price: book.price,
-      img: book.coverImage || "/api/placeholder/300/400",
-      description: book.description,
-      category: "books" as const,
-    };
-    addItem(cartItem);
-  };
+  // Temporarily disabled while restocking
+  // const handleAddToCart = (book: Book, idx: number) => {
+  //   const cartItem = {
+  //     id: `book-${idx}`,
+  //     title: book.title,
+  //     price: book.price,
+  //     img: book.coverImage || "/api/placeholder/300/400",
+  //     description: book.description,
+  //     category: "books" as const,
+  //   };
+  //   addItem(cartItem);
+  // };
 
-  const handleAddComboToCart = () => {
-    const comboItem = {
-      id: "book-combo-all-3",
-      title: "Complete Poetry Collection (All 3 Books)",
-      price: "$50.00",
-      img: fiveAmCover, // Use first book as combo image
-      description: "Get all three poetry collections: Five AM, Rome, and The Old Guitarist. Save $10 with this bundle!",
-      category: "books" as const,
-    };
-    addItem(comboItem);
-  };
+  // const handleAddComboToCart = () => {
+  //   const comboItem = {
+  //     id: "book-combo-all-3",
+  //     title: "Complete Poetry Collection (All 3 Books)",
+  //     price: "$50.00",
+  //     img: fiveAmCover, // Use first book as combo image
+  //     description: "Get all three poetry collections: Five AM, Rome, and The Old Guitarist. Save $10 with this bundle!",
+  //     category: "books" as const,
+  //   };
+  //   addItem(comboItem);
+  // };
 
   return (
     <div style={{ backgroundColor: "#0a0f2c", color: "white", minHeight: "100vh" }}>
